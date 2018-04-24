@@ -4,11 +4,9 @@ import './App.scss';
 
 class App extends Component {
   render() {
-    return (
-      <div className="welcome">
-        Lets get this started
-      </div>
-    );
+    return <div className="app">
+        <div className='welcome'>LETS GET THIS STARTED!</div>
+      </div>;
   }
 }
 

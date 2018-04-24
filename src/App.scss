@@ -1,7 +1,15 @@
 .welcome {
+  height: 200px;
+  width: 400px;
   color: red;
+  margin: 2em auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: blue;  
+  font-size: 24px;
+  box-shadow: 0 0 7px rgb(0, 0, 0);
+  border: solid 1px slategray;
+  text-shadow: 0 0 1px black;
 }
-// @keyframes App-logo-spin {
-//   from { transform: rotate(0deg); }
-//   to { transform: rotate(360deg); }
-// }
+
