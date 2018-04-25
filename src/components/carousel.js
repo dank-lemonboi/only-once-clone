@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 import { imgUrls } from '../assets/images/carousel-images'
-// import { clearInterval } from 'timers';
+import { Link } from 'react-router-dom'
 
 import '../styles/carousel.scss'
 
 
+
 const ImageSlide = ({ url, text }) => {
-    return <div className="image-slide">
+    return (
+      <div className="image-slide">
         <img className='img-frame' src={url} alt="" />
         <div className="txt-carousel">{text}</div>
+        <Link to=''><div className='btn-discover'>Discover Now</div></Link>
       </div>
+    )
+}
+
+const buttonRouter = (  ) => {
+    
 }
 
 export default class Carousel extends Component {
@@ -52,20 +60,20 @@ export default class Carousel extends Component {
 
     render() {
         return (
-            <div className="image-carousel">
-             <div id='animate-me'>
-              <ImageSlide url={imgUrls[0].url} text={imgUrls[0].text} />
-             </div>
-             <div id='animate-me'>
-              <ImageSlide url={imgUrls[1].url} text={imgUrls[1].text} />
-             </div>
-             <div id='animate-me'>
-              <ImageSlide url={imgUrls[2].url} text={imgUrls[2].text} />
-             </div>
-             <div id='animate-me'>
-              <ImageSlide url={imgUrls[3].url} text={imgUrls[3].text} />
-             </div>
-           </div>
-      )
+        <div className="image-carousel">
+            <div id="animate-me">
+              <ImageSlide url={imgUrls[0].url} text={imgUrls[0].text}/>
+            </div>
+            <div id="animate-me">
+              <ImageSlide url={imgUrls[1].url} text={imgUrls[1].text}/>
+            </div>
+            <div id="animate-me">
+              <ImageSlide url={imgUrls[2].url} text={imgUrls[2].text}/>
+            </div>
+            <div id="animate-me">
+              <ImageSlide url={imgUrls[3].url} text={imgUrls[3].text}/>
+            </div>
+          </div>
+        )
     }
 }
