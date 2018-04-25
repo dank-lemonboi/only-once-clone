@@ -1,97 +1,94 @@
 .image-carousel {
-   height: 80vh;
-   width: 100%;
-   box-sizing: border-box;
-   
+    height: 80vh;
+    width: 100%;
+    box-sizing: border-box;
+
+        .img-frame {
+            max-height: auto;
+            max-width: auto;
+        }
+
+        .txt-carousel {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 400;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            text-shadow: 0px 0.5px 0.5px rgba(194, 167, 190, 0.3);
+            animation-name: opacitor;
+            animation-duration: 26.8;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+
 }
+ 
 
 .image-slide {
-    width: auto;
-    height: 100%;
+  width: auto;
+  height: 80vh;
+  position: absolute;
 }
 
-.img-carousel {      
-    height: 100%;
-    max-height: 100%;
-    min-width: 100%;
+.img-frame {
+    height: 80vh;
+    width: 100%;
+}
+
+#animate-me {
+  animation-name: opacitor;
+  animation-duration: 26.8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+#animate-me:nth-of-type(1) {
+    animation-delay: 20.1s;
+}
+
+#animate-me:nth-of-type(2) {
+    animation-delay: 13.4s;
+    
+}
+#animate-me:nth-of-type(3) {
+    animation-delay: 6.7s;
+    
+}
+#animate-me:nth-of-type(4) {
+    animation-delay: 0;
+}
+
+
+@media only screen and (min-width: 100px) and (max-width: 568px) {
+  .img-carousel {
+    max-height: 40%;
     max-width: auto;
-    position: absolute;
-    animation-name: opacitor;
-    animation-duration: 7s;
-    animation-iteration-count: infinite;
-    animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    z-index: -2;
+  }
+
+  .image-slide {
+    max-height: 40%;
+  }
 }
 
-.img-carousel2 {
-    height: 100%;
-    max-height: 100%;
-    min-width: 100%;
-    max-width: auto;
-    position: absolute;
-    animation-name: revOpacitor;
-    animation-duration: 7s;
-    animation-iteration-count: infinite;
-    animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    z-index: -1;
+@keyframes opacitor {
+  0% {
+    opacity: 1;
+  }
+  22.3% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  97.8% {
+    opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
 }
 
-
- .txt-carousel {
-     font-family: 'Montserrat', sans-serif;
-     font-weight: 400;
-     position: absolute;
-     top: 35%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     font-size: 2em;
-     color: rgb(255, 255, 255);
-     text-align: center;
-     text-shadow: 0px .5px .5px rgba(194, 167, 190, 0.3);
-     animation-name: opacitor;
-     animation-duration: 7s;
-     animation-iteration-count: infinite;
-     animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-     z-index: 3;
- }
-
-.txt-carousel2 {
-     font-family: 'Montserrat', sans-serif;
-     font-weight: 400;
-     position: absolute;
-     top: 35%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     font-size: 2em;
-     color: rgb(255, 255, 255);
-     text-align: center;
-     text-shadow: 0px .5px .5px rgba(194, 167, 190, 0.3);
-     animation-name: revOpacitor;
-     animation-duration: 7s;
-     animation-iteration-count: infinite;
-     animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-     z-index: 2;
- } 
-  
- @media only screen 
-  and (min-width: 100px) 
-  and (max-width: 568px) {
-      .img-carousel {
-          max-height: 40%;
-          max-width: auto;
-      }
-
-      .image-slide {
-          max-height: 40%;
-      }
-  }
-
-  @keyframes opacitor {
-    0% { opacity: 1}
-    100% {opacity: 0}
-  }
-
-  @keyframes revOpacitor {
-      0% {opacity: 0}
-      100% {opacity: 1}
-  }

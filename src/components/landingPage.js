@@ -9,7 +9,7 @@ import Products from '../components/products'
 export default class Home extends Component {
     render() {
         return (
-          <div className=''>
+          <div className='landing-page'>
              <Navbar />
              <Carousel />
              <Products />
