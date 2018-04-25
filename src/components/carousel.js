@@ -5,12 +5,13 @@ import { imgUrls } from '../assets/images/carousel-images'
 import '../styles/carousel.scss'
 
 
-const ImageSlide = ({ url, url2, text }) => {
+const ImageSlide = ({ url, url2, text, text2 }) => {
     return (
         <div className='image-slide' >
           <img className='img-carousel' src={url} alt=''/>
           <img className='img-carousel2' src={url2} alt=''/>
           <div className='txt-carousel'>{text}</div>
+          <div className='txt-carousel2'>{text2}</div>
         </div>
     )
 }
@@ -56,9 +57,10 @@ export default class Carousel extends Component {
             
             <div className='image-carousel'>
                 <ImageSlide
-                  url2={ imgUrls[this.state.nextImageIndex].url }
                   url={ imgUrls[this.state.currentImageIndex].url }
+                  url2={ imgUrls[this.state.nextImageIndex].url }
                   text={ imgUrls[this.state.currentImageIndex].text }
+                  text2={ imgUrls[this.state.nextImageIndex].text }
                 />
             </div>
         );
