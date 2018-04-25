@@ -1,0 +1,17 @@
+.nav-sticky {
+    height: 0em;
+    width: 100%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: fixed;
+}
+
+.social-tag {
+    box-sizing: border-box;
+    color: black;
+    height: 80%;
+    width: 2em;
+    margin: 0 5px;
+}
