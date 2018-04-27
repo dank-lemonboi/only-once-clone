@@ -2,14 +2,11 @@ $font-var: "Montserrat", sans-serif;
 
 .image-carousel {
     height: 80vh;
-    max-width: 100%;
+    width: 100%;
     box-sizing: border-box;    
 
         .img-frame {
-            width: 100%;
-            height: 80vh;
-            max-height: auto;
-            max-width: auto;
+           object-fit: cover;
         }
 
         .txt-carousel {
@@ -39,7 +36,7 @@ $font-var: "Montserrat", sans-serif;
             letter-spacing: 2px;
             border-radius: .1em;
             position: absolute;
-            top: 45%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);        
         }
@@ -52,8 +49,7 @@ $font-var: "Montserrat", sans-serif;
         }
 
         #animate-me {
-        max-width: 100%;
-        max-height: 100%;
+        object-fit: cover;
         animation-name: opacitor;
         animation-duration: 26.8s;
         animation-iteration-count: infinite;
@@ -79,7 +75,7 @@ $font-var: "Montserrat", sans-serif;
 } 
 
 .image-slide {
-  width: auto;
+  width: 100%;
   height: 80vh;
   position: absolute;
 }
@@ -116,16 +112,30 @@ $font-var: "Montserrat", sans-serif;
 
 
 @media only screen 
-and (min-width: 100px) 
 and (max-width: 568px) {
-  .img-carousel {
-    max-height: 40%;
-    max-width: auto;
+  
+  .image-carousel {
+    box-sizing: border-box;
+    height: 60%;
+    width: 100%;
   }
 
   .image-slide {
-    max-height: 40%;
+    box-sizing: border-box;
+    position: relative;
+    object-fit: cover;
   }
+
+  #animate-me {
+      position: absolute;
+  }
+
+  .btn-discover {
+      position: absolute;
+      top: 400px;
+  }
+
+  
 }
 
 @keyframes opacitor {

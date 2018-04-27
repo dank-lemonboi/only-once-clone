@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+
+
 import '../styles/navbar.scss'
 
 import facebook from '../assets/images/facebook_logo.svg'
@@ -9,21 +12,116 @@ export default class Navbar extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {}
+        this.state = {
+          classToggle: false,
+          mobileToggle: false,
+          navToggle: false,
+          storeToggle: false,
+          infoToggle: false
+        }
+
+        this.widthToggle = this.widthToggle.bind(this)
+        this.scrollListener = this.scrollListener.bind(this)
+        this.navMenuClick = this.navMenuClick.bind(this)
+
     }
+
+    navMenuClick() {
+      this.setState({
+        mobileToggle: !this.state.mobileToggle
+      })
+    }
+
+    scrollListener() {
+
+    }
+
+    widthToggle() {
+      if (window.innerWidth <= 586) {
+        this.setState({ classToggle: true });
+      } else {
+        this.setState({ classToggle: false });
+      }
+    }
+
+    componentDidMount() {
+        this.widthToggle() 
+          window.addEventListener('resize', this.widthToggle.bind(this))
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.widthToggle.bind(this))
+    }
+
+
+      
+    
     render() {
-        return(
-            <header className='nav-sticky'>
-                <nav>
-                    <div className='left-nav-dropdown'></div>
-                    <div className='center-logo'></div>
-                    <div className='right-nav-social'>
-                        <img className='social-tag' src={pinterest} alt="pinterest logo link"/>
-                        <img className='social-tag' src={facebook} alt="facebook logo link"/>
-                        <img className='social-tag' src={instagram} alt="instagram logo link"/>
-                    </div>
-                </nav>
-            </header>
-        )
+        return <header className="nav-parent">
+            <nav className="nav-sticky">
+              <div className="nav-left">
+
+              { (!this.state.classToggle)
+
+                ?
+
+                <ul className="nav-menu">
+                  <li className="nav-menu-store">
+                    STORE
+                    <ul className="drop-menu-store">
+                      <li>LAMPS & LIGHTS</li>
+                      <li>INDUSTRIAL</li>
+                      <li>SOLD</li>
+                      <li>ELECTRONIC GOODS</li>
+                      <li>CLOCKS</li>
+                      <li>HOME DECO</li>
+                    </ul>
+                  </li>
+                  <li className="nav-menu-info">
+                    INFORMATION
+                    <ul className="drop-menu-info">
+                      <li>BLOG</li>
+                      <li>ABOUT</li>
+                      <li>ORDERING</li>
+                      <li>CONTACT</li>
+                    </ul>
+                  </li>
+                </ul>
+
+                :
+
+                <div className='drop-menu-mobile'>
+                  <span onClick={ () => this.navMenuClick() } className='nav-mobile'>Menu</span>
+                   <ul className={ (!this.state.mobileToggle) ? "mobile-nav-menu" : "movile-nav-menu reveal" }>
+                    <span>Store</span>
+                    <ul >
+                      <li>LAMPS & LIGHTS</li>
+                      <li>INDUSTRIAL</li>
+                      <li>SOLD</li>
+                      <li>ELECTRONIC GOODS</li>
+                      <li>CLOCKS</li>
+                      <li>HOME DECO</li>
+                    </ul>
+                    <span>Information</span>
+                    <ul>
+                      <li>BLOG</li>
+                      <li>ABOUT</li>
+                      <li>ORDERING</li>
+                      <li>CONTACT</li>
+                    </ul>
+                  </ul>
+                </div>
+               
+              }
+
+              </div>
+            </nav>
+            <div className="center-logo"></div>
+            <div className="right-nav-social">
+              <img className="social-tag-p" src={pinterest} alt="pinterest logo link" />
+              <img className="social-tag-f" src={facebook} alt="facebook logo link" />
+              <img className="social-tag-i" src={instagram} alt="instagram logo link" />
+            </div>
+          </header>;
     }
 }

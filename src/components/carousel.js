@@ -16,7 +16,7 @@ const ImageSlide = ({ url, text }) => {
     )
 }
 
-const buttonRouter = (  ) => {
+const buttonRouter = () => {
     
 }
 
