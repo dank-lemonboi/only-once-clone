@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { imgUrls } from '../assets/images/carousel-images'
 import { Link } from 'react-router-dom'
 
+import logo from '../assets/images/only_once_logo.svg'
+
 import '../styles/carousel.scss'
 
 
@@ -25,8 +27,7 @@ export default class Carousel extends Component {
         super(props);
 
         this.state = {
-            currentImageIndex: 0,
-            nextImageIndex: 1
+            isSticky: false
         }
 
         // this.nextSlide = this.nextSlide.bind(this)
@@ -59,21 +60,22 @@ export default class Carousel extends Component {
     // }
 
     render() {
-        return (
-        <div className="image-carousel">
+        return <div className="image-carousel">
             <div id="animate-me">
-              <ImageSlide url={imgUrls[0].url} text={imgUrls[0].text}/>
+              <ImageSlide url={imgUrls[0].url} text={imgUrls[0].text} />
             </div>
             <div id="animate-me">
-              <ImageSlide url={imgUrls[1].url} text={imgUrls[1].text}/>
+              <ImageSlide url={imgUrls[1].url} text={imgUrls[1].text} />
             </div>
             <div id="animate-me">
-              <ImageSlide url={imgUrls[2].url} text={imgUrls[2].text}/>
+              <ImageSlide url={imgUrls[2].url} text={imgUrls[2].text} />
             </div>
             <div id="animate-me">
-              <ImageSlide url={imgUrls[3].url} text={imgUrls[3].text}/>
+              <ImageSlide url={imgUrls[3].url} text={imgUrls[3].text} />
             </div>
-          </div>
-        )
+            <section className="carousel-bottom">
+              <img className="logo-container" src={logo} alt="" />
+            </section>
+          </div>;
     }
 }

@@ -76,12 +76,12 @@ $font-var: "Montserrat", sans-serif;
 
 .image-slide {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   position: absolute;
 }
 
 .img-frame {
-    height: 80vh;
+    height: 83vh;
     width: 100%;
 }
 
@@ -110,14 +110,34 @@ $font-var: "Montserrat", sans-serif;
     animation-delay: 0;
 }
 
+.carousel-bottom {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 120px;
+    background: white;
+    position: absolute;
+    bottom: 0px;
+}
+
+.logo-container {
+    position: sticky;
+    bottom: 50px;
+    transform: scale(1.8);
+}
 
 @media only screen 
 and (max-width: 568px) {
   
   .image-carousel {
     box-sizing: border-box;
-    height: 60%;
+    height: 100vh;
     width: 100%;
+  }
+
+  .img-frame {
+      height: 100vh;
   }
 
   .image-slide {
@@ -136,6 +156,19 @@ and (max-width: 568px) {
   }
 
   
+}
+
+@media only screen
+and (max-width: 768px) {
+    
+    .carousel-bottom {
+        display: none;
+    }
+
+    .img-frame {
+        height: 100vh;
+    }
+
 }
 
 @keyframes opacitor {

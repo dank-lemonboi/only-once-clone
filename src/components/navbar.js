@@ -15,13 +15,10 @@ export default class Navbar extends Component {
         this.state = {
           classToggle: false,
           mobileToggle: false,
-          navToggle: false,
-          storeToggle: false,
-          infoToggle: false
+          scrollToggle: false
         }
 
         this.widthToggle = this.widthToggle.bind(this)
-        this.scrollListener = this.scrollListener.bind(this)
         this.navMenuClick = this.navMenuClick.bind(this)
 
     }
@@ -32,12 +29,17 @@ export default class Navbar extends Component {
       })
     }
 
-    scrollListener() {
+    window = () => {
+      if(this.scrollY >= 710) {
+        this.setState({
+          scrollToggle: true
+        })
+      }
 
-    }
+  }
 
     widthToggle() {
-      if (window.innerWidth <= 586) {
+      if (window.innerWidth <= 768) {
         this.setState({ classToggle: true });
       } else {
         this.setState({ classToggle: false });
@@ -47,18 +49,21 @@ export default class Navbar extends Component {
     componentDidMount() {
         this.widthToggle() 
           window.addEventListener('resize', this.widthToggle.bind(this))
+            
+          
+          // window.addEventListener('stick', this.scrollListener.bind(this))
     }
 
     componentWillUnmount() {
       window.removeEventListener('resize', this.widthToggle.bind(this))
+      // window.removeEventListener('stick', this.scrollListener.bind(this))
     }
-
 
       
     
     render() {
         return <header className="nav-parent">
-            <nav className="nav-sticky">
+            <nav className={(!this.state.scrollToggle) ? "nav-sticky" : "scroll-adjust"}>
               <div className="nav-left">
 
               { (!this.state.classToggle)
@@ -90,11 +95,11 @@ export default class Navbar extends Component {
 
                 :
 
-                <div className='drop-menu-mobile'>
-                  <span onClick={ () => this.navMenuClick() } className='nav-mobile'>Menu</span>
-                   <ul className={ (!this.state.mobileToggle) ? "mobile-nav-menu" : "movile-nav-menu reveal" }>
+                <div className='nav-mobile'>
+                  <span onClick={ () => this.navMenuClick() } className='drop-menu-mobile'>Menu</span>
+                   <ul className={ (!this.state.mobileToggle) ? "mobile-nav-menu" : "mobile-nav-menu reveal" }>
                     <span>Store</span>
-                    <ul >
+                    <ul className='mobile-store-list'>
                       <li>LAMPS & LIGHTS</li>
                       <li>INDUSTRIAL</li>
                       <li>SOLD</li>
@@ -103,7 +108,7 @@ export default class Navbar extends Component {
                       <li>HOME DECO</li>
                     </ul>
                     <span>Information</span>
-                    <ul>
+                    <ul children='mobile-info-list'>
                       <li>BLOG</li>
                       <li>ABOUT</li>
                       <li>ORDERING</li>

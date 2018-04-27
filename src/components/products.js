@@ -7,7 +7,7 @@ export default class Products extends Component {
         return(
             <div className='cont-products'>
                 <div className='wrap-products'>
-                  <p>These are the products</p>
+                  These are the products
                 </div>
             </div>
         );

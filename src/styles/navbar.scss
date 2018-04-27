@@ -1,5 +1,7 @@
 ul li {
     list-style: none;
+    padding: 0px;
+    margin: 0px;
 }
 
 .nav-parent {
@@ -9,11 +11,21 @@ ul li {
     display: flex;
     justify-content: space-between;
 
-    .nav-sticky {
+.nav-sticky {
     height: 40px;
     width: 100%;
     background: transparent;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: fixed;
     display: flex;
+}
+
+.scroll-adjust {
+    height: 40px;
+    width: 100%;
+    background-color: white !important;
+    transition: background-color .2s linear;
     justify-content: space-between;
     box-sizing: border-box;
     position: fixed;
@@ -82,7 +94,6 @@ ul li {
     }
 }
 
-
 .right-nav-social {
     display: flex;
     img {
@@ -94,8 +105,8 @@ ul li {
 
     .social-tag-p {
         position: fixed;
-        top: 12px;
-        right: 5.3em;
+        top: 11px;
+        right: 4.1em;
     }
 
     .social-tag-p:hover {
@@ -104,8 +115,8 @@ ul li {
 
     .social-tag-f {
         position: fixed;
-        top: 14px;
-        right: 4.1em;
+        top: 13px;
+        right: 2.75em;
     }
 
     .social-tag-f:hover {
@@ -114,8 +125,8 @@ ul li {
 
     .social-tag-i {
         position: fixed;
-        top: 12px;
-        right: 2em;
+        top: 11px;
+        right: .8em;
     }
 
     .social-tag-i:hover {
@@ -125,25 +136,60 @@ ul li {
  }
 }
 
-.drop-menu-mobile {
+// >---------------------------------- Mobile Nav-Styles --------------------------------------<
+
+.nav-mobile {
     height: 30px;
     width: 60px;
     position: absolute;
-    left: 1em;
-    top: 30%;
-}
-
-.nav-mobile {
-    text-underline-position: auto;
-    text-decoration: underline;
+    left: 1.1em;
+    top: 32%;
+    text-transform: uppercase;
+    letter-spacing: 2px;        
+      font: {
+        size: 12.5px;
+    }
 }
 
 .nav-mobile:hover {
     cursor: pointer;
+    text-decoration: underline;
+  
 }
 
 .mobile-nav-menu {
-    display: none;
+    width: 100vw;
+    height: 453px;
+    background: #FFFFFF;
+    position: absolute;
+    top: -453px;
+    display: flex;
+    flex-direction: column;
+    transform: translate(0 , -453px);
+    transition: transform 0.3s ease-in-out;
+    z-index: -2;
+}
+
+.reveal {
+    position: absolute;
+    left: -20px;
+    transform: translate(0, 460px);
+    transition: transform 0.3s ease-out;
+}
+
+// >----------------------------------------- Mobile Transition -------------------------------<
+
+@media only screen
+and (max-width: 768px) {
+    .social-tag-p {
+        display: none;
+    }
+
+    .social-tag-i {
+        position: fixed;
+        top: 11px;
+        right: .8em;
+    }
 }
 
 
