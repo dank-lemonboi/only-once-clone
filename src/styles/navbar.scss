@@ -24,8 +24,8 @@ ul li {
 .scroll-adjust {
     height: 40px;
     width: 100%;
-    background-color: white !important;
-    transition: background-color .2s linear;
+    background: white !important;
+    transition: background-color .1s linear;
     justify-content: space-between;
     box-sizing: border-box;
     position: fixed;

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { imgUrls } from '../assets/images/carousel-images'
 import { Link } from 'react-router-dom'
 
-import logo from '../assets/images/only_once_logo.svg'
 
 import '../styles/carousel.scss'
 
@@ -18,22 +17,8 @@ const ImageSlide = ({ url, text }) => {
     )
 }
 
-const buttonRouter = () => {
-    
-}
-
 export default class Carousel extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isSticky: false
-        }
-
-        // this.nextSlide = this.nextSlide.bind(this)
-    }
-
-
+   
     // *** I left this code commented out, because I felt like it was a good way to keep track of an arrays
     // *** Index and to reset it at a certain point. It's completely unnceccesary code.
     // Clear interval in case you want to stop the interval in the future.
@@ -60,6 +45,7 @@ export default class Carousel extends Component {
     // }
 
     render() {
+
         return <div className="image-carousel">
             <div id="animate-me">
               <ImageSlide url={imgUrls[0].url} text={imgUrls[0].text} />
@@ -73,9 +59,7 @@ export default class Carousel extends Component {
             <div id="animate-me">
               <ImageSlide url={imgUrls[3].url} text={imgUrls[3].text} />
             </div>
-            <section className="carousel-bottom">
-              <img className="logo-container" src={logo} alt="" />
-            </section>
-          </div>;
+            <section className="carousel-bottom" />
+          </div>
     }
 }

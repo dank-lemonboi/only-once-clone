@@ -1,3 +1,10 @@
+.badge {
+  position: fixed;
+  top: 72%;
+  right: 4em;
+  z-index: 3;
+}
+
 @media only screen 
   and (min-width: 100px) 
   and (max-width: 568px)
@@ -19,9 +26,3 @@
 
 
 
-.badge {
-  position: fixed;
-  top: 72%;
-  right: 4em;
-  z-index: 3;
-}
