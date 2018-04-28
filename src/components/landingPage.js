@@ -19,21 +19,23 @@ export default class Home extends Component {
     }
 
 scrollToggle() {
-      if( window.pageYOffset > 100 ) {
-        this.setState({ sticky: true })
+      if( window.pageYOffset > 606 ) {
+        this.setState( { isSticky: true } )
       } else {
-        this.setState({ sticky: false })
+        this.setState( { isSticky: false } )
       }
 
   }
     render() {
-     
-      window.onscroll = this.scrollToggle
-        
+      
+     window.onscroll = this.scrollToggle   
+    
         return <div className="landing-page-container">
-            <Navbar />
+            <Navbar
+              stick={this.state.isSticky}
+            />
             <Carousel />
-              <img className={ (!this.state.isSticky) ? "logo-container" : "sticky-logo" } src={logo} alt="" />
+            <img className={ (this.state.isSticky) ? "sticky-logo" : "logo-container"} src={logo} alt="" />
             <Products />
             <img className="badge" src={badge} alt="badge" />
           </div>;

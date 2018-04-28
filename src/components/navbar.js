@@ -29,9 +29,9 @@ export default class Navbar extends Component {
 
     scrollListen() {
       if( window.pageYOffset > 600 ) {
-        this.setState({ scrollToggle: true })
+        this.setState( { scrollToggle: true } )
       } else {
-        this.setState({ scrollToggle: false })
+        this.setState( { scrollToggle: false } )
       }
 
   }
@@ -49,22 +49,17 @@ export default class Navbar extends Component {
           window.addEventListener('resize', this.widthToggle.bind(this))
             
           
-          // window.addEventListener('stick', this.scrollListener.bind(this))
     }
 
     componentWillUnmount() {
       window.removeEventListener('resize', this.widthToggle.bind(this))
-      // window.removeEventListener('stick', this.scrollListener.bind(this))
     }
 
       
     
     render() {      
-      
-      window.onscroll = this.scrollListen
-
         return <header className="nav-parent">
-            <nav className={!this.state.scrollToggle ? "nav-sticky" : "nav-sticky scroll-adjust"}>
+            <nav className={ (!this.props.stick) ? "nav-sticky" : "nav-sticky scroll-adjust"}>
               <div className="nav-left">
                 {!this.state.classToggle ? <ul className="nav-menu">
                     <li className="nav-menu-store">
