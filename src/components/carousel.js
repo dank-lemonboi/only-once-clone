@@ -7,12 +7,11 @@ import '../styles/carousel.scss'
 
 
 
-const ImageSlide = ({ url, text }) => {
+const ImageSlide = ({ url, text, route }) => {
     return (
       <div className="image-slide">
         <img className='img-frame' src={url} alt="" />
         <div className="txt-carousel">{text}</div>
-        <Link to=''><div className='btn-discover'>Discover Now</div></Link>
       </div>
     )
 }
@@ -20,7 +19,7 @@ const ImageSlide = ({ url, text }) => {
 export default class Carousel extends Component {
    
     // *** I left this code commented out, because I felt like it was a good way to keep track of an arrays
-    // *** Index and to reset it at a certain point. It's completely unnceccesary code.
+    // *** Index and to reset it at a certain point. It's completely unnecesary code.
     // Clear interval in case you want to stop the interval in the future.
     // componentDidMount() {
     //     setInterval( () => this.nextSlide(), 7000)
@@ -44,6 +43,11 @@ export default class Carousel extends Component {
     //     });
     // }
 
+
+    // *** Change carousel animation to have the interval on state on the front end, and have classes being changed by state
+    // On the CSS file make all the images 100% opacity by default, and then have the JS state on the front end
+    // change the css class to animate the image into view, by changing the opacity to 0%. ***
+
     render() {
 
         return <div className="image-carousel">
@@ -59,7 +63,10 @@ export default class Carousel extends Component {
             <div id="animate-me">
               <ImageSlide url={imgUrls[3].url} text={imgUrls[3].text} />
             </div>
+            <Link key="IMAGE SLIDE BUTTON" to="">
+              <div className="btn-discover">Discover Now.</div>
+            </Link>
             <section className="carousel-bottom" />
-          </div>
+          </div>;
     }
 }

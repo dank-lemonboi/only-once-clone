@@ -1,0 +1,17 @@
+.footer-parent {
+    background: transparent;
+    width: 23%;
+    position: absolute;
+    bottom: 5%;
+    left: 38%;
+}
+
+.footer-wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+#copywrite {
+    margin-left: 19%;
+}

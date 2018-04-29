@@ -26,28 +26,31 @@ $font-var: "Montserrat", sans-serif;
 
 
         .btn-discover {
+            box-sizing: border-box;
             font: 100% $font-var;
             width: 141px;
             height: 41px;
             background: black;
             color: white;
             display: flex;
+            border: 2px solid black;
             justify-content: space-around;
             align-items: center;
             font-size: 14px;
             letter-spacing: 2px;
             border-radius: .1em;
             position: absolute;
-            top: 50%;
+            top: 18%;
             left: 50%;
-            transform: translate(-50%, -50%); 
+            transform: translate(-50%, -50%);
+            z-index: 5;
         }
 
         .btn-discover:hover {
             cursor: pointer;
             background: transparent;
             border: 2px solid white;
-            transition: .4s ease-in-out;
+            transition: all .4s ease-in-out;
         }
 
         #animate-me {

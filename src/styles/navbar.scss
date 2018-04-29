@@ -4,6 +4,12 @@ ul li {
     margin: 0px;
 }
 
+
+a {
+    style: none;
+    color: black;
+}
+
 .nav-parent {
     box-sizing: border-box;
     position: relative;
@@ -35,11 +41,32 @@ ul li {
 .nav-left {
     display: flex;
 
+.store-wrapper {
+    display: flex;
+    margin-right: 2.5em;
+
+    img {
+        height: 1.2em;
+        width: 1.5em;
+    }
+}
+
+.info-wrapper {
+    display: flex;
+    margin-right: 2.5em;
+
+     img {
+        height: 1.2em;
+        width: 1.5em;
+    }
+}
+
 .nav-menu {
     letter-spacing: 2px;
     box-sizing: border-box;
     display: flex;
-    font-size: 14px;
+    font-size: 13px;
+    letter-spacing: 3px;
     width: 250px;
     justify-content: space-between;
     
@@ -58,7 +85,7 @@ ul li {
     }
   }
 
-    .nav-menu-store:hover {
+    .store-wrapper:hover {
     cursor: pointer;
     color: red;
 
@@ -79,7 +106,7 @@ ul li {
     }
   }
 
-   .nav-menu-info:hover {
+   .info-wrapper:hover {
         cursor: pointer;
         color: red;
         .drop-menu-info {
@@ -131,6 +158,14 @@ ul li {
 
     .social-tag-i:hover {
         cursor: pointer;
+    }
+
+    .nav-cart {
+        position: fixed;
+        top: 12px;
+        right: 8em;
+        font-size: 13px;
+        letter-spacing: 3px;
     }
 
  }

@@ -3,7 +3,8 @@ const express = require('express'),
       sessions = require('express-session'),
       massive = require('massive'),
       bodyParser = require('body-parser'),
-      cors = require('cors')
+      cors = require('cors'),
+      checkForSession = require('./middlewares/checkForSessions')
 
       const {
           SERVER_PORT,
@@ -17,12 +18,17 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
+
 app.use(sessions({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {}
 }))
+
+app.use(checkForSession)
+
+
 
 massive(CONNECTION_STRING).then( db => {
     app.set('db', db)
