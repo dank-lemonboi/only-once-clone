@@ -22,7 +22,12 @@ export default class Home extends Component {
     }
 
 scrollToggle() {
-      if( window.pageYOffset > 606 ) {
+  // the two variables allow for different window sizes,
+  // so the animation will happen at the same place no matter
+  // the view size of the screen.
+ const pageHeight = window.innerHeight;
+ const animate = pageHeight * .89999;
+      if( window.pageYOffset > `${animate}`) {
         this.setState( { isSticky: true } )
       } else {
         this.setState( { isSticky: false } )
@@ -30,7 +35,7 @@ scrollToggle() {
 
   }
     render() {
-      
+
      window.onscroll = this.scrollToggle   
     
         return (
