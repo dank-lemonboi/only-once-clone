@@ -2,11 +2,11 @@ $font-var: "Montserrat", sans-serif;
 
 .image-carousel {
     height: 80vh;
-    width: 100%;
+    width: 100vw;
     box-sizing: border-box;
 
         .img-frame {
-            box-sizing: border-box;
+           box-sizing: border-box;
            object-fit: cover;
         }
 
@@ -15,13 +15,15 @@ $font-var: "Montserrat", sans-serif;
             font: 100% $font-var;
             font-weight: 400;
             position: absolute;
-            top: 35%;
+            top: 33vh;
             left: 50%;
+            width: 90vw;
             transform: translate(-50%, -50%);
             font-size: 2em;
             color: rgb(255, 255, 255);
             text-align: center;
             text-shadow: 0px 0.5px 0.5px rgba(194, 167, 190, 0.3);
+            text-rendering: optimizeLegibility;
         }
 
 
@@ -36,19 +38,18 @@ $font-var: "Montserrat", sans-serif;
             border: 2px solid black;
             justify-content: space-around;
             align-items: center;
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 2px;
             border-radius: .1em;
             position: absolute;
-            top: 18%;
-            left: 50%;
+            top: 44vh;
+            left: 50vw;
             transform: translate(-50%, -50%);
-            z-index: 5;
         }
 
         .btn-discover:hover {
             cursor: pointer;
-            background: transparent;
+            background: rgba(0, 0, 0, .1);
             border: 2px solid white;
             transition: all .4s ease-in-out;
         }
@@ -81,20 +82,20 @@ $font-var: "Montserrat", sans-serif;
 } 
 
 .image-slide {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   position: absolute;
 }
 
 .img-frame {
     height: 83vh;
-    width: 100%;
+    width: 100vw;
 }
 
 .carousel-bottom {
     box-sizing: border-box;
-    width: 100%;
-    height: 120px;
+    width: 100vw;
+    height: 17vh;
     background: white;
     position: absolute;
     top: 83vh;
@@ -104,10 +105,29 @@ $font-var: "Montserrat", sans-serif;
 @media only screen 
 and (max-width: 568px) {
   
+ .carousel-bottom {
+        display: none;
+    }
+
   .image-carousel {
     box-sizing: border-box;
     height: 100vh;
     width: 100%;
+
+     .btn-discover {
+      position: absolute;
+      top: 56vh;
+      left: 50vw;
+  }
+
+   .txt-carousel {
+        top: 44vh;
+        left: 50%;
+        width: 90vw;
+        font-size: 1.7em;
+        text-rendering: optimizeLegibility;
+        transition: .2s ease-in;        
+    }
   }
 
   .img-frame {
@@ -124,17 +144,35 @@ and (max-width: 568px) {
       position: absolute;
   }
 
-  .btn-discover {
-      position: absolute;
-      top: 400px;
-  }
+ 
 
   
 }
 
 @media only screen
-and (max-width: 768px) {
+and (max-width: 768px)
+and (min-width: 568px) {
     
+.image-carousel {
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+
+     .btn-discover {
+      position: absolute;
+      top: 53vh;
+      left: 50vw;
+  }
+
+   .txt-carousel {
+        top: 42vh;
+        left: 50%;
+        width: 90vw;
+        font-size: 1.9em;
+        text-rendering: optimizeLegibility;
+    }
+  }
+
     .carousel-bottom {
         display: none;
     }
@@ -142,6 +180,10 @@ and (max-width: 768px) {
     .img-frame {
         height: 100vh;
     }
+}
+
+@media only screen
+and (min-width: 1025px) {
 
 }
 

@@ -1,17 +1,49 @@
 .footer-parent {
     background: transparent;
-    width: 23%;
+    width: 280px;
     position: absolute;
     bottom: 5%;
-    left: 38%;
+    left: 40%;
 }
 
 .footer-wrapper {
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;
+
+    span:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
 }
 
 #copywrite {
-    margin-left: 19%;
+    margin-left: 16%;
+}
+
+@media screen
+and (max-width: 568px) {
+    .footer-parent {
+        width: 200px;
+        position: absolute;
+        bottom: 3%;
+        left: 23%;
+        font-size: 0.8em;
+        transition: .4s ease;
+        
+    }
+
+    #copywrite {
+        margin-left: 12%;
+    }
+}
+
+@media screen
+and (max-width: 768px)
+and (min-width: 568px) {
+    .footer-parent {
+        position: absolute;
+        left: 33%;
+        transition: .4s ease;
+    }
 }

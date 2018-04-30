@@ -17,7 +17,8 @@ export default class Navbar extends Component {
           mobileToggle: false,
           scrollToggle: false,
           dropMenu: false,
-          cart: [1,2,3,4,5,6,7,8]
+          dropInfo: false,
+          cart: [1]
         }
 
         this.widthToggle = this.widthToggle.bind(this)
@@ -52,8 +53,6 @@ export default class Navbar extends Component {
     componentDidMount() {
         this.widthToggle() 
           window.addEventListener('resize', this.widthToggle.bind(this))
-            
-          
     }
 
     componentWillUnmount() {
@@ -63,21 +62,31 @@ export default class Navbar extends Component {
     
     render() { 
 
+      console.log(this.state.dropMenu)
 
         return <header className="nav-parent">
-            <nav className={ ( this.props.path !== '/' || this.props.stick ) ? "scroll-adjust" : "nav-sticky"}>
+            <nav className={ ( this.props.path !== "/" || this.props.stick ) ? "scroll-adjust" : "nav-sticky"}>
               <div className="nav-left">
-              {/* Ternary which uses state to render a mobile responsive pleasant User navbar experience */}
-                {
+                {/* Ternary which uses state to render a mobile responsive pleasant User navbar experience */}
+                { 
+                  (!this.state.classToggle )
 
-                  ( !this.state.classToggle )
-
-                ? 
-
-                 <ul className="nav-menu">
+                  ? 
+                  
+                  <ul className="nav-menu">
                     <li className="nav-menu-store">
-                      <span className='store-wrapper'>STORE { (!this.state.dropMenu) ? <img src={down} alt=""/> : <img src={up} alt=""/> }</span> 
-                      <ul className="drop-menu-store">
+                      <span 
+                      // How do I get the nav to conditionally drop on hover, allow me to navigate the 
+                      // drop menu and have it disapear when i'm no-longer hovering?
+                        onMouseOver={ () => this.setState( { dropMenu: true } )}
+                        // onMouseOut={ () => this.setState({ dropMenu: !this.state.dropMenu} )}
+                        className="store-wrapper">
+                        STORE { ( !this.state.dropMenu ) ? <img className='drop-arrow' src={down} alt="" /> : <img className='drop-arrow' src={up} alt="" /> }
+                      </span>
+                      <ul 
+                        onMouseOver={ () => this.setState( { dropMenu: true } )} 
+                        onMouseOut= {() => this.setState({ dropMenu: false } )}
+                        className={ ( !this.state.dropMenu ) ? "drop-menu-store" : "drop-menu-store reveal"}>
                         <li>LAMPS & LIGHTS</li>
                         <li>INDUSTRIAL</li>
                         <li>SOLD</li>
@@ -86,9 +95,17 @@ export default class Navbar extends Component {
                         <li>HOME DECO</li>
                       </ul>
                     </li>
-                    <li className="nav-menu-info">
-                      <span className='info-wrapper'>INFORMATION { (!this.state.dropMenu) ? <img src={down} alt=""/> : <img src={up} alt=""/> }</span>
-                      <ul className="drop-menu-info">
+                    <li className="nav-menu-info"
+                        onMouseOver={ () => this.setState({ dropInfo: true })} 
+                    >
+                      <span
+                        className="info-wrapper">
+                        INFORMATION { ( !this.state.dropInfo ) ? <img className='drop-arrow' src={down} alt="" /> : <img className='drop-arrow' src={up} alt=""/> }
+                      </span>
+                      <ul 
+                        onMouseOver={ () => this.setState({ dropInfo: true })} 
+                        onMouseOut= {() => this.setState({ dropInfo: false } )}                        
+                        className={ ( !this.state.dropInfo ) ? "drop-menu-info" : "drop-menu-info reveal"}>
                         <li>BLOG</li>
                         <li>ABOUT</li>
                         <li>ORDERING</li>
@@ -96,14 +113,14 @@ export default class Navbar extends Component {
                       </ul>
                     </li>
                   </ul> 
-
-                : 
-
-                <div className="nav-mobile">
-                    <span onClick={() => this.navMenuClick()} className="drop-menu-mobile">
+                  
+                  : 
+                  
+                  <div className="nav-mobile">
+                    <span onClick={ () => this.navMenuClick() } className="drop-menu-mobile">
                       Menu
                     </span>
-                    <ul className={!this.state.mobileToggle ? "mobile-nav-menu" : "mobile-nav-menu reveal"}>
+                    <ul className={ ( !this.state.mobileToggle ) ? "mobile-nav-menu" : "mobile-nav-menu mob-reveal" }>
                       <span>Store</span>
                       <ul className="mobile-store-list">
                         <li>LAMPS & LIGHTS</li>
@@ -122,18 +139,22 @@ export default class Navbar extends Component {
                       </ul>
                     </ul>
                   </div>
-
                 }
-
               </div>
             </nav>
 
             {/* This will dynamically render the logo into the nav-bar if the route is anywhere other than the main landing page, 
               which will act as a bread-crumb feature to link users back to the landing page from anywhere in the site */}
 
-            <span> { (this.props.path !== '/') ? <Link to='/'> <img className='sticky-logo' src={this.props.logo} alt=""/> </Link>: null } </span>
-            <div className="right-nav-social">
-              <Link to ='/cart/:userId'><div className='nav-cart'>{ ( this.state.cart.length > 0 ) ?  `CART (${this.state.cart.length})`: null }</div></Link>
+            <span> { ( this.props.path !== "/" ) ? <Link to="/"><img className="sticky-logo" src={ this.props.logo } alt="" /></Link> : null }</span>
+            <div className="right-nav-social"> 
+              <Link to="/cart/:userId">
+              {/* Conditionally render a cart if your cart contains items, and then change the size and placement based on window size */}
+                <div 
+                className={ ( window.innerWidth < 568 ) ? "nav-cart-mob" : window.innerWidth < 768 ? "nav-cart-tab" : "nav-cart"  } >
+                  { ( window.innerWidth < 568 && this.state.cart.length > 0 )  ? `(${this.state.cart.length})` : this.state.cart.length > 0 ? `CART (${this.state.cart.length})` : null }
+                </div>
+              </Link>
               <a href="https://www.pinterest.com/onlyonceshop/">
                 <img className="social-tag-p" src={pinterest} alt="pinterest logo link" />
               </a>
