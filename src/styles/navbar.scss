@@ -80,18 +80,18 @@ a {
     justify-content: space-between;
     
       .drop-menu-store {
+        height: 200px;
         display: none;
         position: fixed;
-        top: 3em;
+        top: 4em;
         left: 0;
 
         li {
-            margin-bottom: 15px;
+            margin-bottom: 19px;
         }
 
         li:hover {
         text-decoration: underline;
-        transition: .5s ease-in-out;
      }
 
     }
@@ -99,12 +99,12 @@ a {
       .drop-menu-info {
         display: none;         
         position: fixed;
-        top: 3em;
+        top: 4em;
         left: 8.6em;
-        transition: .3s ease-in-out;
-
+        
         li {
-            margin-bottom: 15px;
+            margin-bottom: 19px;
+            
         }
 
         li:hover {
@@ -119,6 +119,9 @@ a {
     .reveal {
         display: flex;
         flex-direction: column;
+        animation-name: animate-dropdown;
+        animation-duration: .4s;
+        animation-iteration-count: 1;
    }
  
   }
@@ -275,4 +278,14 @@ and (max-width: 768px) {
             right: .8em;
         }
 
+}
+
+
+@keyframes animate-dropdown {
+    0% { opacity: 0 }
+    20% { opacity: .23 }
+    50% { opacity: .5 }
+    75% { opacity: .73 }
+    94% { opacity: .90 }
+    100% { opacity: 1 }
 }

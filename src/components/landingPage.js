@@ -1,5 +1,3 @@
-'use strict';
-
 import React, {Component} from 'react'
 import logo from "../assets/images/only_once_logo.svg";
 import badge from '../assets/images/only_once_badge.svg'
@@ -9,8 +7,13 @@ import Navbar from '../components/navbar';
 import Products from '../components/products'
 import Footer from '../components/footer'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import {connect} from 'react-redux'
 
-export default class Home extends Component {
+import { getAll, addToCart } from "../ducks/reducer";
+
+
+class Home extends Component {
      constructor(props) {
         super(props)
 
@@ -21,10 +24,7 @@ export default class Home extends Component {
         this.scrollToggle = this.scrollToggle.bind(this)
     }
 
-componentDidMount() {
-
-  this.scrollToggle()
-}
+      
 
 scrollToggle() {
   // the two variables allow for different window sizes,
@@ -41,16 +41,26 @@ scrollToggle() {
 
   }
 
+  componentDidMount() {
+    this.props.getAll();
+    // axios.get('/api/auth/me').then( res => {
+    //     console.log(res.data)
+    // }).catch( () => console.log('woops, something in not working...') )
+
+  }
+
 
     render() {
-      console.log(this.state)
+
      window.onscroll = this.scrollToggle   
     
         return <div className="landing-page-container">
             <Navbar 
             path={this.props.location.pathname} 
             logo={logo} 
-            stick={this.state.isSticky} />
+            stick={this.state.isSticky} 
+            cart={this.props.cart}
+            />
             <Carousel />
             <Link to="/">
               <img className={ ( ( this.props.path === '/' || !this.state.isSticky ) ) ? "logo-container"  : ( this.props.path !== '/') ? "sticky-logo" : 'logo-container' } src={logo} alt="" />
@@ -61,3 +71,11 @@ scrollToggle() {
           </div>;
     }
 }
+
+let mapStateToProps = (state) => {
+  return {
+    state
+  }
+}
+
+export default connect( mapStateToProps, { getAll, addToCart } )(Home)

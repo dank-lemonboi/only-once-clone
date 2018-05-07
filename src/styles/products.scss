@@ -1,4 +1,4 @@
-.cont-products {
+.product-parent {
     height: 200vh;
     width: 100%;
     background: #efefef;
@@ -7,3 +7,21 @@
 .wrap-products {
     margin: 10px auto;
 }
+
+.product-card {
+    height: 450px;
+    width: 750px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.product-card:hover {
+    background: slategray;
+}
+
+.image-container {
+    height: 10vh;
+    width: 10vw;
+}
+

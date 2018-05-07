@@ -6,9 +6,10 @@ import pinterest from '../assets/images/pinterest_logo.svg'
 import down from '../assets/arrow-down.svg'
 import up from '../assets/arrow-up.svg'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
-export default class Navbar extends Component {
+class Navbar extends Component {
     constructor(props) {
         super(props)
 
@@ -18,13 +19,22 @@ export default class Navbar extends Component {
           scrollToggle: false,
           dropMenu: false,
           dropInfo: false,
-          cart: [1]
+          cart: []
         }
 
         this.widthToggle = this.widthToggle.bind(this)
         this.navMenuClick = this.navMenuClick.bind(this)
         this.scrollListen = this.scrollListen.bind(this)
 
+    }
+
+    componentDidUpdate(prevProps) {
+      if( prevProps !== this.props  ) {
+        this.setState({
+          cart: this.props.cart
+        })
+        console.log(this.props.cart)
+      }
     }
 
     navMenuClick() {
@@ -53,6 +63,10 @@ export default class Navbar extends Component {
     componentDidMount() {
         this.widthToggle() 
           window.addEventListener('resize', this.widthToggle.bind(this))
+          
+          this.setState({
+            cart: this.props.cart
+          })
     }
 
     componentWillUnmount() {
@@ -62,7 +76,7 @@ export default class Navbar extends Component {
     
     render() { 
 
-      console.log(this.state.dropMenu)
+      // console.log(this.state.cart)
 
         return <header className="nav-parent">
             <nav className={ ( this.props.path !== "/" || this.props.stick ) ? "scroll-adjust" : "nav-sticky"}>
@@ -168,3 +182,14 @@ export default class Navbar extends Component {
           </header>;
     }
 }
+
+const mapStateToProps = (state) => {
+  if(!state) {
+    return {}
+  }
+  return {
+    cart: state.cart
+  }
+}
+
+export default connect(mapStateToProps)(Navbar)

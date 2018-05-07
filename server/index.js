@@ -4,7 +4,8 @@ const express = require('express'),
       massive = require('massive'),
       bodyParser = require('body-parser'),
       cors = require('cors'),
-      checkForSession = require('./middlewares/checkForSessions')
+      checkForSession = require('./middlewares/checkForSessions'),
+      ctrl = require('./controllers/controller')
 
       const {
           SERVER_PORT,
@@ -23,11 +24,16 @@ app.use(sessions({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: {}
+    cookie: {
+        maxAge: 366000
+    }
 }))
 
 app.use(checkForSession)
 
+app.get('/api/products', ctrl.getProducts);
+app.put('/api/addProduct', ctrl.addProduct);
+// app.put('/api/remove', ctrl.removeFromCart)
 
 
 massive(CONNECTION_STRING).then( db => {
