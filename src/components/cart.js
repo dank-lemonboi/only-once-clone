@@ -235,13 +235,15 @@ class Cart extends Component {
     renderCartItem() {
         let { cart } = this.props;
         let cartItem = cart.map( (item, index) => {
-          return (
+          return(
+          
           <div className="cart-item-parent">
-                 <div className="cart-grid">
-                
-                <div className="cart-item" key={ item.item_number + index }>
+              <div className="cart-grid">
+                <div className="cart-item" key={item.item_number + index}>
                   <span className="delete-button" onClick={() => this.removeItem(item.item_number)}>
-                    <div className='delete-container'><img src={deleteIcon} alt="" /></div>
+                    <div className="delete-container">
+                      <img src={deleteIcon} alt="" />
+                    </div>
                   </span>
                   <div>
                     <img className="cart-img" src={item.display_photo} alt="" />
@@ -251,11 +253,16 @@ class Cart extends Component {
                     {item.item_number}
                   </span>
                   <span className="quantity-tag">1</span>
-                  <span className="price-tag">{`${item.price}`}</span>
+
+        {/* CHANGE THIS BEFORE PRESENTATION */}
+                  <span className="price-tag">
+                    {`${0.00} ` || `${item.price.toFixed(2)} `} <img className="euro" src={euro} alt="" />
+                  </span>
                 </div>
               </div>
             </div>
-          )
+
+           )
         })
 
         return cartItem;
@@ -314,7 +321,9 @@ class Cart extends Component {
                 <span>Qty.</span>
                 <span>Price</span>
               </div>
+              <div className='product-line-break'></div>
               <div className="items">{this.renderCartItem()}</div>
+              <div className='product-line-break-bottom'></div>
 
               <img className="badge" src={badge} alt="badge" />
               <div>
@@ -323,8 +332,11 @@ class Cart extends Component {
                 <span className='cart-subtotal'>
                   { `${price.toFixed(2)} ` }
                   <img className='euro' src={euro} alt=""/>
-                </span>
-              </div>
+                  </span>
+                  </div>
+                    <div className=''>
+                        <h5>Shipping '(?)' <span style={ { color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'italic' } }>'(We will contact you with the shipping cost & details)'</span></h5>
+                    </div>
         </div>
 
           :
@@ -335,8 +347,10 @@ class Cart extends Component {
                 <span>Qty.</span>
                 <span>Price</span>
               </div>
+              <div className='product-line-break'></div>
               <div className="items">{this.renderCartItem()}</div>
-
+              <div className='product-line-break-bottom'></div>
+              
               <img className="badge" src={badge} alt="badge" />
               <div>
                 <span className='sub-label'>Subtotal</span>

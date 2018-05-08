@@ -31,14 +31,12 @@ $font-var: "Montserrat", sans-serif;
 }
 
 .items {
-    margin-top: 3em;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    width: 95%;
+    margin: 2px auto;
 }
 
 .cart-item-parent {
     margin-top: 2px;
-    border-top: 1px solid black;
 }
 
 .cart-grid-header {
@@ -219,6 +217,18 @@ $font-var: "Montserrat", sans-serif;
     border-bottom: 2px solid black;
     margin: 20px auto;
 
+}
+
+.product-line-break {
+    width: 97%;
+    border-bottom: 2px solid black;
+    margin: 0 auto;
+}
+
+.product-line-break-bottom {
+    width: 97%;
+    border-top: 2px solid black;
+    margin: 0 auto;    
 }
 
 .show-me {
