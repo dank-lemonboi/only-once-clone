@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
+import euro from "../assets/Euro_symbol_black.svg";
+import Footer from "../components/footer";
+
+
 
 import { getAll, addToCart } from '../ducks/reducer'
 
@@ -23,19 +27,22 @@ import '../styles/products.scss'
     
 
     getMeTheProducts() {
-        // console.log(this.props.products)
+        console.log(this.state.isHovering)
         let productList = this.props.products.map(( product, index ) => {
           return (
-              <Link to={`product/${product.item_name}/${product.item_number}`}><div className="product-card" key={product.item_number}>
-              <div className="image-parent">
-                <div className={ ( this.state.isHovering ) ? 'product-hover' : 'hidden' }>
-                    <span>{product.item_name}</span>
-                    <span>{product.price}</span>
-                </div>
-                <img className="image-container" src={product.display_photo} alt="" />
-              </div>
-             </div>
-            </Link>
+              <Link to={`product/${product.item_name}/${product.item_number}`}>
+                    <div className="product-card" key={product.item_number}>
+                    <div className='product-hover'>
+                        <span>{product.item_name}</span>
+                        <span>{`${product.price} `}<img className='euro' src={euro} alt=""/></span>
+                    </div>
+                        <div className="image-parent">
+                            <div className="image-container">
+                                <img src={product.display_photo} alt="" />
+                            </div>
+                            </div>
+                        </div>
+              </Link>
         )
         })
 
@@ -44,15 +51,13 @@ import '../styles/products.scss'
 
     render() {
 
-        // console.log(products)
-        return (
-            <div className='product-parent'>
-                <div className='wrap-products'>
-                  These are the products
-                  { this.getMeTheProducts() }
-                </div>
+        return <body className="product-parent">
+            <div className="wrap-products">
+              These are the products
+              {this.getMeTheProducts()}
             </div>
-        )
+            <Footer />
+          </body>;
     }
  }
 

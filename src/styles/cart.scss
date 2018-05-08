@@ -2,7 +2,7 @@ $font-var: "Montserrat", sans-serif;
 
 .cart-parent {
     box-sizing: border-box;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background: #efefef;
     position: relative;
@@ -10,11 +10,11 @@ $font-var: "Montserrat", sans-serif;
 
 .cart-banner {
     font-size: 15px;
-    letter-spacing: 1px;
+    line-height: 2em;
+    letter-spacing: 2px;
     font-weight: 700;
-    position: fixed;
-    top: 18vh;
-    left: 45vw;
+    margin-top: 8em;
+    margin-left: 46%;
 }
 
 .cart-wrapper {
@@ -22,10 +22,12 @@ $font-var: "Montserrat", sans-serif;
     padding-top: 30px;
     padding-bottom: 30px;
     height: auto;
-    width: 75%;
+    width: 72%;
     background: white;
-    margin: 0 auto;
-    margin-top: 15%;
+    margin-top: 2%;
+    margin-left: 14%;
+    position: relative;
+    margin-bottom: 18%;
 }
 
 .items {
@@ -40,38 +42,22 @@ $font-var: "Montserrat", sans-serif;
 }
 
 .cart-grid-header {
-    position: fixed;
-    top: 35vh;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 20% 20% 20%;
+    grid-template-rows: 2em;
+
+    span {
     display: flex;
-    flex-direction: row;
-    
-    span:nth-child(1) {
-        position: fixed;
-        left: 14vw;
+    align-items: center;
+    justify-content: space-around;
     }
 
-    span:nth-child(2) {
-        position: absolute;
-        left: 37.5vw;
-    }
-
-    span:nth-child(3) {
-        position: absolute;
-        right: 42vw;
-    }
-
-    span:nth-child(4) {
-        position: absolute;
-        right: 29vw;
-    }
 }
 
 .cart-grid {
     display: grid;
     grid-template-columns: 40% 20% 20% 20%;
     grid-template-rows: 75px;
-    
 }
 
 
@@ -109,13 +95,14 @@ $font-var: "Montserrat", sans-serif;
     height: 50px;
     width: 65px;
     background: #fefefe;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
     margin-left: 20px;
 }
 
 .item-name {
     position: absolute;
-    left: 25em;
+    left: 17%;
+    width: 40%;
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: 2px;
@@ -123,20 +110,34 @@ $font-var: "Montserrat", sans-serif;
 
 .item-number {
     position: absolute;
-    left: 40em;
+    left: 50%;
+    
 }
 
 
 .quantity-tag {
     position: absolute;
-    right: 8em;
+    right: 30.4%;
 }
 
 .price-tag {
     position: absolute;
-    right: 3em;
+    right: 8.5%;
 }
 
+.cart-subtotal {
+    margin-top: 5px;    
+    position: absolute;
+    right: 7.5%;
+}
+
+.sub-label {
+    margin-top: 5px;
+    position: absolute;
+    left: 5%;
+    font-weight: 700;
+    text-transform: uppercase;    
+}
 
 .btn-checkout {
     box-sizing: border-box;
@@ -153,6 +154,8 @@ $font-var: "Montserrat", sans-serif;
     font-weight: 600;
     border-radius: .1em;
     letter-spacing: 1px;
+    margin-top: 8%;
+    margin-left: 5%;
 }
 
 .btn-checkout:hover {
@@ -161,4 +164,193 @@ $font-var: "Montserrat", sans-serif;
     border: 2px solid black;
     color: white;
     transition: all .2s ease-in-out;
+}
+
+
+.input-parent {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+
+    div{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        span {
+            margin-bottom: 8px;
+        }
+    }
+
+    input {
+        width: 70%;
+        height: 3.5em;
+        background: #efefef;
+        border-radius: .2em;
+        border-style: none;
+        box-sizing: border-box;
+        padding-left: 8px;
+        font-size: 14px;
+        // line-height: 1em;
+        padding-top: 0px;
+        padding-bottom: 0px
+    }
+
+   textarea {
+       width: 70%;
+       height: 6em;
+       border: none;
+       overflow: auto;
+       background: #efefefef;
+       resize: none;
+       font-size: 14px;
+       box-sizing: border-box;
+       padding-left: .5em;
+       padding-top: .5em;
+   }
+
+}
+
+.billing-line-break {
+    width: 97%;
+    border-bottom: 2px solid black;
+    margin: 20px auto;
+
+}
+
+.show-me {
+    display: flex;
+}
+
+
+@media only screen 
+and (max-width: 768px) {
+    
+    .cart-grid-header {
+        display: grid;
+
+  span:nth-child(2) {
+        display: none;
+    }
+ }
+
+ .cart-img {
+     margin-left: 5%;
+ }
+
+ .item-name {
+     width: 30%;
+     left: 22%;
+ }
+
+ .item-number {
+     display: none;
+ }
+
+.cart-wrapper {
+    box-sizing: border-box;
+    margin-top: 2%;
+    margin-bottom: 27%;
+}
+
+ .input-parent {
+    width: 90%;
+    display: flex;
+    flex-direction: colomn;
+    margin-left: 2%;
+
+    div{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        height: 3.5em;
+        background: #efefef;
+        border-radius: .2em;
+        border-style: none;
+        box-sizing: border-box;
+        padding-left: 8px;
+    }
+
+   textarea {
+       width: 68.5%;
+       height: 6em;
+       border: none;
+       overflow: auto;
+       background: #efefefef;
+       resize: none;
+       box-sizing: border-box;
+       padding-top: .4em;
+       padding-left: .4em;
+   }
+
+}
+
+
+}
+
+@media only screen 
+and ( max-width: 568px ) {
+    .btn-checkout {
+        width: 85px;
+    }
+
+    .item-name {
+        width: 20%;
+        left: 42%;
+    }
+
+
+
+     .cart-wrapper {
+     margin-top: 2%;
+     margin-bottom: 30%;
+  }
+
+  .input-parent {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+
+    div{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        height: 3.5em;
+        background: #efefef;
+        border-radius: .2em;
+        border-style: none;
+        box-sizing: border-box;
+        padding-left: 8px;
+    }
+
+   textarea {
+       width: 68.5%;
+       height: 6em;
+       border: none;
+       overflow: auto;
+       background: #efefefef;
+       resize: none;
+       box-sizing: border-box;
+       padding-top: .4em;
+       padding-left: .4em;
+   }
+
+}
+
 }

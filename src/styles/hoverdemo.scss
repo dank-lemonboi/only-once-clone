@@ -1,0 +1,30 @@
+project-tile{
+   position: relative;
+   height: 150px;
+   overflow: hidden;
+   cursor: pointer;
+   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.project-img{
+   /* width: 100%; */
+   height: 100%;
+   background-size: cover;
+   transition: all 0.2s ease-out;
+}
+.project-overlay{
+   position: absolute;
+   width: 100%;
+   height: 200px;
+   top: 200px;
+   left: 0;
+   color: white;
+   background-color: rgba(0, 0, 0, 0.7);
+   padding: 10px 10px;
+   transition: all 0.2s ease-out;
+}
+.project-tile:hover .project-overlay{
+   top:0;
+}
+.project-tile:hover .project-img{
+   transform: scale(1.3);
+}

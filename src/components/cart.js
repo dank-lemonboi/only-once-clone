@@ -11,6 +11,191 @@ import { removeFromCart } from "../ducks/reducer";
 import euro from "../assets/Euro_symbol_black.svg";
 
 
+
+class Input extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      checkState: false
+    }
+
+    this.toggle = this.toggle.bind(this)
+  }
+
+toggle(event) {
+  this.setState({
+    checkState: !this.state.checkState
+  })
+}
+
+  render() {
+    console.log(this.state.checkState)
+    return (
+    
+      <section className="input-parent">
+  {
+
+    ( !this.state.checkState )
+
+    ?
+    <section>
+        <div>
+          <span>Country*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>First Name*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Last Name*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Company*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Address*</span>
+          <textarea/>
+        </div>
+        <div>
+          <span>Postal Code*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>City*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Email*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Phone*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <input
+          onClick={ (e) => this.toggle(e.target.value)}
+          type="checkbox" />
+          <span
+            style={{
+              width: "130%",
+              display: "flex",
+              alignItems: "center",
+              marginRight: "19%"
+            }}
+          >
+            Ship to a different address?
+          </span>
+        </div>
+</section>
+        :
+<section>
+          <div>
+          <span>Country*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>First Name*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Last Name*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Company*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Address*</span>
+          <textarea/>
+        </div>
+        <div>
+          <span>Postal Code*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>City*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Email*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Phone*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <input
+          onClick={ (e) => this.toggle(e.target.value)}
+          type="checkbox" />
+          <span
+            style={{
+              width: "130%",
+              display: "flex",
+              alignItems: "center",
+              marginRight: "19%"
+            }}
+          >
+            Ship to a different address?
+          </span>
+        </div>
+
+        <div>
+          <span>Country*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>First Name*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Last Name*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Company*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Address*</span>
+          <textarea/>
+        </div>
+        <div>
+          <span>Postal Code*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>City*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Email*</span>
+          <input type="text" />
+        </div>
+        <div>
+          <span>Phone*</span>
+          <input type="text" />
+        </div>
+
+        <div>
+          <span>Comments</span>
+          <textarea/>
+        </div>
+    </section>
+    }
+      </section>
+    )
+  }
+}
+
+
+
 class Cart extends Component {
     constructor() {
         super()
@@ -47,7 +232,7 @@ class Cart extends Component {
 
   
 
-    renderCart() {
+    renderCartItem() {
         let { cart } = this.props;
         let cartItem = cart.map( (item, index) => {
           return (
@@ -99,7 +284,7 @@ class Cart extends Component {
       })
       // add item prices together
       let price = unitPrice.reduce( ( a, b ) => {
-        return a + b
+        return ( (a + b) || 0.00 )
       }, 0)
       
         console.log(this.state.checkout)
@@ -109,23 +294,67 @@ class Cart extends Component {
             <Navbar 
               logo={logo} 
               path={this.props.location.pathname} />
-            <span className="cart-banner">YOUR CART</span>
+            <div className="cart-banner">YOUR CART</div>
             <section className="cart-wrapper">
+          
+        {
+
+          (this.state.checkout)
+
+          ?
+
+          <div>
+             <span style={ { marginLeft: '20px' } }>Billing Information</span>
+              <div className='billing-line-break'></div>
+             <Input />
+
               <div className="cart-grid-header">
                 <span>Product</span>
                 <span>Item No</span>
                 <span>Qty.</span>
                 <span>Price</span>
               </div>
-              <div className="items">{this.renderCart()}</div>
+              <div className="items">{this.renderCartItem()}</div>
 
               <img className="badge" src={badge} alt="badge" />
               <div>
-                <span>Subtotal</span>
-        {/* Calculates subtotal of all items in the cart by calling the getPrice() method above*/}
-                <span>{ price }<img className='euro' src={euro} alt=""/></span>
+                <span className='sub-label'>Subtotal</span>
+        {/* Calculates subtotal of all items in the cart with the two functions within the Render Method */}
+                <span className='cart-subtotal'>
+                  { `${price.toFixed(2)} ` }
+                  <img className='euro' src={euro} alt=""/>
+                </span>
               </div>
-              <div onClick={ () => this.setState({ checkout: true })} className='btn-checkout'>Checkout</div>
+        </div>
+
+          :
+      <div>
+        <div className="cart-grid-header">
+                <span>Product</span>
+                <span>Item No</span>
+                <span>Qty.</span>
+                <span>Price</span>
+              </div>
+              <div className="items">{this.renderCartItem()}</div>
+
+              <img className="badge" src={badge} alt="badge" />
+              <div>
+                <span className='sub-label'>Subtotal</span>
+        {/* Calculates subtotal of all items in the cart with the two functions within the Render Method */}
+                <span className='cart-subtotal'>
+                  { `${price.toFixed(2)} ` }
+                  <img className='euro' src={euro} alt=""/>
+                </span>
+              </div>
+
+              <div 
+                onClick={ () => this.setState({ checkout: !this.state.checkout })} 
+                className='btn-checkout'>
+                Checkout
+              </div>
+        </div>
+
+        }
             </section>
             <Footer />
           </div>
@@ -139,4 +368,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect( mapStateToProps, { removeFromCart } )(Cart)
+export default connect( mapStateToProps, { removeFromCart } )( Cart, Input )

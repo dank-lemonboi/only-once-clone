@@ -1,15 +1,3 @@
-ul li {
-    list-style: none;
-    padding: 0px;
-    margin: 0px;
-}
-
-
-a {
-    style: none;
-    color: black;
-}
-
 .nav-parent {
     box-sizing: border-box;
     position: relative;
@@ -59,7 +47,7 @@ a {
         color: red;
     }
 .store-wrapper:hover {
-
+    cursor: pointer;
     .rotate {
         transform: rotate(-180);        
         transition: all .25s 0s;
@@ -111,6 +99,7 @@ a {
 
         li {
             margin-bottom: 19px;
+            letter-spacing: 1px;
         }
 
         li:hover {
@@ -130,7 +119,7 @@ a {
         
         li {
             margin-bottom: 19px;
-            
+            letter-spacing: 1px;            
         }
 
         li:hover {
@@ -156,6 +145,7 @@ a {
    .info-wrapper:hover {
         cursor: pointer;
         color: red;
+
     .drop-menu-info {
         display: flex;
         flex-direction: column;
@@ -261,11 +251,25 @@ a {
     background: #FFFFFF;
     position: absolute;
     top: -453px;
+    left: -20px;
     display: flex;
     flex-direction: column;
     transform: translate(0 , -453px);
     transition: transform 0.4s ease-in-out;
     z-index: -2;
+
+    li {
+        margin-bottom: 15px;
+    }
+}
+
+.title {
+    
+    margin-bottom: 15px;
+}
+
+#store-title {
+    margin-top: 20px;
 }
 
 .mob-reveal {
@@ -315,4 +319,16 @@ and (max-width: 768px) {
     75% { opacity: .73 }
     94% { opacity: .90 }
     100% { opacity: 1 }
+}
+
+ul li {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+a {
+    style: none;
+    color: black;
 }

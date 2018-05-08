@@ -25,7 +25,6 @@ class Navbar extends Component {
         this.widthToggle = this.widthToggle.bind(this)
         this.navMenuClick = this.navMenuClick.bind(this)
         this.scrollListen = this.scrollListen.bind(this)
-        this.menuToggle = this.menuToggle.bind(this)
     }
 
     componentDidUpdate(prevProps) {
@@ -72,27 +71,13 @@ class Navbar extends Component {
     componentWillUnmount() {
       window.removeEventListener( 'resize', this.widthToggle.bind(this) )
     }
-
-     menuToggle () {
-      if (this.state.dropMenu) {
-        this.setState({
-          dropInfo: false
-        })
-      }
-      if (this.state.dropInfo) {
-        this.setState({
-          dropMenu: false
-        })
-      }
-    }
       
     
     render() { 
-      console.log(this.state.dropInfo)
-       this.menuToggle
-
-        return <header className="nav-parent">
-            <nav className={ ( this.props.path !== '/' || this.props.stick ) ? "scroll-adjust" : "nav-sticky"}>
+      console.log(this.props.width)
+        return (
+          <header className="nav-parent">
+            <nav className={ ( this.props.path !== '/' || this.props.stick || this.props.width < 568 ) ? "scroll-adjust" : "nav-sticky"}>
               <div className="nav-left">
                 {/* Ternary which uses state to render a mobile responsive pleasant User navbar experience */}
                 { 
@@ -149,7 +134,7 @@ class Navbar extends Component {
                       Menu
                     </span>
                     <ul className={ ( !this.state.mobileToggle ) ? "mobile-nav-menu" : "mobile-nav-menu mob-reveal" }>
-                      <span>Store</span>
+                      <span id='store-title' className='title'>Store</span>
                       <ul className="mobile-store-list">
                         <li>LAMPS & LIGHTS</li>
                         <li>INDUSTRIAL</li>
@@ -158,7 +143,7 @@ class Navbar extends Component {
                         <li>CLOCKS</li>
                         <li>HOME DECO</li>
                       </ul>
-                      <span>Information</span>
+                      <span className='title'>Information</span>
                       <ul children="mobile-info-list">
                         <li>BLOG</li>
                         <li>ABOUT</li>
@@ -193,7 +178,8 @@ class Navbar extends Component {
                 <img className="social-tag-i" src={instagram} alt="instagram logo link" />
               </a>
             </div>
-          </header>;
+          </header>
+            )
     }
 }
 

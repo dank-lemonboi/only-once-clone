@@ -5,7 +5,6 @@ import '../styles/landingPage.scss'
 import Carousel from '../components/carousel';
 import Navbar from '../components/navbar';
 import Products from '../components/products'
-import Footer from '../components/footer'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {connect} from 'react-redux'
@@ -55,21 +54,23 @@ scrollToggle() {
 
      window.onscroll = this.scrollToggle   
     
-        return <div className="landing-page-container">
+        return (
+          <div className="landing-page-container">
             <Navbar 
             path={this.props.location.pathname} 
             logo={logo} 
             stick={this.state.isSticky} 
             cart={this.props.cart}
+            width={window.innerWidth}
             />
             <Carousel />
             <Link to="/">
-              <img className={ ( ( this.props.path === '/' || !this.state.isSticky ) ) ? "logo-container"  : ( this.props.path !== '/') ? "sticky-logo" : 'logo-container' } src={logo} alt="" />
+              <img className={ ( ( this.props.path === '/' || !this.state.isSticky ) ) ? "logo-container"  : ( this.props.path !== '/' ) ? "sticky-logo" : 'logo-container' } src={logo} alt="" />
             </Link>
-            <Products />
+             <Products />
             <img className="badge" src={badge} alt="badge" />
-            <Footer />
-          </div>;
+          </div>
+        )
     }
 }
 

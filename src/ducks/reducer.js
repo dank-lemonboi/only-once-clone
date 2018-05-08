@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const initialState = {
     products: [],
-    cart: [],
+    cart: [{}],
     product: {}
 }
 
@@ -64,7 +64,7 @@ export default function reducer( state = initialState, action ) {
 
         case ADD_TO_CART + _FULFILLED:
             // console.log('adding to cart, state: ',state)
-            return (Object.assign( {}, state, { cart: [ ...state.cart, action.payload ]}))
+            return (Object.assign( {}, state, { cart: [ ...state.cart, action.payload ] }))
 
         case ADD_TO_CART + _REJECTED:
             return 'Rejected'

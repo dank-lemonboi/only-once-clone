@@ -16,13 +16,7 @@ const ImageSlide = ({ url, text }) => {
     )
 }
 
-const ButtonSlide = ( { route } ) => {
-    return (
-       <Link key="IMAGE SLIDE BUTTON" to={route}>
-         <div className="btn-discover">Discover Now.</div>
-       </Link>
-   )
-}
+
 
 export default class Carousel extends Component {
   constructor() {
@@ -74,24 +68,23 @@ export default class Carousel extends Component {
     // change the css class to animate the image into view, by changing the opacity to 0%. ***
 
     render() {
-      
+
         return <div className="image-carousel">
             <div id="animate-me">
               <ImageSlide url={imgUrls[0].url} text={imgUrls[0].text} />
-              <ButtonSlide route={imgUrls[0].route} />
             </div>
             <div id="animate-me">
               <ImageSlide url={imgUrls[1].url} text={imgUrls[1].text} />
-              <ButtonSlide route={imgUrls[1].route} />
             </div>
             <div id="animate-me">
               <ImageSlide url={imgUrls[2].url} text={imgUrls[2].text} />
-              <ButtonSlide route={imgUrls[2].route} />
             </div>
             <div id="animate-me">
               <ImageSlide url={imgUrls[3].url} text={imgUrls[3].text} />
-              <ButtonSlide route={imgUrls[3].route} />
             </div>
+            <Link key="IMAGE SLIDE BUTTON" to='/store'>
+              <div className="btn-discover">Discover Now.</div>
+            </Link>
             <section className="carousel-bottom" />
           </div>;
     }
