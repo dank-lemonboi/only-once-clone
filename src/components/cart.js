@@ -56,7 +56,7 @@ class Cart extends Component {
                 
                 <div className="cart-item" key={ item.item_number + index }>
                   <span className="delete-button" onClick={() => this.removeItem(item.item_number)}>
-                    <img src={deleteIcon} alt="" />
+                    <div className='delete-container'><img src={deleteIcon} alt="" /></div>
                   </span>
                   <div>
                     <img className="cart-img" src={item.display_photo} alt="" />
@@ -102,7 +102,7 @@ class Cart extends Component {
         return a + b
       }, 0)
       
-        // console.log(this.state.checkout)
+        console.log(this.state.checkout)
 
         return (
             <div className="cart-parent">
