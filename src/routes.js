@@ -10,6 +10,7 @@ import industrial from './components/categories/industrial'
 import sold from './components/categories/sold'
 import homedeco from './components/categories/homeDeco'
 import cart from './components/cart'
+import productDetail from './components/productdetail'
 
 export default 
 <Switch>
@@ -18,7 +19,7 @@ export default
     <Route path='/electronics/:item' component={electronics}/>
     <Route path='/lighting/:item' component={lighting}/>
     <Route path='/industrial/:item' component={industrial}/>
-    <Route path='/industrial/:item' component={industrial}/>
     <Route path='/homedeco/:item' component={homedeco}/>
-    <Route path='/cart/:userId' component={cart}/>
+    <Route path='/cart' component={cart}/>
+    <Route path='/product/:productName/:productId' component={productDetail}/>
 </Switch>

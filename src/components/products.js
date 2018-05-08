@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { getAll, addToCart } from '../ducks/reducer'
 
@@ -10,28 +11,34 @@ import '../styles/products.scss'
     constructor() {
         super()
 
-        this.state = {}
+        this.state = {
+            isHovering: false
+        }
 
-        this.handleClick = this.handleClick.bind(this)
         this.getMeTheProducts = this.getMeTheProducts.bind(this)
     }
 
   
 
-     handleClick(productId) {
-         this.props.addToCart(productId)
-    }
+    
 
     getMeTheProducts() {
-        console.log(this.props.products)
+        // console.log(this.props.products)
         let productList = this.props.products.map(( product, index ) => {
-          return <div onClick={() => this.handleClick(product.item_number)} className="product-card" key={product.item_number}>
+          return (
+              <Link to={`product/${product.item_name}/${product.item_number}`}><div className="product-card" key={product.item_number}>
               <div className="image-parent">
+                <div className={ ( this.state.isHovering ) ? 'product-hover' : 'hidden' }>
+                    <span>{product.item_name}</span>
+                    <span>{product.price}</span>
+                </div>
                 <img className="image-container" src={product.display_photo} alt="" />
               </div>
-            </div>;
+             </div>
+            </Link>
+        )
         })
-        
+
         return productList;
     }
 

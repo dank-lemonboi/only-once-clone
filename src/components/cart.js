@@ -7,12 +7,17 @@ import '../styles/cart.scss';
 import axios from 'axios';
 import deleteIcon from '../assets/delete-icon.svg';
 import {connect} from 'react-redux';
-import { removeFromCart } from '../ducks/reducer';
+import { removeFromCart } from "../ducks/reducer";
+import euro from "../assets/Euro_symbol_black.svg";
+
 
 class Cart extends Component {
     constructor() {
         super()
 
+        this.state = {
+          checkout: false
+        }
 
         this.removeItem = this.removeItem.bind(this)
     }
@@ -26,8 +31,21 @@ class Cart extends Component {
              }
              return updateCart
             } )
-            this.props.removeFromCart(updateCart)
+            this.props.removeFromCart(updateCart)      
     }
+
+    componentDidUpdate( prevProps, prevState ) {
+      if (this.props.cart.length <= 0) {
+        this.props.history.push("/");
+      }
+      console.log('prevProps', prevProps, 'prevState', prevState.subtotal)
+      // Check to see if the current 
+      // if ( this.props.cart.length !== prevProps.cart.length ) {
+      //   this.getPrice();
+      // }
+    }
+
+  
 
     renderCart() {
         let { cart } = this.props;
@@ -36,7 +54,7 @@ class Cart extends Component {
           <div className="cart-item-parent">
                  <div className="cart-grid">
                 
-                <div className="cart-item" key={item.item_number + index}>
+                <div className="cart-item" key={ item.item_number + index }>
                   <span className="delete-button" onClick={() => this.removeItem(item.item_number)}>
                     <img src={deleteIcon} alt="" />
                   </span>
@@ -58,14 +76,39 @@ class Cart extends Component {
         return cartItem;
     }
 
-
+    // getPrice() {
+    //   // map through cart items and return just the prices for all the items
+    //   let unitPrice = this.props.cart.map(unit => {
+    //     return unit.price
+    //   })
+    //   // add item prices together
+    //   let price = unitPrice.reduce( ( a, b ) => {
+    //     return a + b
+    //   }, 0)
+    //   // set the subtotal of all the unit prices on state
+    //   this.setState({
+    //     subtotal: price
+    //   })
+    // }
 
     render() {
 
-        console.log(this.props.cart)
+       // map through cart items and return just the prices for all the items
+      let unitPrice = this.props.cart.map(unit => {
+        return unit.price
+      })
+      // add item prices together
+      let price = unitPrice.reduce( ( a, b ) => {
+        return a + b
+      }, 0)
+      
+        // console.log(this.state.checkout)
+
         return (
             <div className="cart-parent">
-            <Navbar logo={logo} path={this.props.location.pathname} />
+            <Navbar 
+              logo={logo} 
+              path={this.props.location.pathname} />
             <span className="cart-banner">YOUR CART</span>
             <section className="cart-wrapper">
               <div className="cart-grid-header">
@@ -79,9 +122,10 @@ class Cart extends Component {
               <img className="badge" src={badge} alt="badge" />
               <div>
                 <span>Subtotal</span>
-                <span>{}</span>
+        {/* Calculates subtotal of all items in the cart by calling the getPrice() method above*/}
+                <span>{ price }<img className='euro' src={euro} alt=""/></span>
               </div>
-              <div className='btn-checkout'>Checkout</div>
+              <div onClick={ () => this.setState({ checkout: true })} className='btn-checkout'>Checkout</div>
             </section>
             <Footer />
           </div>

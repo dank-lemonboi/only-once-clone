@@ -32,8 +32,9 @@ app.use(sessions({
 app.use(checkForSession)
 
 app.get('/api/products', ctrl.getProducts);
+app.put('/api/getProduct', ctrl.productDetails);
 app.put('/api/addProduct', ctrl.addProduct);
-// app.put('/api/remove', ctrl.removeFromCart)
+
 
 
 massive(CONNECTION_STRING).then( db => {

@@ -1,3 +1,5 @@
+$font-var: "Montserrat", sans-serif;
+
 .cart-parent {
     box-sizing: border-box;
     height: 100vh;
@@ -8,7 +10,8 @@
 
 .cart-banner {
     font-size: 15px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    font-weight: 700;
     position: fixed;
     top: 18vh;
     left: 45vw;
@@ -118,4 +121,30 @@
 .price-tag {
     position: absolute;
     right: 3em;
+}
+
+
+.btn-checkout {
+    box-sizing: border-box;
+    font: 100% $font-var;
+    width: 131px;
+    height: 41px;
+    background: transparent;
+    color: black;
+    display: flex;
+    border: 2px solid black;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: .1em;
+    letter-spacing: 1px;
+}
+
+.btn-checkout:hover {
+    cursor: pointer;
+    background: black;
+    border: 2px solid black;
+    color: white;
+    transition: all .2s ease-in-out;
 }

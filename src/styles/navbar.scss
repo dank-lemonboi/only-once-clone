@@ -45,30 +45,51 @@ a {
     display: flex;
     margin-right: 2.5em;
 
-    img {
-        height: 1.2em;
-        width: 1.5em;
+    .drop-arrow {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: .6em;
+        transition: all .25s 0s;        
     }
+
 }
 
+.red {
+        color: red;
+    }
 .store-wrapper:hover {
-    color: red;
+
+    .rotate {
+        transform: rotate(-180);        
+        transition: all .25s 0s;
+    }
 }
 
 .info-wrapper {
     display: flex;
     margin-right: 2.5em;
 
-     img {
-        height: 1.2em;
-        width: 1.5em;
+     .drop-arrow {
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+         margin-left: .6em;
+        transition: all .18s ease-in-out 0s;        
     }
 }
 
-.info-wrapper:hover {
-    color: red;
+.red {
+        color: red;
+    }
+
+ .rotate{
+        transform: rotate(-180deg);
+        transition: all .18s ease-in-out 0s;        
+    }
  }
-}
+
+
 
 .nav-menu {
     letter-spacing: 2px;
@@ -83,8 +104,10 @@ a {
         height: 200px;
         display: none;
         position: fixed;
-        top: 4em;
+        top: 2em;
         left: 0;
+        height: 30%;
+        padding-top: 2em;
 
         li {
             margin-bottom: 19px;
@@ -92,6 +115,7 @@ a {
 
         li:hover {
         text-decoration: underline;
+        cursor: pointer;
      }
 
     }
@@ -99,8 +123,10 @@ a {
       .drop-menu-info {
         display: none;         
         position: fixed;
-        top: 4em;
+        top: 2em;
         left: 8.6em;
+        height: 20%;
+        padding-top: 2em;
         
         li {
             margin-bottom: 19px;
@@ -110,6 +136,7 @@ a {
         li:hover {
           text-decoration: underline;
           transition: .5s ease-in-out;
+          cursor: pointer;
      }
 
     }

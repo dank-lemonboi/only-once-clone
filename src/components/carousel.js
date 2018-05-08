@@ -10,10 +10,18 @@ import '../styles/carousel.scss'
 const ImageSlide = ({ url, text }) => {
     return (
       <div className="image-slide">
-        <img className='img-frame' src={url} alt="" />
+        <img className="img-frame" src={url} alt="" />
         <div className="txt-carousel">{text}</div>
       </div>
     )
+}
+
+const ButtonSlide = ( { route } ) => {
+    return (
+       <Link key="IMAGE SLIDE BUTTON" to={route}>
+         <div className="btn-discover">Discover Now.</div>
+       </Link>
+   )
 }
 
 export default class Carousel extends Component {
@@ -21,22 +29,22 @@ export default class Carousel extends Component {
     super()
 
     this.state = {
-      carousel: 0
+      carousel: [0,1,2,3]
     }
 
-    this.buttonRouter = this.buttonRouter.bind(this)
+    // this.buttonRouter = this.buttonRouter.bind(this)
   }
    
     // *** I left this code commented out, because I felt like it was a good way to keep track of an arrays
     // *** Index and to reset it at a certain point. It's completely unnecesary code.
     // Clear interval in case you want to stop the interval in the future.
-    componentDidMount() {
-        setInterval( () => this.buttonRouter(), 7000)
-    }
+    // componentDidMount() {
+    //     setInterval( () => this.buttonRouter(), 7000)
+    // }
 
-    componentWillUnmount() {
-        clearInterval()
-    }
+    // componentWillUnmount() {
+    //     clearInterval()
+    // }
 
     // nextSlide() {
     //     const lastIndex = imgUrls.length -1;
@@ -52,13 +60,13 @@ export default class Carousel extends Component {
     //     });
     // }
 
-    buttonRouter() {
-      const arr = [0,1,2,3]
-      let index = 0
-      for(let i = 0; i < arr.length; i++) {
+    // buttonRouter() {
+    //   const arr = [0,1,2,3]
+    //   let index = 0
+    //   for(let i = 0; i < arr.length; i++) {
         
-      }
-    }
+    //   }
+    // }
 
 
     // *** Change carousel animation to have the interval on state on the front end, and have classes being changed by state
@@ -66,23 +74,24 @@ export default class Carousel extends Component {
     // change the css class to animate the image into view, by changing the opacity to 0%. ***
 
     render() {
-
+      
         return <div className="image-carousel">
             <div id="animate-me">
               <ImageSlide url={imgUrls[0].url} text={imgUrls[0].text} />
+              <ButtonSlide route={imgUrls[0].route} />
             </div>
             <div id="animate-me">
               <ImageSlide url={imgUrls[1].url} text={imgUrls[1].text} />
+              <ButtonSlide route={imgUrls[1].route} />
             </div>
             <div id="animate-me">
               <ImageSlide url={imgUrls[2].url} text={imgUrls[2].text} />
+              <ButtonSlide route={imgUrls[2].route} />
             </div>
             <div id="animate-me">
               <ImageSlide url={imgUrls[3].url} text={imgUrls[3].text} />
+              <ButtonSlide route={imgUrls[3].route} />
             </div>
-            <Link key="IMAGE SLIDE BUTTON" to={imgUrls[`${this.state.carousel}`].route}>
-              <div className="btn-discover">Discover Now.</div>
-            </Link>
             <section className="carousel-bottom" />
           </div>;
     }

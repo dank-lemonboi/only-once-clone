@@ -31,5 +31,12 @@ module.exports = {
                     // console.log('cart', req.session.user)               
                     res.status(200).send(product[0])
         }).catch(500)
+    },
+    productDetails: (req, res, next) => {
+        const db = req.app.get('db');
+        console.log(req.body)
+        db.productDetails([ +req.body.productId ]).then( product => {
+            res.status(200).send(product[0])
+        }).catch(500)
     }
 }

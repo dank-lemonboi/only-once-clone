@@ -2,16 +2,28 @@ import axios from 'axios';
 
 const initialState = {
     products: [],
-    cart: []
+    cart: [],
+    product: {}
 }
 
 const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+const GET_PRODUCT_DETAILS = "GET_PRODUCT_DETAILS"
 
 const _FULFILLED = "_FULFILLED";
 const _PENDING = "_PENDING";
 const _REJECTED = "_REJECTED";
+
+export function getProduct(id) {
+    const product = axios.put('/api/getProduct', { productId: id } ).then( product => {
+        return product.data
+    }).catch()
+        return {
+            type: GET_PRODUCT_DETAILS,
+            payload: product
+        }
+}
 
 
 export function getAll() {
@@ -25,7 +37,7 @@ export function getAll() {
 }
 
 export function addToCart(id) {
-    const cartItem = axios.put(`/api/addProduct`, { id }).then( item => {
+    const cartItem = axios.put(`/api/addProduct`, { id } ).then( item => {
         // console.log(item.data)
         return item.data
     }).catch()
@@ -73,7 +85,10 @@ export default function reducer( state = initialState, action ) {
 
         case REMOVE_FROM_CART:
           console.log('removing from cart', state)
-          return (Object.assign( {}, state,  { cart: [... action.payload ]} ))
+          return (Object.assign( {}, state,  { cart: [...action.payload ]} ))
+
+        case GET_PRODUCT_DETAILS + _FULFILLED:
+            return ( Object.assign( {}, state, { product: action.payload}  ) )
                     
 
       default:

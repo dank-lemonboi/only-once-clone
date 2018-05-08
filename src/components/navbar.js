@@ -3,8 +3,8 @@ import '../styles/navbar.scss'
 import facebook from '../assets/images/facebook_logo.svg'
 import instagram from '../assets/images/instagram_logo.svg'
 import pinterest from '../assets/images/pinterest_logo.svg'
-import down from '../assets/arrow-down.svg'
-import up from '../assets/arrow-up.svg'
+import down from '../assets/arrow-black.svg'
+import up from '../assets/arrow-red.svg'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -25,7 +25,7 @@ class Navbar extends Component {
         this.widthToggle = this.widthToggle.bind(this)
         this.navMenuClick = this.navMenuClick.bind(this)
         this.scrollListen = this.scrollListen.bind(this)
-
+        this.menuToggle = this.menuToggle.bind(this)
     }
 
     componentDidUpdate(prevProps) {
@@ -62,7 +62,7 @@ class Navbar extends Component {
 
     componentDidMount() {
         this.widthToggle() 
-          window.addEventListener('resize', this.widthToggle.bind(this))
+          window.addEventListener( 'resize', this.widthToggle.bind(this) )
           
           this.setState({
             cart: this.props.cart
@@ -70,20 +70,33 @@ class Navbar extends Component {
     }
 
     componentWillUnmount() {
-      window.removeEventListener('resize', this.widthToggle.bind(this))
+      window.removeEventListener( 'resize', this.widthToggle.bind(this) )
+    }
+
+     menuToggle () {
+      if (this.state.dropMenu) {
+        this.setState({
+          dropInfo: false
+        })
+      }
+      if (this.state.dropInfo) {
+        this.setState({
+          dropMenu: false
+        })
+      }
     }
       
     
     render() { 
-
-      // console.log(this.state.cart)
+      console.log(this.state.dropInfo)
+       this.menuToggle
 
         return <header className="nav-parent">
-            <nav className={ ( this.props.path !== "/" || this.props.stick ) ? "scroll-adjust" : "nav-sticky"}>
+            <nav className={ ( this.props.path !== '/' || this.props.stick ) ? "scroll-adjust" : "nav-sticky"}>
               <div className="nav-left">
                 {/* Ternary which uses state to render a mobile responsive pleasant User navbar experience */}
                 { 
-                  (!this.state.classToggle )
+                  ( !this.state.classToggle )
 
                   ? 
                   
@@ -93,9 +106,9 @@ class Navbar extends Component {
                       // How do I get the nav to conditionally drop on hover, allow me to navigate the 
                       // drop menu and have it disapear when i'm no-longer hovering?
                         onMouseOver={ () => this.setState( { dropMenu: true } )}
-                        // onMouseOut={ () => this.setState({ dropMenu: !this.state.dropMenu} )}
-                        className="store-wrapper">
-                        STORE { ( !this.state.dropMenu ) ? <img className='drop-arrow' src={down} alt="" /> : <img className='drop-arrow' src={up} alt="" /> }
+                        onMouseOut={ () => this.setState({ dropMenu: false } )}
+                        className={ ( this.state.dropMenu ) ? 'store-wrapper red' : 'store-wrapper' }>
+                        STORE { ( !this.state.dropMenu ) ? <div className='drop-arrow'><img src={down} alt=""/></div> : <div className='drop-arrow rotate'><img src={up} alt=""/></div> }
                       </span>
                       <ul 
                         onMouseOver={ () => this.setState( { dropMenu: true } )} 
@@ -110,11 +123,12 @@ class Navbar extends Component {
                       </ul>
                     </li>
                     <li className="nav-menu-info"
-                        onMouseOver={ () => this.setState({ dropInfo: true })} 
-                    >
+                        onMouseOver={ () => this.setState({ dropInfo: true })}
+                        onMouseOut= { () => this.setState({ dropInfo: false } )}>                       
+                        
                       <span
-                        className="info-wrapper">
-                        INFORMATION { ( !this.state.dropInfo ) ? <img className='drop-arrow' src={down} alt="" /> : <img className='drop-arrow' src={up} alt=""/> }
+                        className={ (this.state.dropInfo) ? "info-wrapper red" : "info-wrapper" }>
+                        INFORMATION { ( !this.state.dropInfo ) ? <div className='drop-arrow'><img src={down} alt=""/></div> : <div className='drop-arrow rotate'><img src={up} alt=""/></div> }
                       </span>
                       <ul 
                         onMouseOver={ () => this.setState({ dropInfo: true })} 
