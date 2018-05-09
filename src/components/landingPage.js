@@ -41,7 +41,7 @@ scrollToggle() {
   }
 
   componentDidMount() {
-    this.props.getAll();
+    this.props.getAll()
     window.scrollTo(0, 0)
     // axios.get('/api/auth/me').then( res => {
     //     console.log(res.data)

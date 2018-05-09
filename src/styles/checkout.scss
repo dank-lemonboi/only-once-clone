@@ -1,0 +1,48 @@
+$font-var: "Montserrat", sans-serif;
+
+.StripeElement {
+  background-color: rgb(238, 238, 238);
+  box-sizing: border-box;
+  height: 40px;
+  width: 40%;
+  font-size: 18px;
+  padding: 12px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.stripe-submit {
+    box-sizing: border-box;
+    font: 100% $font-var;
+    width: 131px;
+    height: 41px;
+    background: transparent;
+    color: black;
+    display: flex;
+    border: 2px solid black;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: .1em;
+    letter-spacing: .5px;
+}
+
+.stripe-submit:hover {
+    cursor: pointer;
+    background: black;
+    border: 2px solid black;
+    color: white;
+    transition: all .2s ease-in-out;
+}

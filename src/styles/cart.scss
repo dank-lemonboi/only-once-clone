@@ -120,20 +120,45 @@ $font-var: "Montserrat", sans-serif;
 
 .price-tag {
     position: absolute;
-    right: 8.5%;
+    right: 5%;
 }
 
 .cart-subtotal {
     margin-top: 10px;    
     position: absolute;
-    right: 7.5%;
+    right: 5%;
+}
+
+.cart-tax {
+    position: absolute;
+    right: 5%;
+    margin-top: 10%;
+}
+
+.cart-ship {
+    margin-top: 13%;    
+    position: absolute;
+    right: 5%;
 }
 
 .sub-label {
     margin-top: 10px;
     position: absolute;
-    left: 5%;
+    right: 16%;
 }
+
+.tax-label {
+    margin-top: 10%;
+    position: absolute;
+    right: 16%;
+}
+
+.ship-label {
+    margin-top: 13%;
+    position: absolute;
+    right: 16%;
+}
+
 
 .btn-checkout {
     box-sizing: border-box;
@@ -152,6 +177,11 @@ $font-var: "Montserrat", sans-serif;
     letter-spacing: 1px;
     margin-top: 8%;
     margin-left: 5%;
+}
+
+#bank-btn {
+    margin-top: 2%;
+    margin-left: 1%;
 }
 
 .btn-checkout:hover {
@@ -244,7 +274,7 @@ $font-var: "Montserrat", sans-serif;
     flex-direction: column;
     width: 80%;
     margin-left: 2%;
-    height: 350px;
+    height: 50vh;
 
     div {
         margin-bottom: 2em
@@ -260,6 +290,10 @@ $font-var: "Montserrat", sans-serif;
 .disclaim {
     color: rgba(0, 0, 0, 0.4);
     font-style: italic;
+}
+
+.calculations {
+    margin-left: 65%;
 }
 
 @media only screen 

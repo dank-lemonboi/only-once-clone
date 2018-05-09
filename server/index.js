@@ -5,8 +5,8 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       cors = require('cors'),
       checkForSession = require('./middlewares/checkForSessions'),
-      ctrl = require('./controllers/controller'),
-      stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+      stripe = require('stripe')(process.env.STRIPE_SECRET_KEY),
+      ctrl = require('./controllers/controller')
 
       const {
           SERVER_PORT,
@@ -39,6 +39,8 @@ app.put('/api/getProduct', ctrl.productDetails);
 app.put('/api/addProduct', ctrl.addProduct);
 
 app.post('/api/charge', ctrl.payment)
+app.post('/api/confirmationEmail', ctrl.sendEmail)
+app.post('/api/sendText', ctrl.sendText)
 
 
 

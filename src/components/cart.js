@@ -7,196 +7,12 @@ import '../styles/cart.scss';
 import axios from 'axios';
 import deleteIcon from '../assets/delete-icon.svg';
 import {connect} from 'react-redux';
-import { removeFromCart } from "../ducks/reducer";
 import euro from "../assets/Euro_symbol_black.svg";
 import stripe from '../assets/powered_by_stripe.svg'
 import CardSection from '../components/injectedCheckout'
 import {Elements} from 'react-stripe-elements'
-
-
-
-class Input extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-      checkState: false
-    }
-
-    this.toggle = this.toggle.bind(this)
-  }
-
-toggle(event) {
-  this.setState({
-    checkState: !this.state.checkState
-  })
-}
-
-  render() {
-    console.log(this.state.checkState)
-    return (
-    
-      <section className="input-parent">
-  {
-
-    ( !this.state.checkState )
-
-    ?
-    <section>
-        <div>
-          <span>Country*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>First Name*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Last Name*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Company*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Address*</span>
-          <textarea/>
-        </div>
-        <div>
-          <span>Postal Code*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>City*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Email*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Phone*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <input
-          onClick={ (e) => this.toggle(e.target.value)}
-          type="checkbox" />
-          <span
-            style={{
-              width: "130%",
-              display: "flex",
-              alignItems: "center",
-              marginRight: "19%"
-            }}
-          >
-            Ship to a different address?
-          </span>
-        </div>
-</section>
-        :
-<section>
-          <div>
-          <span>Country*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>First Name*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Last Name*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Company*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Address*</span>
-          <textarea/>
-        </div>
-        <div>
-          <span>Postal Code*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>City*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Email*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Phone*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <input
-          onClick={ (e) => this.toggle(e.target.value)}
-          type="checkbox" />
-          <span
-            style={{
-              width: "130%",
-              display: "flex",
-              alignItems: "center",
-              marginRight: "19%"
-            }}
-          >
-            Ship to a different address?
-          </span>
-        </div>
-
-        <div>
-          <span>Country*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>First Name*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Last Name*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Company*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Address*</span>
-          <textarea/>
-        </div>
-        <div>
-          <span>Postal Code*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>City*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Email*</span>
-          <input type="text" />
-        </div>
-        <div>
-          <span>Phone*</span>
-          <input type="text" />
-        </div>
-
-        <div>
-          <span>Comments</span>
-          <textarea/>
-        </div>
-    </section>
-    }
-      </section>
-    )
-  }
-}
-
+import { removeFromCart, getTotal } from "../ducks/reducer";
+import Input from './input'
 
 
 class Cart extends Component {
@@ -204,10 +20,41 @@ class Cart extends Component {
         super()
 
         this.state = {
-          checkout: false
+          checkout: false,
+          stripeSelect: 'bank'
         }
 
         this.removeItem = this.removeItem.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.calculateShipping = this.calculateShipping.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(total) {
+      
+      this.setState({
+        checkout: !this.state.checkout
+      })
+
+      this.props.getTotal(total)
+    }
+
+    handleChange(changeEvent) {
+      this.setState({
+        stripeSelect: changeEvent.target.value
+      })
+    }
+
+    calculateShipping = () => {
+      let shipping = 0
+      if(this.props.cart.length === 1) {
+        shipping += 50
+      } else if (this.props.cart.length === 2) {
+        shipping += 75
+      } else if (this.props.cart.length <= 3) {
+        shipping += 100
+      } 
+      return shipping
     }
 
 
@@ -233,8 +80,6 @@ class Cart extends Component {
       // }
     }
 
-  
-
     renderCartItem() {
         let { cart } = this.props;
         let cartItem = cart.map( (item, index) => {
@@ -259,7 +104,7 @@ class Cart extends Component {
 
         {/* CHANGE THIS BEFORE PRESENTATION */}
                   <span className="price-tag">
-                    {`${0.00} ` || `${item.price.toFixed(2)} `} <img className="euro" src={euro} alt="" />
+                    {`${item.price.toFixed(2)} `} <img className="euro" src={euro} alt="" />
                   </span>
                 </div>
               </div>
@@ -297,7 +142,12 @@ class Cart extends Component {
         return ( (a + b) || 0.00 )
       }, 0)
       
-        console.log(this.state.checkout)
+      let tax = (price.toFixed(2) * 0.07).toFixed(2)
+
+// convert the price and tax strings to numbers, and add them together with the shipping to get the total.
+
+      let total = ( (+price) + (+tax) + this.calculateShipping()).toFixed(2) 
+
 
         return (
             <div className="cart-parent">
@@ -329,8 +179,8 @@ class Cart extends Component {
               <div className='product-line-break-bottom'></div>
 
               <img className="badge" src={badge} alt="badge" />
-              <div>
-                <span className='sub-label'>Subtotal</span>
+              <div className='price-calculations'>
+                <span className='sub-label'>Subtotal:</span>
         {/* Calculates subtotal of all items in the cart with the two functions within the Render Method */}
                 <span className='cart-subtotal'>
                   { `${price.toFixed(2)} ` }
@@ -338,28 +188,71 @@ class Cart extends Component {
                   </span>
                   </div>
                     <div className='shipping-disclaimer'>
-                        <div>Shipping (?) <span className='disclaim' style={ {marginLeft: '20px'} }>(We will contact you with the shipping cost & details)</span></div>
+                        {/*<div>Shipping (?) <span className='disclaim' style={ {marginLeft: '20px'} }>(We will contact you with the shipping cost & details)</span></div>*/}
+                      <div className='tax-label'>Tax: </div>
+                        <span className='cart-tax'>{` ${tax} `}
+                         <img className='euro' src={euro} alt="" />
+                        </span>
+                      
+                      <div className='ship-label'>Shipping: </div>
+                        <span className='cart-ship'>{ ` ${this.calculateShipping().toFixed(2)} ` || 0.00} 
+                          <img className='euro' src={euro} alt="" />
+                        </span>
+                      
                     </div>
 
               <span style={ { marginLeft: '20px' } }>Payment Information</span>
+              <span className='calculations'>Total: <span>{total}</span> <img className='euro' src={euro} alt=""/></span>
               <div className='billing-line-break'></div>
               <div className='payment-info'>
-                <div style={ { marginTop: '15px'} }><input type='radio'/><span> Bank transfer - no charge</span></div>
-                <div><input type='radio'/><span> Stripe - 3.2% payment charge <img src={stripe} alt=""/></span></div>
+                <div style={ { marginTop: '15px'} }>
+                    <input 
+                        type='radio' 
+                        value='bank'
+                        checked={this.state.stripeSelect === 'bank'}
+                        onChange={this.handleChange}/>
+                        <span> Bank transfer - no charge</span>
+                </div>
+                <div>
+                    <input 
+                        type='radio' 
+                        value='stripe'
+                        checked={this.state.stripeSelect === 'stripe'}
+                        onChange={this.handleChange}/>
+                        <span> Stripe - 3.2% payment charge <img src={stripe} alt=""/></span>
+                </div>
 
+            {
+
+              (this.state.stripeSelect === 'stripe')
+
+              ?
+              
+              
                <Elements>
-                <CardSection />
+                <CardSection 
+                  amount={total}/>
                </Elements>
+            
 
+              :
+
+              <div>
+                <span>Press Submit to request Bank Transfer 
+                information and a detailed Shipping Quote.</span>
+                <br/>
+                <div id='bank-btn' className='btn-checkout'>Submit</div>
+                <span className='disclaim'>We will send the information to the Email you provided above.</span>
                 <div className='disclaim'>You will only be billed after receiving your shipping quotation</div>
               </div>
 
-              <span style={ { marginLeft: '20px' } }>Options</span>
-              <div className='billing-line-break'></div>
+            }
 
+              </div>
         </div>
 
           :
+          
       <div>
         <div className="cart-grid-header">
                 <span>Product</span>
@@ -382,7 +275,7 @@ class Cart extends Component {
               </div>
 
               <div 
-                onClick={ () => this.setState({ checkout: !this.state.checkout })} 
+                onClick={ () => this.handleClick(total)} 
                 className='btn-checkout'>
                 Checkout
               </div>
@@ -398,8 +291,11 @@ class Cart extends Component {
 
 let mapStateToProps = (state) => {
     return {
-        cart: state.cart
+        cart: state.cart,
+        cartTotal: state.cartTotal,
+        firstName: state.billingFirstName,
+        lastName: state.billingLastName
     }
 }
 
-export default connect( mapStateToProps, { removeFromCart } )( Cart, Input )
+export default connect( mapStateToProps, { removeFromCart, getTotal } )( Cart )

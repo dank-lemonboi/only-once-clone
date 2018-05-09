@@ -28,6 +28,7 @@ import '../styles/products.scss'
 
     getMeTheProducts() {
         console.log(this.state.isHovering)
+        if (this.props.products.length > 0 ) {
         let productList = this.props.products.map(( product, index ) => {
           return (
               <Link to={`product/${product.item_name}/${product.item_number}`}>
@@ -43,35 +44,34 @@ import '../styles/products.scss'
                             </div>
                         </div>
               </Link>
-        )
+            )
         })
-
         return productList;
+    } else {
+        console.log('Loading')
+     }
+
     }
 
     render() {
-
-        return <body className="product-parent">
+        
+        return (
+         <body className="product-parent">
             <div className="wrap-products">
               These are the products
               {this.getMeTheProducts()}
             </div>
             <Footer />
-          </body>;
+          </body>
+        )
     }
  }
 
 
-
-let outputActions = {
-    getAll: getAll,
-    addToCart: addToCart
-}
-
- let mapStateToProps = (state) => {
+ const mapStateToProps = (state) => {
      if( !state ) {
          return {}
-     } 
+     } else {
      let { products, cart }  = state
      return {
          products: products,
@@ -79,5 +79,6 @@ let outputActions = {
      }
     
  }
+}
 
- export default connect( mapStateToProps, outputActions )(Products)
+ export default connect( mapStateToProps, { getAll, addToCart } )(Products)
