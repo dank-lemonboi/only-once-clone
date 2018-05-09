@@ -9,7 +9,7 @@ export default function Footer() {
         <span>Imprint</span>
         <span>Terms & Conditions</span>
       </div>
-     <span id='copywrite'>© 2018 Clonely / Once Shop</span>
+     <span id='copywrite'>© 2018 Clone / Once Shop</span>
     </section>
 )
 }

@@ -261,6 +261,10 @@
     li {
         margin-bottom: 15px;
     }
+
+    li:hover {
+        cursor: pointer;
+    }
 }
 
 .title {

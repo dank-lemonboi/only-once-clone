@@ -38,5 +38,19 @@ module.exports = {
         db.productDetails([ +req.body.productId ]).then( product => {
             res.status(200).send(product[0])
         }).catch(500)
+    },
+    payment: (req, res, next) => {
+        let token = req.body.stripeToken;
+        let chargeAmount = req.stripe.charges.create({
+            amount: chargeAmount,
+            currency: 'eur',
+            source: token
+        }, function(err, charge) {
+            if(err & err.type === "StripeCardError"){
+                console.log("Your card was declined...")
+            }
+        });
+        console.log('Payment Successful!')
+        res.status(200).send('Awesome! It worked!')
     }
 }

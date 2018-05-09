@@ -5,12 +5,14 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       cors = require('cors'),
       checkForSession = require('./middlewares/checkForSessions'),
-      ctrl = require('./controllers/controller')
+      ctrl = require('./controllers/controller'),
+      stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
       const {
           SERVER_PORT,
           SESSION_SECRET,
-          CONNECTION_STRING
+          CONNECTION_STRING,
+          STRIPE_SECRET_KEY 
       } = process.env
 
 const app = express()
@@ -18,6 +20,7 @@ const app = express()
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 
 
 app.use(sessions({
@@ -34,6 +37,8 @@ app.use(checkForSession)
 app.get('/api/products', ctrl.getProducts);
 app.put('/api/getProduct', ctrl.productDetails);
 app.put('/api/addProduct', ctrl.addProduct);
+
+app.post('/api/charge', ctrl.payment)
 
 
 

@@ -124,17 +124,15 @@ $font-var: "Montserrat", sans-serif;
 }
 
 .cart-subtotal {
-    margin-top: 5px;    
+    margin-top: 10px;    
     position: absolute;
     right: 7.5%;
 }
 
 .sub-label {
-    margin-top: 5px;
+    margin-top: 10px;
     position: absolute;
     left: 5%;
-    font-weight: 700;
-    text-transform: uppercase;    
 }
 
 .btn-checkout {
@@ -235,6 +233,34 @@ $font-var: "Montserrat", sans-serif;
     display: flex;
 }
 
+.shipping-disclaimer {
+    margin-top: 4em;
+    margin-left: 2.6em;
+    height: 180px;
+}
+
+.payment-info {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 2%;
+    height: 350px;
+
+    div {
+        margin-bottom: 2em
+    }
+
+    img {
+        width: 100px;
+        height: 20px;
+        margin-left: 20px;
+    }
+}
+
+.disclaim {
+    color: rgba(0, 0, 0, 0.4);
+    font-style: italic;
+}
 
 @media only screen 
 and (max-width: 768px) {

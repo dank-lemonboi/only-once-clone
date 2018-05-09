@@ -4,12 +4,16 @@ import './index.scss';
 import App from './App';
 import unregister from './registerServiceWorker';
 import { Provider } from 'react-redux'
+import { StripeProvider } from "react-stripe-elements";
 
 import store from './store'
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>
-    , document.getElementById('root'));
+  <Provider store={store}>
+    <StripeProvider apiKey="pk_test_aipeQRMaw8hUU34obnsOWFlD">
+      <App />
+    </StripeProvider>
+  </Provider>,
+  document.getElementById("root")
+);
     unregister();

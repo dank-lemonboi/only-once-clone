@@ -9,6 +9,9 @@ import deleteIcon from '../assets/delete-icon.svg';
 import {connect} from 'react-redux';
 import { removeFromCart } from "../ducks/reducer";
 import euro from "../assets/Euro_symbol_black.svg";
+import stripe from '../assets/powered_by_stripe.svg'
+import CardSection from '../components/injectedCheckout'
+import {Elements} from 'react-stripe-elements'
 
 
 
@@ -334,9 +337,26 @@ class Cart extends Component {
                   <img className='euro' src={euro} alt=""/>
                   </span>
                   </div>
-                    <div className=''>
-                        <h5>Shipping '(?)' <span style={ { color: 'rgba(0, 0, 0, 0.4)', textDecoration: 'italic' } }>'(We will contact you with the shipping cost & details)'</span></h5>
+                    <div className='shipping-disclaimer'>
+                        <div>Shipping (?) <span className='disclaim' style={ {marginLeft: '20px'} }>(We will contact you with the shipping cost & details)</span></div>
                     </div>
+
+              <span style={ { marginLeft: '20px' } }>Payment Information</span>
+              <div className='billing-line-break'></div>
+              <div className='payment-info'>
+                <div style={ { marginTop: '15px'} }><input type='radio'/><span> Bank transfer - no charge</span></div>
+                <div><input type='radio'/><span> Stripe - 3.2% payment charge <img src={stripe} alt=""/></span></div>
+
+               <Elements>
+                <CardSection />
+               </Elements>
+
+                <div className='disclaim'>You will only be billed after receiving your shipping quotation</div>
+              </div>
+
+              <span style={ { marginLeft: '20px' } }>Options</span>
+              <div className='billing-line-break'></div>
+
         </div>
 
           :
