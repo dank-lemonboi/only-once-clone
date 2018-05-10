@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
-import unregister from './registerServiceWorker';
 import { Provider } from 'react-redux'
 import { StripeProvider } from "react-stripe-elements";
 
@@ -16,4 +15,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-    unregister();

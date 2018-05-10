@@ -33,7 +33,7 @@ class Cart extends Component {
     handleClick(total) {
       
       this.setState({
-        checkout: !this.state.checkout
+        checkout: !this.state.checkout,
       })
 
       this.props.getTotal(total)
@@ -230,7 +230,8 @@ class Cart extends Component {
               
               
                <Elements>
-                <CardSection 
+                <CardSection
+                  click={this.state.modalView} 
                   amount={total}/>
                </Elements>
             

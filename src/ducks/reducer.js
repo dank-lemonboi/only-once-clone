@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
+    modalView: false,
     loading: false,
     products: [],
     cart: [],
@@ -33,6 +34,7 @@ const BILLING_FIRST_NAME = "BILLING_FIRST_NAME"
 const BILLING_LAST_NAME = "BILLING_LAST_NAME"
 const BILLING_EMAIL = "BILLING_EMAIL"
 const BILLING_PHONE = "BILLING_PHONE"
+const MODAL_ENGAGED = "MODAL_ENGAGED"
 
 const _FULFILLED = "_FULFILLED";
 const _PENDING = "_PENDING";
@@ -114,6 +116,13 @@ export function getPhone(number) {
     }
 }
 
+export function modalEngaged(value) {
+    return {
+        type: MODAL_ENGAGED,
+        payload: value
+    }
+}
+
 export default function reducer( state = initialState, action ) {
     // console.log(action)
     switch (action.type) {
@@ -156,6 +165,9 @@ export default function reducer( state = initialState, action ) {
 
         case BILLING_PHONE:
             return Object.assign( {}, state, { billingPhone: action.payload } )
+
+        case MODAL_ENGAGED:
+            return Object.assign( {}, state, { modalView: action.payload })
 
       default:
         return state;
