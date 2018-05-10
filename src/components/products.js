@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import euro from "../assets/Euro_symbol_black.svg";
+import euro from "../assets/Euro_symbol_white.svg";
 import Footer from "../components/footer";
 
 
@@ -33,12 +33,13 @@ import '../styles/products.scss'
           return (
               <Link to={`product/${product.item_name}/${product.item_number}`}>
                     <div className="product-card" key={product.item_number}>
-                    <div className='product-hover'>
-                        <span>{product.item_name}</span>
-                        <span>{`${product.price} `}<img className='euro' src={euro} alt=""/></span>
-                    </div>
+                      <div className='product-hover'>
+                          <span>{product.item_name}</span>
+                          <span className='price-line'><div className='red-dot'></div>{`${product.price}`}<img className='euro' src={euro} alt="" /></span>
+                      </div>
                         <div className="image-parent">
                             <div className="image-container">
+                              
                                 <img src={product.display_photo} alt="" />
                             </div>
                             </div>
@@ -58,7 +59,6 @@ import '../styles/products.scss'
         return (
          <body className="product-parent">
             <div className="wrap-products">
-              These are the products
               {this.getMeTheProducts()}
             </div>
             <Footer />

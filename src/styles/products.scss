@@ -30,13 +30,31 @@
     img {
       height: 100%;
       width: 100%;
+      fill: white;
+      
     }
 }
 
 .euro {
     height: 12px;
     width: 12px;
-    image: white;
+    fill: rgb(255, 255, 255);
+    outline: white;
+    
+}
+
+// red dot found onHover on the product cards
+.red-dot {
+    width: 6px;
+    height: 6px;
+    background: red;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
+.price-line {
+    display: flex;
+    align-items: center;
 }
 
 .product-hover {
