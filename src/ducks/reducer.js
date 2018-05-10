@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
+    loading: false,
     products: [],
     cart: [],
     product: {},
@@ -50,8 +51,8 @@ export function getProduct(id) {
 
 export function getAll() {
     const allProducts = axios.get('/api/products').then( products => {
-        return products.data
-    }).catch()
+         return products.data
+    }, console.log(allProducts)).catch()
     return { 
         type: GET_ALL_PRODUCTS, 
         payload: allProducts
@@ -122,20 +123,14 @@ export default function reducer( state = initialState, action ) {
         case ADD_TO_CART + _FULFILLED:
             // console.log('adding to cart, state: ',state)
             return (Object.assign( {}, state, { cart: [ ...state.cart, action.payload ] }))
-
-        case ADD_TO_CART + _REJECTED:
-            return 'Rejected'
             
 
       case GET_ALL_PRODUCTS + _PENDING:
-        return state
-                case GET_ALL_PRODUCTS +_FULFILLED:
-                // console.log(action.payload)
-                    return (Object.assign( {}, state, { products: action.payload } ) )
-                    
-
-                case GET_ALL_PRODUCTS +_REJECTED:
-                    return 'Rejected'
+        return Object.assign ({}, state, { loading: true })
+        
+        case GET_ALL_PRODUCTS +_FULFILLED:
+        // console.log(action.payload)
+            return (Object.assign( {}, state, { products: action.payload, loading: false } ) )
 
     //   case REMOVE_FROM_CART + _PENDING:
     //     return state

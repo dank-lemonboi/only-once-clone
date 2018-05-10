@@ -4,7 +4,7 @@ import badge from '../assets/images/only_once_badge.svg'
 import '../styles/landingPage.scss'
 import Carousel from '../components/carousel';
 import Navbar from '../components/navbar';
-import Products from '../components/products'
+import Products from '../components/productList'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {connect} from 'react-redux'
@@ -24,6 +24,7 @@ class Home extends Component {
     }
 
       
+
 
 scrollToggle() {
   // the two variables allow for different window sizes,
@@ -52,7 +53,7 @@ scrollToggle() {
 
     render() {
 
-     window.onscroll = this.scrollToggle   
+     window.onscroll = this.scrollToggle 
     
         return (
           <div className="landing-page-container">
@@ -76,7 +77,7 @@ scrollToggle() {
 
 let mapStateToProps = (state) => {
   return {
-    state
+    products: state.products
   }
 }
 
