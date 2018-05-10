@@ -24,7 +24,7 @@ import { modalEngaged } from '../ducks/reducer'
             value: !this.state.value
         })
 
-        this.props.modalEngage(this.state.value)
+        this.props.modalEngaged(this.state.value)
 
         let message = 'Thank you for choosing Clone Once. Your order is on its way! '
 
