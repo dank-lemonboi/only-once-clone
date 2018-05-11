@@ -1,11 +1,41 @@
-import React from 'react'
+import React, { Component } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import euro from "../assets/Euro_symbol_white.svg";
 
-export default function ProductTile(props) {
-    const { product } = props
+
+
+ class ProductTile extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {}
+
+        this.edit = this.edit.bind(this)
+        this.delete = this.delete.bind(this)
+
+    }
+
+    edit() {
+
+    }
+
+    delete() {
+
+    }
+
+    render() {
+
+    const { product } = this.props
+
     return(
-              <Link to={`product/${product.item_name}/${product.item_number}`}>
+        <div>
+        {
+            (!this.props.isAdmin)
+
+            ?
+              <Link to={`store/${product.item_name}/${product.item_number}`}>
                 <div className="product-card" key={product.item_number}>
                     <div className='product-hover'>
                         <span>{product.item_name}</span>
@@ -19,5 +49,36 @@ export default function ProductTile(props) {
                     </div>
                 </div>
             </Link>
+
+            :
+
+             <Link to={`product/${product.item_name}/${product.item_number}`}>
+                <div className="product-card" key={product.item_number}>
+                    <div className='product-hover'>
+                        <span>{product.item_name}</span>
+                        <span className='price-line'><div className='red-dot'></div>{`${product.price}`}<img className='euro' src={euro} alt="" /></span>
+                        <div onClick={ () => this.edit() }className='auth-btn'>Edit</div>
+                        <div onClick={ () => this.delete() }className='auth-btn'>Delete</div>
+                    </div>
+                    <div className="image-parent">
+                        <div className="image-container">
+
+                            <img src={product.display_photo} alt="" />
+                        </div>
+                    </div>
+                </div>
+            </Link>
+
+        }
+        </div>
     )
+ }
 }
+
+let mapStateToProps = (state) => {
+    return {
+        isAdmin: state.customerReducer.isAdmin
+    }
+}
+
+export default connect( mapStateToProps )(ProductTile)

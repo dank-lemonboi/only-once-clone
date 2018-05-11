@@ -93,18 +93,18 @@ class Navbar extends Component {
                         onMouseOver={ () => this.setState( { dropMenu: true } )}
                         onMouseOut={ () => this.setState({ dropMenu: false } )}
                         className={ ( this.state.dropMenu ) ? 'store-wrapper red' : 'store-wrapper' }>
-                        STORE { ( !this.state.dropMenu ) ? <div className='drop-arrow'><img src={down} alt=""/></div> : <div className='drop-arrow rotate'><img src={up} alt=""/></div> }
+                        <a href='#/store'>STORE</a> { ( !this.state.dropMenu ) ? <div className='drop-arrow'><img src={down} alt=""/></div> : <div className='drop-arrow rotate'><img src={up} alt=""/></div> }
                       </span>
                       <ul 
                         onMouseOver={ () => this.setState( { dropMenu: true } )} 
                         onMouseOut= {() => this.setState({ dropMenu: false } )}
                         className={ ( !this.state.dropMenu ) ? "drop-menu-store" : "drop-menu-store reveal"}>
-                        <li>LAMPS & LIGHTS</li>
-                        <li>INDUSTRIAL</li>
-                        <li>SOLD</li>
-                        <li>ELECTRONIC GOODS</li>
-                        <li>CLOCKS</li>
-                        <li>HOME DECO</li>
+                        <a href='#/store/lights'><li>LAMPS & LIGHTS</li></a>
+                        <a href='#/store/industrial'><li>INDUSTRIAL</li></a>
+                        <a href='#/store/sold'><li>SOLD</li></a>
+                        <a href='#/store/electronic'><li>ELECTRONIC GOODS</li></a>
+                        <a href='#/store/clocks'><li>CLOCKS</li></a>
+                        <a href='#/store/home-deco'><li>HOME DECO</li></a>
                       </ul>
                     </li>
                     <li className="nav-menu-info"
@@ -119,10 +119,10 @@ class Navbar extends Component {
                         onMouseOver={ () => this.setState({ dropInfo: true })} 
                         onMouseOut= {() => this.setState({ dropInfo: false } )}                        
                         className={ ( !this.state.dropInfo ) ? "drop-menu-info" : "drop-menu-info reveal"}>
-                        <li>BLOG</li>
-                        <li>ABOUT</li>
-                        <li>ORDERING</li>
-                        <li>CONTACT</li>
+                        <a><li>BLOG</li></a>
+                        <a><li>ABOUT</li></a>
+                        <a><li>ORDERING</li></a>
+                        <a><li>CONTACT</li></a>
                       </ul>
                     </li>
                   </ul> 
@@ -188,7 +188,8 @@ const mapStateToProps = (state) => {
     return {}
   }
   return {
-    cart: state.customerReducer.cart
+    cart: state.customerReducer.cart,
+    isSticky: state.customerReducer.isSticky
   }
 }
 

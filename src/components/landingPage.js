@@ -10,8 +10,9 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import Auth from './admin/adminAuth'
+// import Footer from './footer'
 
-import { getAll, addToCart, modalEngaged } from "../ducks/reducer";
+import { getAll, addToCart, modalEngaged, stickySet } from "../ducks/reducer";
 
 
 class Home extends Component {
@@ -41,9 +42,9 @@ scrollToggle() {
  let animate = pageHeight * .89999;
 
       if( window.pageYOffset >= `${animate}`) {
-        this.setState( { isSticky: true } )
+        this.props.stickySet(true)
       } else {
-        this.setState( { isSticky: false } )
+        this.props.stickySet(false)
       }
 
   }
@@ -67,13 +68,13 @@ scrollToggle() {
             <div onClick={() => this.modalOut()} className={(!this.props.modalView) ? 'modal-background' : 'modal-background reveal'}>
             </div>
             <div className={(!this.props.modalView) ? 'modal-container' : 'modal-container reveal'}>
-              <Auth />
+              { (this.props.isAdmin === false) ? <Auth /> : <div>You have now entered Admin mode. You can create, edit or delete products in the database. Have fun!</div> }
             </div>
           <div className="landing-page-container">
             <Navbar 
             path={this.props.location.pathname} 
             logo={logo} 
-            stick={this.state.isSticky} 
+            stick={this.props.isSticky} 
             cart={this.props.cart}
             width={window.innerWidth}
             />
@@ -81,7 +82,9 @@ scrollToggle() {
             <Link to="/">
               <img className={ ( ( this.props.path === '/' || !this.state.isSticky ) ) ? "logo-container"  : ( this.props.path !== '/' ) ? "sticky-logo" : 'logo-container' } src={logo} alt="" />
             </Link>
-             <Products />
+             <Products 
+              
+             />
             <img className="badge" src={badge} alt="badge" />
           </div>
         </div>
@@ -92,9 +95,10 @@ scrollToggle() {
 let mapStateToProps = (state) => {
   return {
     products: state.customerReducer.products,
-    modalView: state.customerReducer.modalView
-
+    modalView: state.customerReducer.modalView,
+    isAdmin: state.customerReducer.isAdmin,
+    isSticky: state.customerReducer.isSticky
   }
 }
 
-export default connect( mapStateToProps, { getAll, addToCart, modalEngaged } )(Home)
+export default connect( mapStateToProps, { getAll, addToCart, modalEngaged, stickySet } )(Home)

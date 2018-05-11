@@ -15,10 +15,9 @@ class AdminAuth extends Component {
 
     registerAdmin() {
         axios.post('/api/auth/register', { username: this.props.username, password: this.props.password }).then(res => {
-            this.props.adminMode(true)
            window.setTimeout(() => {
                this.props.modalEngaged(false)
-           }, 5000);
+           }, 3500);
             
                 
             

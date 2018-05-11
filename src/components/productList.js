@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import euro from "../assets/Euro_symbol_white.svg";
 import Footer from "../components/footer";
 import {getAll} from '../ducks/reducer'
@@ -66,13 +66,37 @@ import '../styles/products.scss'
     // }
 
     render() {
-        console.log(this.props.products)
+        // console.log(document.location)
+        console.log(document.location)
 
-        let productList = this.props.products.map( (product, i) => <ProductTile  key={i} product={product}/> )
+        // let productList = this.props.products.map( (product, i) => <ProductTile key={product.item_id} product={product} /> )
+        
+        let filterList = this.props.products.filter( product => {
+            // console.log(product)
+
+             if (document.location.hash === '#/store/lights') {
+                return product.item_type === 'lamp' || product.item_type === 'light' 
+            } else if (document.location.hash === '#/store/industrial') {
+                return product.item_type === "industrial"
+            } else if (document.location.hash === '#/store/sold') {
+                return product.sold 
+            } else if (document.location.hash === '#/store/electronic') {
+                return product.item_type === 'electronic'
+            } else if (document.location.hash === '#/store/clocks') {
+                return product.item_type === 'clock'
+            } else if (document.location.hash === '#/store/home-deco') {
+                return product.item_type === 'homedeco'
+            }
+            
+            return true 
+        })
+        
+        let productList = filterList.map( (product, i) => <ProductTile key={product.item_id} product={product} /> )
+
 
         return (
-        <div className="product-parent">
-          <div className='product-wrapper'>
+            <div className={ (this.props.className) ? this.props.className : "product-parent" }>
+          <div className={ 'product-wrapper' }>
 
           {
               
@@ -80,21 +104,22 @@ import '../styles/products.scss'
 
               ?
 
-              <div className="products">
-          {productList} 
-              </div>
-
-              :
-
-              <h1>Loading Products!</h1>
-
-          }
-          <Footer />
-         </div>
+              <div className= "products" >
+              { productList }
+               <Footer />
+               </div>
+               
+               :
+               
+               <h1>Loading Products!</h1>
+               
+            }
+            </div>
           </div>
         )
     }
  }
+
 
 
  const mapStateToProps = (state) => {
@@ -111,4 +136,4 @@ import '../styles/products.scss'
  }
 }
 
- export default connect(mapStateToProps, {  addToCart, getAll })(Products)
+ export default withRouter(connect(mapStateToProps, {  addToCart, getAll })(Products))

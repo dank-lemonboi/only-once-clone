@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { modalEngaged } from '../ducks/reducer'
+import { modalEngaged, adminMode } from '../ducks/reducer'
 import '../styles/footer.scss'
 
 class Footer extends Component {
@@ -11,11 +11,19 @@ class Footer extends Component {
 
 
     this.clickHandler = this.clickHandler.bind(this)
+    this.logout = this.logout.bind(this)
+
   }
 
   clickHandler() {
-    return this.props.modalEngaged(true)
-    window.scrollY(0, 0)
+    window.scrollTo(0, 0)
+    this.props.modalEngaged(true)
+  }
+
+  logout() {
+    axios.post('/api/auth/logout').then( () => {
+      this.props.adminMode(false)
+    })
   }
 
 render() {
@@ -26,7 +34,17 @@ render() {
         <span>Blog</span>
         <span>Imprint</span>
         <span>Terms & Conditions</span>
+    {
+
+      (!this.props.isAdmin)
+
+    ?
         <span onClick={ () => this.clickHandler() }>Admin</span>
+
+    :
+
+       <span onClick={ () => this.logout() }>Admin Logout</span>
+    }
       </div>
      <span id='copywrite'>© 2018 Clone / Once Shop</span>
     </section>
@@ -37,8 +55,9 @@ render() {
 
 let mapStateToProps = (state) => {
   return {
-    modalView: state.customerReducer.modalView
+    modalView: state.customerReducer.modalView,
+    isAdmin: state.customerReducer.isAdmin
   }
 }
 
-export default connect(mapStateToProps, { modalEngaged } )(Footer)
+export default connect(mapStateToProps, { modalEngaged, adminMode } )(Footer)

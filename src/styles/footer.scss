@@ -1,12 +1,13 @@
 .footer-parent {
     position: absolute;
+    bottom: 2%;
+    left: 37.5%;
     background: transparent;
-    width: 280px;
-    bottom: 5%;
-    left: 37.5vw;
 }
 
 .footer-wrapper {
+    width: 300px;
+    bottom: 0;
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;

@@ -4,6 +4,7 @@ const initialState = {
     products: [],
     cart: [],
     product: {},
+    isSticky: false,
     isAdmin: false,
     modalView: false,
     loading: false,
@@ -45,6 +46,7 @@ const BILLING_CITY = "BILLING_CITY"
 const MODAL_ENGAGED = "MODAL_ENGAGED"
 const ADMIN_MODE = "ADMIN_MODE"
 const EMPTY_THE_CART = "EMPTY_THE_CART"
+const SET_STICKY = "SET_STICKY"
 
 
 const _FULFILLED = "_FULFILLED";
@@ -183,6 +185,13 @@ export function emptyCart() {
     }
 }
 
+export function stickySet(value) {
+    return {
+        type: SET_STICKY,
+        payload: value
+    }
+}
+
 export default function reducer( state = initialState, action ) {
     // console.log(action)
     switch (action.type) {
@@ -249,6 +258,9 @@ export default function reducer( state = initialState, action ) {
 
         case ADMIN_MODE:
             return Object.assign( {}, state, { isAdmin: action.payload})
+
+        case SET_STICKY:
+            return Object.assign( {}, state, { isSticky: action.payload })
 
       default:
         return state;
