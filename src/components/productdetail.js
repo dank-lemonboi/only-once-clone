@@ -18,6 +18,7 @@ class Details extends Component {
     }
 
     componentWillMount() {
+        console.log(this.props.match.params.productId)
         this.props.getProduct(this.props.match.params.productId)
     }
 

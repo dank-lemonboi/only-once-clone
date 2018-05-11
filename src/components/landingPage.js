@@ -80,10 +80,10 @@ scrollToggle() {
             />
             <Carousel />
             <Link to="/">
-              <img className={ ( ( this.props.path === '/' || !this.state.isSticky ) ) ? "logo-container"  : ( this.props.path !== '/' ) ? "sticky-logo" : 'logo-container' } src={logo} alt="" />
+              <img className={ ( ( this.props.path === '/' || !this.props.isSticky ) ) ? "logo-container"  : ( this.props.path !== '/' ) ? "sticky-logo" : 'logo-container' } src={logo} alt="" />
             </Link>
              <Products 
-              
+
              />
             <img className="badge" src={badge} alt="badge" />
           </div>
