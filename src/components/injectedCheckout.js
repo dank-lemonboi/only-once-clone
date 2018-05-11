@@ -22,11 +22,23 @@ import { modalEngaged } from '../ducks/reducer'
 
         this.setState({
             value: !this.state.value
-        })
+        }, () => this.props.modalEngaged(this.state.value))
 
-        this.props.modalEngaged(this.state.value)
+        let textmessage = `Hey ${this.props.billingFirstName}, we just recieved your order. If you have any questions please don't hesitate to contact me. Seriously.`
 
-        let message = 'Thank you for choosing Clone Once. Your order is on its way! '
+        let message = 
+        `Hey Thank you for choosing Clone Once. Your order is on its way! 
+        Just to make sure we have everything set up correctly we wanted to confirm your address is:
+                
+                ${this.props.billingFirstName} ${this.props.billingLastName}
+                ${this.props.billingAddress}
+                ${this.props.billingCity} ${this.props.billingStateProvince}
+                ${this.props.billingPostalCode}
+                ${this.props.billingCountry}
+                
+        The items you purchased look like they're pretty special, so we want to make sure we got everything right.
+        If any of this looks incorrect, or you just want to chat don't hesitate to contact us. :)
+        - The only once team.`
 
         event.preventDefault();
 
@@ -34,7 +46,7 @@ import { modalEngaged } from '../ducks/reducer'
             console.log(token)
             axios.post('/api/charge', {amount: +this.props.cartTotal, stripeToken: token.id}).then(
                 axios.post('api/confirmationEmail', {user_email: this.props.billingEmail, message: message } ).then(
-                    axios.post('/api/sendText', { user_phone_number: this.props.billingPhone, message: message }).then(
+                    axios.post('/api/sendText', { user_phone_number: this.props.billingPhone, message: textmessage }).then(
 
                         
 
@@ -64,13 +76,19 @@ import { modalEngaged } from '../ducks/reducer'
 const mapStateToProps = (state) => {
     
     return {
+        cart: state.cart,
         stripeToken: state.stripeToken,
+        cartTotal: state.cartTotal,
+        modalView: state.modalView,
         billingFirstName: state.billingFirstName,
         billingLastName: state.billingLastName,
-        cartTotal: state.cartTotal,
         billingEmail: state.billingEmail,
         billingPhone: state.billingPhone,
-        modalView: state.modalView
+        billingCountry: state.billingCountry,
+        billingStateProvince: state.billingStateProvince,
+        billingAddress: state.billingAddress,
+        billingPostalCode: state.billingPostalCode,
+        billingCity: state.billingCity
     }
 }
 

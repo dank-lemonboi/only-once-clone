@@ -7,6 +7,8 @@ const initialState = {
     cart: [],
     product: {},
     cartTotal: 0,
+    billingCountry: '',
+    billingStateProvince: '',
     billingFirstName: '',
     billingLastName: '',
     billingCompany: '',
@@ -34,11 +36,53 @@ const BILLING_FIRST_NAME = "BILLING_FIRST_NAME"
 const BILLING_LAST_NAME = "BILLING_LAST_NAME"
 const BILLING_EMAIL = "BILLING_EMAIL"
 const BILLING_PHONE = "BILLING_PHONE"
+const BILLING_COUNTRY = "BILLING_COUNTRY"
+const BILLING_STATE = "BILLING_STATE"
+const BILLING_ADDRESS = "BILLING_ADDRESS"
+const BILLING_POSTAL_CODE = "BILLING_POSTAL_CODE"
+const BILLING_CITY = "BILLING_CITY"
 const MODAL_ENGAGED = "MODAL_ENGAGED"
+const EMPTY_THE_CART = "EMPTY_THE_CART"
+
 
 const _FULFILLED = "_FULFILLED";
 const _PENDING = "_PENDING";
 const _REJECTED = "_REJECTED";
+
+export function getCity(city) {
+    return {
+        type: BILLING_CITY,
+        payload: city
+    }
+}
+
+export function getPostalCode(post) {
+    return {
+        type: BILLING_POSTAL_CODE,
+        payload: post
+    }
+}
+
+export function getAddress(address) {
+    return {
+        type: BILLING_ADDRESS,
+        payload: address
+    }
+}
+
+export function getState(stateProvince) {
+    return {
+        type: BILLING_STATE,
+        payload: stateProvince
+    }
+}
+
+export function getCountry(country) {
+    return {
+        type: BILLING_COUNTRY,
+        payload: country
+    }
+}
 
 export function getProduct(id) {
     const product = axios.put('/api/getProduct', { productId: id } ).then( product => {
@@ -123,6 +167,13 @@ export function modalEngaged(value) {
     }
 }
 
+export function emptyCart() {
+    return {
+        type: EMPTY_THE_CART,
+        payload: initialState.cart
+    }
+}
+
 export default function reducer( state = initialState, action ) {
     // console.log(action)
     switch (action.type) {
@@ -166,8 +217,26 @@ export default function reducer( state = initialState, action ) {
         case BILLING_PHONE:
             return Object.assign( {}, state, { billingPhone: action.payload } )
 
+        case BILLING_COUNTRY:
+            return Object.assign( {}, state, { billingCountry: action.payload })
+
+        case BILLING_STATE:
+            return Object.assign( {}, state, { billingStateProvince: action.payload })
+        
+        case BILLING_ADDRESS:
+            return Object.assign( {}, state, { billingAddress: action.payload })
+
+        case BILLING_POSTAL_CODE:
+            return Object.assign( {}, state, { billingPostalCode: action.payload })
+
+        case BILLING_CITY:
+            return Object.assign( {}, state, { billingCity: action.payload })
+
         case MODAL_ENGAGED:
             return Object.assign( {}, state, { modalView: action.payload })
+
+        case EMPTY_THE_CART:
+            return Object.assign( {}, state, { cart: action.payload })
 
       default:
         return state;

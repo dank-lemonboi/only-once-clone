@@ -1,17 +1,7 @@
 import React, { Component } from 'react'
-import Navbar from './navbar'
-import Footer from './footer'
-import logo from "../assets/images/only_once_logo.svg";
-import badge from '../assets/images/only_once_badge.svg';
 import '../styles/cart.scss';
-import axios from 'axios';
-import deleteIcon from '../assets/delete-icon.svg';
 import { connect } from 'react-redux';
-import euro from "../assets/Euro_symbol_black.svg";
-import stripe from '../assets/powered_by_stripe.svg'
-import CardSection from '../components/injectedCheckout'
-import { Elements } from 'react-stripe-elements'
-import { getFirstName, getLastName, getEmail, getPhone } from "../ducks/reducer";
+import { getFirstName, getLastName, getEmail, getPhone, getPostalCode, getAddress, getState, getCountry, getCity } from "../ducks/reducer";
 
 
 
@@ -46,7 +36,7 @@ class Input extends Component {
                             <div>
                                 <span>Country*</span>
                                 <input type="text"
-                                    onChange={() => { }} />
+                                    onChange={(e) => this.props.getCountry(e.target.value) } />
                             </div>
                             <div>
                                 <span>First Name*</span>
@@ -66,17 +56,22 @@ class Input extends Component {
                             <div>
                                 <span>Address*</span>
                                 <textarea
-                                    onChange={() => { }} />
+                                    onChange={(e) => this.props.getAddress(e.target.value) } />
                             </div>
                             <div>
                                 <span>Postal Code*</span>
                                 <input type="text"
-                                    onChange={() => { }} />
+                                    onChange={(e) => this.props.getPostalCode(e.target.value) } />
                             </div>
                             <div>
                                 <span>City*</span>
                                 <input type="text"
-                                    onChange={() => { }} />
+                                    onChange={(e) => this.props.getCity(e.target.value) } />
+                            </div>
+                            <div>
+                                <span>State or Province*</span>
+                                <input type="text"
+                                    onChange={(e) => this.props.getState(e.target.value) } />
                             </div>
                             <div>
                                 <span>Email*</span>
@@ -232,8 +227,13 @@ let mapStateToProps = (state) => {
         billingFirstName: state.billingFirstName,
         billingLastName: state.billingLastName,
         billingEmail: state.billingEmail,
-        billingPhone: state.billingPhone
+        billingPhone: state.billingPhone,
+        country: state.billingCountry,
+        stateProvince: state.billingStateProvince,
+        address: state.billingAddress,
+        postalCode: state.billingPostalCode,
+        city: state.billingCity
     }
 }
 
-export default connect(mapStateToProps, { getFirstName, getLastName, getEmail, getPhone })(Input) 
+export default connect(mapStateToProps, { getFirstName, getLastName, getEmail, getPhone, getPostalCode, getAddress, getState, getCountry, getCity })(Input) 

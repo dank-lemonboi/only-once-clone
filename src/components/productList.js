@@ -86,7 +86,7 @@ import '../styles/products.scss'
 
               :
 
-              <h1>Loding Products!</h1>
+              <h1>Loading Products!</h1>
 
           }
 

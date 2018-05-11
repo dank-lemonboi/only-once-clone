@@ -11,7 +11,7 @@ import euro from "../assets/Euro_symbol_black.svg";
 import stripe from '../assets/powered_by_stripe.svg'
 import CardSection from '../components/injectedCheckout'
 import {Elements} from 'react-stripe-elements'
-import { removeFromCart, getTotal } from "../ducks/reducer";
+import { removeFromCart, getTotal, modalEngaged, emptyCart } from "../ducks/reducer";
 import Input from './input'
 
 
@@ -28,6 +28,7 @@ class Cart extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.calculateShipping = this.calculateShipping.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.modalOut = this.modalOut.bind(this)
     }
 
     handleClick(total) {
@@ -131,29 +132,55 @@ class Cart extends Component {
     //   })
     // }
 
+    modalOut() {
+      axios.get('/api/end').then( () => {
+        this.props.emptyCart()
+        this.props.modalEngaged(false)
+        this.props.history.push('/')
+      })
+    }
+
     render() {
 
        // map through cart items and return just the prices for all the items
-      let unitPrice = this.props.cart.map(unit => {
-        return unit.price
-      })
+      // let unitPrice = this.props.cart.map(unit => {
+      //   return unit.price
+      // })
       // add item prices together
-      let price = unitPrice.reduce( ( a, b ) => {
-        return ( (a + b) || 0.00 )
-      }, 0)
+      // let price = unitPrice.reduce( ( a, b ) => {
+      //   return ( (a + b) )
+      // }, 0)
       
-      let tax = (price.toFixed(2) * 0.07).toFixed(2)
+      let tax = ((+this.props.cartTotal) * 0.07).toFixed(2)
 
 // convert the price and tax strings to numbers, and add them together with the shipping to get the total.
 
-      let total = ( (+price) + (+tax) + this.calculateShipping()).toFixed(2) 
+      let total = ( (+this.props.cartTotal) + (+tax) + this.calculateShipping()).toFixed(2) 
 
+      console.log(this.props)
 
         return (
             <div className="cart-parent">
             <Navbar 
               logo={logo} 
               path={this.props.location.pathname} />
+
+                <div>
+                 <div className={ (!this.props.modalView) ? 'modal-container' : 'modal-container reveal'}>
+                    <div className={ (!this.props.modalView) ? 'modal-content' : 'modal-content reveal'}>
+                      <img src={logo} alt=""/>
+                  <div className='modal-text'>
+                      <span>A confirmation text and email are on their way.</span>
+                      <span>Our team will ship your order shortly.</span>
+                      <br/>
+                    <span>Thank you for choosing Only / Once!</span>
+                    <span>We hope to see you again {`${this.props.firstName}`}.</span>
+                  </div>
+                    </div>
+                 </div>
+                  <div onClick={() => this.modalOut()} className={ (!this.props.modalView) ? 'modal-background' : 'modal-background reveal'}></div>
+                </div>
+
             <div className="cart-banner">YOUR CART</div>
             <section className="cart-wrapper">
           
@@ -183,7 +210,7 @@ class Cart extends Component {
                 <span className='sub-label'>Subtotal:</span>
         {/* Calculates subtotal of all items in the cart with the two functions within the Render Method */}
                 <span className='cart-subtotal'>
-                  { `${price.toFixed(2)} ` }
+                  { `${this.props.cartTotal} ` }
                   <img className='euro' src={euro} alt=""/>
                   </span>
                   </div>
@@ -231,7 +258,6 @@ class Cart extends Component {
               
                <Elements>
                 <CardSection
-                  click={this.state.modalView} 
                   amount={total}/>
                </Elements>
             
@@ -270,7 +296,7 @@ class Cart extends Component {
                 <span className='sub-label'>Subtotal</span>
         {/* Calculates subtotal of all items in the cart with the two functions within the Render Method */}
                 <span className='cart-subtotal'>
-                  { `${price.toFixed(2)} ` }
+                  { `${this.props.cartTotal} ` }
                   <img className='euro' src={euro} alt=""/>
                 </span>
               </div>
@@ -295,8 +321,9 @@ let mapStateToProps = (state) => {
         cart: state.cart,
         cartTotal: state.cartTotal,
         firstName: state.billingFirstName,
-        lastName: state.billingLastName
+        lastName: state.billingLastName,
+        modalView: state.modalView
     }
 }
 
-export default connect( mapStateToProps, { removeFromCart, getTotal } )( Cart )
+export default connect( mapStateToProps, { removeFromCart, getTotal, modalEngaged, emptyCart } )( Cart )

@@ -36,6 +36,7 @@ app.use(sessions({
 
 app.use(checkForSession)
 
+
 app.get('/api/products', ctrl.getProducts);
 app.put('/api/getProduct', ctrl.productDetails);
 app.put('/api/addProduct', ctrl.addProduct);
@@ -43,6 +44,7 @@ app.put('/api/addProduct', ctrl.addProduct);
 app.post('/api/charge', ctrl.payment)
 app.post('/api/confirmationEmail', ctrl.sendEmail)
 app.post('/api/sendText', ctrl.sendText)
+app.get('/api/end', ctrl.endSession )
 
 
 

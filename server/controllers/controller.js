@@ -107,5 +107,9 @@ module.exports = {
                 res.status(200).send('nice')
             }
         })
+    },
+    endSession: (req, res, next) => {
+        req.session.destroy()
+        res.status(200).send('Session destroyed! Bring on the next one.')
     }
 }
