@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 const initialState = {
-    modalView: false,
-    loading: false,
     products: [],
     cart: [],
     product: {},
+    isAdmin: false,
+    modalView: false,
+    loading: false,
     cartTotal: 0,
     billingCountry: '',
     billingStateProvince: '',
@@ -42,6 +43,7 @@ const BILLING_ADDRESS = "BILLING_ADDRESS"
 const BILLING_POSTAL_CODE = "BILLING_POSTAL_CODE"
 const BILLING_CITY = "BILLING_CITY"
 const MODAL_ENGAGED = "MODAL_ENGAGED"
+const ADMIN_MODE = "ADMIN_MODE"
 const EMPTY_THE_CART = "EMPTY_THE_CART"
 
 
@@ -98,7 +100,7 @@ export function getProduct(id) {
 export function getAll() {
     const allProducts = axios.get('/api/products').then( products => {
          return products.data
-    }, console.log(allProducts)).catch()
+    }).catch()
     return { 
         type: GET_ALL_PRODUCTS, 
         payload: allProducts
@@ -163,6 +165,13 @@ export function getPhone(number) {
 export function modalEngaged(value) {
     return {
         type: MODAL_ENGAGED,
+        payload: value
+    }
+}
+
+export function adminMode(value) {
+    return {
+        type: ADMIN_MODE,
         payload: value
     }
 }
@@ -237,6 +246,9 @@ export default function reducer( state = initialState, action ) {
 
         case EMPTY_THE_CART:
             return Object.assign( {}, state, { cart: action.payload })
+
+        case ADMIN_MODE:
+            return Object.assign( {}, state, { isAdmin: action.payload})
 
       default:
         return state;

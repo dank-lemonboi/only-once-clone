@@ -6,7 +6,8 @@ const express = require('express'),
       cors = require('cors'),
       checkForSession = require('./middlewares/checkForSessions'),
       stripe = require('stripe')(process.env.STRIPE_SECRET_KEY),
-      ctrl = require('./controllers/controller')
+      ctrl = require('./controllers/controller'),
+      authCtrl = require('./controllers/authController')
 
       const {
           SERVER_PORT,
@@ -37,6 +38,8 @@ app.use(sessions({
 app.use(checkForSession)
 
 
+
+
 app.get('/api/products', ctrl.getProducts);
 app.put('/api/getProduct', ctrl.productDetails);
 app.put('/api/addProduct', ctrl.addProduct);
@@ -45,6 +48,13 @@ app.post('/api/charge', ctrl.payment)
 app.post('/api/confirmationEmail', ctrl.sendEmail)
 app.post('/api/sendText', ctrl.sendText)
 app.get('/api/end', ctrl.endSession )
+
+app.get('/api/me', authCtrl.userValidate)
+app.post('/api/auth/register', authCtrl.register)
+app.post('/api/auth/login', authCtrl.login)
+app.post('/api/auth/logout', authCtrl.logout)
+
+app.post('/api/deleteProduct', ctrl.deleteItem)
 
 
 

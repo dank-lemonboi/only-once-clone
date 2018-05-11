@@ -27,6 +27,10 @@ INSERT INTO products (
     sold
 )
 
+-- insert into products (item_number)
+-- VALUES(3333)
+
+
 -- VALUES (
 -- 'Braun macro MZ 1070',
 -- 'electronic',

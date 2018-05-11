@@ -70,8 +70,8 @@ class Details extends Component {
 let mapStateToProps = (state) => {
     
     return {
-        product: state.product,
-        cart: state.cart
+        product: state.customerReducer.product,
+        cart: state.customerReducer.cart
     }
 }
 

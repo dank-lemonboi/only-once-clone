@@ -221,18 +221,32 @@ class Input extends Component {
 }
 
 let mapStateToProps = (state) => {
+
+    const {
+        cart,
+        cartTotal,
+        billingFirstName,
+        billingLastName,
+        billingEmail,
+        billingPhone,
+        country,
+        stateProvince,
+        address,
+        postalCode,
+        city
+    } = state.customerReducer
     return {
-        cart: state.cart,
-        cartTotal: state.cartTotal,
-        billingFirstName: state.billingFirstName,
-        billingLastName: state.billingLastName,
-        billingEmail: state.billingEmail,
-        billingPhone: state.billingPhone,
-        country: state.billingCountry,
-        stateProvince: state.billingStateProvince,
-        address: state.billingAddress,
-        postalCode: state.billingPostalCode,
-        city: state.billingCity
+        cart: state.customerReducer.cart,
+        cartTotal: state.customerReducer.cartTotal,
+        billingFirstName: state.customerReducer.billingFirstName,
+        billingLastName: state.customerReducer.billingLastName,
+        billingEmail: state.customerReducer.billingEmail,
+        billingPhone: state.customerReducer.billingPhone,
+        country: state.customerReducer.billingCountry,
+        stateProvince: state.customerReducer.billingStateProvince,
+        address: state.customerReducer.billingAddress,
+        postalCode: state.customerReducer.billingPostalCode,
+        city: state.customerReducer.billingCity
     }
 }
 

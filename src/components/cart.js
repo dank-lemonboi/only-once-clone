@@ -52,7 +52,7 @@ class Cart extends Component {
         shipping += 50
       } else if (this.props.cart.length === 2) {
         shipping += 75
-      } else if (this.props.cart.length <= 3) {
+      } else if (this.props.cart.length >= 3) {
         shipping += 100
       } 
       return shipping
@@ -143,21 +143,21 @@ class Cart extends Component {
     render() {
 
        // map through cart items and return just the prices for all the items
-      // let unitPrice = this.props.cart.map(unit => {
-      //   return unit.price
-      // })
+      let unitPrice = this.props.cart.map(unit => {
+        return unit.price
+      })
       // add item prices together
-      // let price = unitPrice.reduce( ( a, b ) => {
-      //   return ( (a + b) )
-      // }, 0)
+      let price = unitPrice.reduce( ( a, b ) => {
+        return ( (a + b) )
+      }, 0)
       
-      let tax = ((+this.props.cartTotal) * 0.07).toFixed(2)
+      let tax = ( (+price) * 0.07).toFixed(2)
 
 // convert the price and tax strings to numbers, and add them together with the shipping to get the total.
 
-      let total = ( (+this.props.cartTotal) + (+tax) + this.calculateShipping()).toFixed(2) 
+      let total = ( (+price) + (+tax) + this.calculateShipping()).toFixed(2) 
 
-      console.log(this.props)
+       console.log(this.props)
 
         return (
             <div className="cart-parent">
@@ -207,10 +207,10 @@ class Cart extends Component {
 
               <img className="badge" src={badge} alt="badge" />
               <div className='price-calculations'>
-                <span className='sub-label'>Subtotal:</span>
+                <span className='sub-label'>Subtotal: </span>
         {/* Calculates subtotal of all items in the cart with the two functions within the Render Method */}
                 <span className='cart-subtotal'>
-                  { `${this.props.cartTotal} ` }
+                  { `${price} ` }
                   <img className='euro' src={euro} alt=""/>
                   </span>
                   </div>
@@ -296,7 +296,7 @@ class Cart extends Component {
                 <span className='sub-label'>Subtotal</span>
         {/* Calculates subtotal of all items in the cart with the two functions within the Render Method */}
                 <span className='cart-subtotal'>
-                  { `${this.props.cartTotal} ` }
+                  { `${price} ` }
                   <img className='euro' src={euro} alt=""/>
                 </span>
               </div>
@@ -318,11 +318,11 @@ class Cart extends Component {
 
 let mapStateToProps = (state) => {
     return {
-        cart: state.cart,
-        cartTotal: state.cartTotal,
-        firstName: state.billingFirstName,
-        lastName: state.billingLastName,
-        modalView: state.modalView
+        cart: state.customerReducer.cart,
+        cartTotal: state.customerReducer.cartTotal,
+        firstName: state.customerReducer.billingFirstName,
+        lastName: state.customerReducer.billingLastName,
+        modalView: state.customerReducer.modalView
     }
 }
 

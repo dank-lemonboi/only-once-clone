@@ -10,6 +10,10 @@ const nodemailer = require('nodemailer')
 const accountSid = 'AC4c3d0204697692f584917c3e05030392'
 const authToken = TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken)
+// below is custom middleware that generates a random character string for every order. 
+// on the SQL method remember to check the database to see if the number already exists
+// if the number exists in the database run the method again.
+const orderNumber = require('../middlewares/generateOrderNumber')
 
 
 
@@ -111,5 +115,13 @@ module.exports = {
     endSession: (req, res, next) => {
         req.session.destroy()
         res.status(200).send('Session destroyed! Bring on the next one.')
+    },
+    deleteItem: (req, res, next) => {
+        const db = req.app.get('db')
+
+        db.deleteProduct([+req.query.itemNumber]).then( newList => {
+            console.log(newList)
+            res.status(200).send(res.data)
+        }).catch(500)
     }
 }

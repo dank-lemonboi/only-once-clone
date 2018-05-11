@@ -1,0 +1,33 @@
+.auth-btn {
+    box-sizing: border-box;
+    font: "Montserrat", sans-serif;
+    width: 131px;
+    height: 41px;
+    background: white;
+    color: black;
+    display: flex;
+    border: 2px solid white;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: .1em;
+    letter-spacing: .5px;
+}
+
+.auth-btn:hover {
+    cursor: pointer;
+    background: black;
+    border: 2px solid black;
+    color: white;
+    transition: all .2s ease-in-out;
+}
+
+.admin-parent {
+   box-sizing: border-box;
+}
+
+.admin-wrapper {
+    position: absolute;
+    top: 30%;
+}

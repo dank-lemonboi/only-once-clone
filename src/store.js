@@ -1,6 +1,9 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import reduxPromiseMiddleware from 'redux-promise-middleware'
 
-import reducer from './ducks/reducer'
+import customerReducer from './ducks/reducer'
+import adminReducer from './ducks/adminReducer'
 
-export default createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(reduxPromiseMiddleware()))
+export default createStore(combineReducers({customerReducer, adminReducer}), applyMiddleware(reduxPromiseMiddleware()))
+
+// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),

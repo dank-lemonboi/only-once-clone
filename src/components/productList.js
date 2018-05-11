@@ -81,7 +81,7 @@ import '../styles/products.scss'
               ?
 
               <div className="products">
-                  {productList}
+          {productList} 
               </div>
 
               :
@@ -89,9 +89,8 @@ import '../styles/products.scss'
               <h1>Loading Products!</h1>
 
           }
-
+          <Footer />
          </div>
-            <Footer />
           </div>
         )
     }
@@ -102,7 +101,7 @@ import '../styles/products.scss'
      if( !state ) {
          return {}
      } else {
-     let { products, cart, loading }  = state
+     let { products, cart, loading }  = state.customerReducer
      return {
          products: products,
          cart: cart,
@@ -112,4 +111,4 @@ import '../styles/products.scss'
  }
 }
 
- export default connect( mapStateToProps, {  addToCart, getAll } )(Products)
+ export default connect(mapStateToProps, {  addToCart, getAll })(Products)

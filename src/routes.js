@@ -12,6 +12,8 @@ import sold from './components/categories/sold'
 import homedeco from './components/categories/homeDeco'
 import cart from './components/cart'
 import productDetail from './components/productdetail'
+import adminAuth from './components/admin/adminAuth'
+import dashboard from './components/admin/admin'
 
 export default 
 <Switch>
@@ -24,4 +26,6 @@ export default
     <Route path='/homedeco/:item' component={homedeco}/>
     <Route path='/cart' component={cart}/>
     <Route path='/product/:productName/:productId' component={productDetail}/>
+    <Route path='/adminLogin' component={adminAuth} />
+    <Route path='/dashboard' component={dashboard}/>
 </Switch>

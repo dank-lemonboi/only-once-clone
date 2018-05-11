@@ -74,7 +74,7 @@ class Navbar extends Component {
       
     
     render() { 
-      console.log(this.props.width)
+      // console.log(this.props.width)
         return (
           <header className="nav-parent">
             <nav className={ ( this.props.path !== '/' || this.props.stick || this.props.width < 568 ) ? "scroll-adjust" : "nav-sticky"}>
@@ -188,7 +188,7 @@ const mapStateToProps = (state) => {
     return {}
   }
   return {
-    cart: state.cart
+    cart: state.customerReducer.cart
   }
 }
 

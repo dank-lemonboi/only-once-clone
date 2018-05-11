@@ -60,7 +60,7 @@ import { modalEngaged } from '../ducks/reducer'
 
     render() {
 
-        console.log(this.props)
+        // console.log(this.props)
 
         return(
             <div className='stripe'>
@@ -76,19 +76,19 @@ import { modalEngaged } from '../ducks/reducer'
 const mapStateToProps = (state) => {
     
     return {
-        cart: state.cart,
-        stripeToken: state.stripeToken,
-        cartTotal: state.cartTotal,
-        modalView: state.modalView,
-        billingFirstName: state.billingFirstName,
-        billingLastName: state.billingLastName,
-        billingEmail: state.billingEmail,
-        billingPhone: state.billingPhone,
-        billingCountry: state.billingCountry,
-        billingStateProvince: state.billingStateProvince,
-        billingAddress: state.billingAddress,
-        billingPostalCode: state.billingPostalCode,
-        billingCity: state.billingCity
+        cart: state.customerReducer.cart,
+        stripeToken: state.customerReducer.stripeToken,
+        cartTotal: state.customerReducer.cartTotal,
+        modalView: state.customerReducer.modalView,
+        billingFirstName: state.customerReducer.billingFirstName,
+        billingLastName: state.customerReducer.billingLastName,
+        billingEmail: state.customerReducer.billingEmail,
+        billingPhone: state.customerReducer.billingPhone,
+        billingCountry: state.customerReducer.billingCountry,
+        billingStateProvince: state.customerReducer.billingStateProvince,
+        billingAddress: state.customerReducer.billingAddress,
+        billingPostalCode: state.customerReducer.billingPostalCode,
+        billingCity: state.customerReducer.billingCity
     }
 }
 

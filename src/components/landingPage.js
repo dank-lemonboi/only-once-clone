@@ -2,14 +2,16 @@ import React, {Component} from 'react'
 import logo from "../assets/images/only_once_logo.svg";
 import badge from '../assets/images/only_once_badge.svg'
 import '../styles/landingPage.scss'
+import '../styles/auth-modal.scss'
 import Carousel from '../components/carousel';
 import Navbar from '../components/navbar';
 import Products from '../components/productList'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {connect} from 'react-redux'
+import Auth from './admin/adminAuth'
 
-import { getAll, addToCart } from "../ducks/reducer";
+import { getAll, addToCart, modalEngaged } from "../ducks/reducer";
 
 
 class Home extends Component {
@@ -21,8 +23,13 @@ class Home extends Component {
         }
 
         this.scrollToggle = this.scrollToggle.bind(this)
+        this.modalOut = this.modalOut.bind(this)
     }
 
+
+  modalOut() {
+    return this.props.modalEngaged(false)
+  }
       
 
 
@@ -53,9 +60,15 @@ scrollToggle() {
 
     render() {
 
-     window.onscroll = this.scrollToggle 
+     window.onscroll = this.scrollToggle
     
         return (
+        <div className='landing-page-parent'>
+            <div onClick={() => this.modalOut()} className={(!this.props.modalView) ? 'modal-background' : 'modal-background reveal'}>
+            </div>
+            <div className={(!this.props.modalView) ? 'modal-container' : 'modal-container reveal'}>
+              <Auth />
+            </div>
           <div className="landing-page-container">
             <Navbar 
             path={this.props.location.pathname} 
@@ -71,14 +84,17 @@ scrollToggle() {
              <Products />
             <img className="badge" src={badge} alt="badge" />
           </div>
+        </div>
         )
     }
 }
 
 let mapStateToProps = (state) => {
   return {
-    products: state.products
+    products: state.customerReducer.products,
+    modalView: state.customerReducer.modalView
+
   }
 }
 
-export default connect( mapStateToProps, { getAll, addToCart } )(Home)
+export default connect( mapStateToProps, { getAll, addToCart, modalEngaged } )(Home)
