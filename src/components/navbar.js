@@ -32,9 +32,9 @@ class Navbar extends Component {
     }
 
   logout() {
-    axios.post('/api/auth/logout').then(() => {
-      this.props.adminMode(false)
-      window.location = process.env.REACT_APP_LOGOUT
+    axios.post('/api/auth/logout').then( res => {
+        this.props.adminMode(false)
+        window.location = process.env.REACT_APP_LOGOUT
     })
   }
 

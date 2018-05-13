@@ -10,6 +10,7 @@ const nodemailer = require('nodemailer')
 const accountSid = 'AC4c3d0204697692f584917c3e05030392'
 const authToken = TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken)
+const _ = require('lodash')
 // below is custom middleware that generates a random character string for every order. 
 // on the SQL method remember to check the database to see if the number already exists
 // if the number exists in the database run the method again.
@@ -70,7 +71,7 @@ module.exports = {
     // stripe payment object
     payment: (req, res, next) => {
         let token = req.body.stripeToken;
-        let chargeAmount = stripe.charges.create({
+        let chargeAmount = _.throttle(stripe.charges.create( {
             amount: req.body.amount * 100,
             currency: 'eur',
             source: token
@@ -78,7 +79,7 @@ module.exports = {
             if(err === "StripeCardError"){
                 console.log("Your card was declined...")
             }
-        });
+        }), 200);
         console.log('Payment Successful!')
         res.status(200).send('Awesome! It worked!')
     },

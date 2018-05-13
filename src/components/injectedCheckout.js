@@ -19,6 +19,7 @@ import { modalEngaged } from '../ducks/reducer'
 
 
     handleSubmit = (event) => {
+        
 
         this.setState({
             value: !this.state.value
@@ -27,7 +28,7 @@ import { modalEngaged } from '../ducks/reducer'
         let textmessage = `Hey ${this.props.billingFirstName}, we just recieved your order. If you have any questions please don't hesitate to contact me. Seriously.`
 
         let message = 
-        `Hey Thank you for choosing Clone Once. Your order is on its way! 
+    `Hey Thank you for choosing Clone Once. Your order is on its way! 
         Just to make sure we have everything set up correctly we wanted to confirm your address is:
                 
                 ${this.props.billingFirstName} ${this.props.billingLastName}
@@ -57,6 +58,8 @@ import { modalEngaged } from '../ducks/reducer'
         }).catch()
         
     }
+// Use Lodash throttle method to limit number of times submit can take place in a given period of time.
+
 
     render() {
 
