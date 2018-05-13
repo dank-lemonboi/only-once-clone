@@ -24,13 +24,10 @@ class Home extends Component {
         }
 
         this.scrollToggle = this.scrollToggle.bind(this)
-        this.modalOut = this.modalOut.bind(this)
     }
 
 
-  modalOut() {
-    return this.props.modalEngaged(false)
-  }
+  
       
 
 
@@ -58,6 +55,11 @@ scrollToggle() {
 
   }
 
+  componentWillUnmount() {
+    this.props.getAll()
+    window.scrollTo(0, 0)
+  }
+
 
     render() {
 
@@ -65,26 +67,24 @@ scrollToggle() {
     
         return (
         <div className='landing-page-parent'>
-            <div onClick={() => this.modalOut()} className={(!this.props.modalView) ? 'modal-background' : 'modal-background reveal'}>
-            </div>
-            <div className={(!this.props.modalView) ? 'modal-container' : 'modal-container reveal'}>
-              { (this.props.isAdmin === false) ? <Auth /> : <div>You have now entered Admin mode. You can create, edit or delete products in the database. Have fun!</div> }
-            </div>
           <div className="landing-page-container">
             <Navbar 
-            path={this.props.location.pathname} 
-            logo={logo} 
-            stick={this.props.isSticky} 
-            cart={this.props.cart}
-            width={window.innerWidth}
+              path={this.props.location.pathname} 
+              logo={logo} 
+              stick={this.props.isSticky} 
+              cart={this.props.cart}
+              width={window.innerWidth}
             />
             <Carousel />
             <Link to="/">
-              <img className={ ( ( this.props.path === '/' || !this.props.isSticky ) ) ? "logo-container"  : ( this.props.path !== '/' ) ? "sticky-logo" : 'logo-container' } src={logo} alt="" />
+              <img className={ ((this.props.path === '/' || !this.props.isSticky)) 
+                              ?
+                               "logo-container"  
+                              : 
+                              ( this.props.path !== '/' ) ? "sticky-logo" : 'logo-container' } 
+                              src={logo} alt="" />
             </Link>
-             <Products 
-
-             />
+             <Products />
             <img className="badge" src={badge} alt="badge" />
           </div>
         </div>

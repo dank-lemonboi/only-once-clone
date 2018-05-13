@@ -67,7 +67,7 @@ import '../styles/products.scss'
 
     render() {
         // console.log(document.location)
-        console.log(document.location)
+        // console.log(document.location)
 
         // let productList = this.props.products.map( (product, i) => <ProductTile key={product.item_id} product={product} /> )
         
@@ -75,16 +75,16 @@ import '../styles/products.scss'
             // console.log(product)
 
              if (document.location.hash === '#/store/lights') {
-                return product.item_type === 'lamp' || product.item_type === 'light' 
+                return product.item_type === 'lights' 
             } else if (document.location.hash === '#/store/industrial') {
                 return product.item_type === "industrial"
             } else if (document.location.hash === '#/store/sold') {
                 return product.sold 
-            } else if (document.location.hash === '#/store/electronic') {
-                return product.item_type === 'electronic'
+            } else if (document.location.hash === '#/store/electronics') {
+                return product.item_type === 'electronics'
             } else if (document.location.hash === '#/store/clocks') {
-                return product.item_type === 'clock'
-            } else if (document.location.hash === '#/store/home-deco') {
+                return product.item_type === 'clocks'
+            } else if (document.location.hash === '#/store/homedeco') {
                 return product.item_type === 'homedeco'
             }
             

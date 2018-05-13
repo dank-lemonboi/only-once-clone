@@ -148,7 +148,7 @@ class Cart extends Component {
       })
       // add item prices together
       let price = unitPrice.reduce( ( a, b ) => {
-        return ( (a + b) )
+        return ( (a + b) ).toFixed(2)
       }, 0)
       
       let tax = ( (+price) * 0.07).toFixed(2)

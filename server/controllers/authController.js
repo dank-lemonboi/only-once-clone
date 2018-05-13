@@ -3,7 +3,7 @@ var session_id_count = 1
 
 module.exports = {
     register: (req, res, next) => {
-        const { username, password } = req.body
+        const { username, pinput } = req.body
         const db = req.app.get('db')
         db.check_username([username]).then(user => {
 
@@ -14,7 +14,7 @@ module.exports = {
 
             } else {
                 const salt = bcrypt.genSaltSync(10)
-                const hash = bcrypt.hashSync(password, salt)
+                const hash = bcrypt.hashSync(pinput, salt)
             
                 db.register_admin([username, hash]).then( user => {
                     req.session.user.session_id = session_id_count
@@ -28,12 +28,12 @@ module.exports = {
         }).catch(500)
     },
     login: (req, res, next) => {
-        const { username, password } = req.body
+        const { username, pinput } = req.body
         const db = req.app.get('db')
         db.check_username([ username ]).then( user => {           
             // console.log('user: ', user[0].is_admin, user[0], 'req.session: ', req.session.user)
             if ( user.length !== 0 && user[0].is_admin === true ) {
-                const validPassword = bcrypt.compareSync( password, user[0].password )
+                const validPassword = bcrypt.compareSync( pinput, user[0].password )
                 // console.log(password)
                 if ( validPassword === true ) {
                     // if ( (req.session.user.session_id) === typeof Number) {
@@ -55,16 +55,20 @@ module.exports = {
             }
         }).catch(500)
     },
-    userValidate: (req, res, next) => {
+    validate: (req, res, next) => {
         const db = req.app.get('db')
-        // console.log( req.session, req.session.user )
+        console.log(req.session.user.username)
+        if(req.session.user.username) {
         db.authorize([req.session.user.user_id]).then( isAdmin => {
             console.log(isAdmin[0].is_admin)
             if(isAdmin[0].is_admin === true) {
                 res.status(200).send('stay')
             }
-        }).catch(500)
-        
+        }).catch() 
+    } else { 
+        res.status(200).send('go home')
+    }
+      
     },
     logout: (req, res, next) => {
         req.session.destroy()

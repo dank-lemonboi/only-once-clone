@@ -42,7 +42,7 @@ app.use(checkForSession)
 // product endpoints
 app.get('/api/products', ctrl.getProducts);
 app.put('/api/getProduct', ctrl.productDetails);
-app.post('/api/addProduct', ctrl.addProduct);
+app.put('/api/addProduct', ctrl.addProduct);
 app.post('/api/deleteProduct', ctrl.deleteItem)
 
 // checkout process endpoints
@@ -51,9 +51,9 @@ app.post('/api/confirmationEmail', ctrl.sendEmail)
 app.post('/api/sendText', ctrl.sendText)
 app.get('/api/end', ctrl.endSession )
 
-app.get('/api/me', authCtrl.userValidate)
-app.post('/api/auth/register', authCtrl.register)
 app.post('/api/auth/login', authCtrl.login)
+app.post('/api/auth/register', authCtrl.register)
+app.get('/api/auth/me', authCtrl.validate)
 app.post('/api/auth/logout', authCtrl.logout)
 
 

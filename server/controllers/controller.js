@@ -51,9 +51,11 @@ module.exports = {
     },
     addProduct: (req, res, next) => {
         const db = req.app.get('db')
-        db.checkProductDB( [ +req.body.id ] ).then( product => {
+        console.log(req.body.productId)
+        db.checkProductDB( [ +req.body.productId ] ).then( product => {
                     // req.session.user.cart.push(+product[0].item_number)
-                    // console.log('cart', req.session.user)               
+                    // console.log('cart', req.session.user) 
+                    console.log(product[0])              
                     res.status(200).send(product[0])
         }).catch(500)
     },
@@ -61,7 +63,7 @@ module.exports = {
     productDetails: (req, res, next) => {
         const db = req.app.get('db');
         console.log(req.body)
-        db.productDetails([ +req.body.productId ]).then( product => {
+        db.productDetails([ +req.body.id ]).then( product => {
             res.status(200).send(product[0])
         }).catch(500)
     },

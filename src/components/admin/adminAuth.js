@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
-import { getUsername, getPassword } from '../../ducks/adminReducer'
+import { getUsername, getPinput } from '../../ducks/adminReducer'
 import { modalEngaged, adminMode } from '../../ducks/reducer'
 import './admin-style/auth.scss'
 
@@ -14,23 +14,17 @@ class AdminAuth extends Component {
     }
 
     registerAdmin() {
-        axios.post('/api/auth/register', { username: this.props.username, password: this.props.password }).then(res => {
-           window.setTimeout(() => {
-               this.props.modalEngaged(false)
-           }, 3500);
+        axios.post('/api/auth/register', { username: this.props.username, pinput: this.props.pinput }).then(res => { 
             
-                
             
         }).catch( () => alert("Get your own username! The REAL admin already chose that one. Hacker.") )
     }
 
     loginAdmin() {
-        axios.post('/api/auth/login', { username: this.props.username, password: this.props.password }).then( res => {
+        axios.post('/api/auth/login', { username: this.props.username, pinput: this.props.pinput }).then( res => {
+            window.location = '/#/dashboard'
             this.props.adminMode(true)
-             window.setTimeout( () => {
-                 this.props.modalEngaged(false)
-             }, 5000)    
-        }).catch( () => alert('Your credentials are not correct... try again.') )
+        }).catch()
     }
 
     render() {
@@ -50,7 +44,7 @@ class AdminAuth extends Component {
                         <span>Password</span>
                         <input 
                             type='password'
-                            onChange={ (e) => this.props.getPassword(e.target.value) }
+                            onChange={ (e) => this.props.getPinput(e.target.value) }
                         />
                     </div>
                     <div
@@ -77,10 +71,9 @@ let mapStateToProps = (state) => {
 
     return {
         username: state.adminReducer.username,
-        password: state.adminReducer.password,
-        modalView: state.customerReducer.modalView,
+        pinput: state.adminReducer.pinput,
         isAdmin: state.customerReducer.isAdmin
     }
 }
 
-export default connect(mapStateToProps, { getUsername, getPassword, modalEngaged, adminMode } )( AdminAuth )
+export default connect(mapStateToProps, { getUsername, getPinput, modalEngaged, adminMode } )( AdminAuth )

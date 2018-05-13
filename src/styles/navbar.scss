@@ -19,6 +19,14 @@ a {
     display: flex;
 }
 
+.logo-link {
+    position: fixed;
+    z-index: 99;
+    top: 10px;
+    left: 45vw;
+    transform: scale(1);
+}
+
 .scroll-adjust {
     height: 40px;
     width: 100%;
@@ -28,6 +36,18 @@ a {
     box-sizing: border-box;
     position: fixed;
     display: flex;
+}
+
+.admin-logout {
+    color: black;
+    z-index: 5; 
+    position: absolute;
+    top: 3px;
+    right: 30px;
+}
+
+.admin-logout:hover {
+    cursor: pointer;
 }
 
 .nav-left {

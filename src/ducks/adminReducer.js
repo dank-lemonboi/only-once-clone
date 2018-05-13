@@ -1,12 +1,22 @@
+import { stat } from "fs";
+
 const initialState = {
     username: '',
-    password: '',
+    pinput: '',
     itemNumber: ''
 }
 
 const GET_USERNAME = "GET_USERNAME"
 const GET_PASSWORD = "GET_PASSWORD"
 const GET_ITEM_NUMBER = "GET_ITEM_NUMBER"
+const CLEAR_INPUT = "CLEAR_INPUT"
+
+export function clearInput() {
+    return {
+        type: CLEAR_INPUT,
+        payload: initialState.itemNumber
+    }
+}
 
 export function getUsername(username) {
     return {
@@ -15,10 +25,10 @@ export function getUsername(username) {
     }
 }
 
-export function getPassword(password) {
+export function getPinput(pinput) {
     return {
         type: GET_PASSWORD,
-        payload: password
+        payload: pinput
     }
 }
 
@@ -36,9 +46,12 @@ export default function reducer( state = initialState, action ) {
         return Object.assign( {}, state, { username: action.payload } )
         
     case GET_USERNAME:
-        return Object.assign( {}, state, { password: action.payload })
+        return Object.assign( {}, state, { pinput: action.payload })
         
     case GET_ITEM_NUMBER:
+        return Object.assign( {}, state, { itemNumber: action.payload })
+
+    case CLEAR_INPUT:
         return Object.assign( {}, state, { itemNumber: action.payload })
         
         default:

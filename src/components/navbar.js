@@ -7,6 +7,9 @@ import down from '../assets/arrow-black.svg'
 import up from '../assets/arrow-red.svg'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import logo from '../assets/images/only_once_logo.svg'
+import { adminMode } from '../ducks/reducer'
+import axios from 'axios'
 
 
 class Navbar extends Component {
@@ -25,7 +28,15 @@ class Navbar extends Component {
         this.widthToggle = this.widthToggle.bind(this)
         this.navMenuClick = this.navMenuClick.bind(this)
         this.scrollListen = this.scrollListen.bind(this)
+        this.logout = this.logout.bind(this)
     }
+
+  logout() {
+    axios.post('/api/auth/logout').then(() => {
+      this.props.adminMode(false)
+      window.location = process.env.REACT_APP_LOGOUT
+    })
+  }
 
     componentDidUpdate(prevProps) {
       if( prevProps !== this.props  ) {
@@ -70,14 +81,18 @@ class Navbar extends Component {
 
     componentWillUnmount() {
       window.removeEventListener( 'resize', this.widthToggle.bind(this) )
+    
     }
+
       
     
     render() { 
-      // console.log(this.props.width)
+      console.log(document.location)        
         return (
           <header className="nav-parent">
             <nav className={ ( this.props.path !== '/' || this.props.stick || this.props.width < 568 ) ? "scroll-adjust" : "nav-sticky"}>
+
+            
               <div className="nav-left">
                 {/* Ternary which uses state to render a mobile responsive pleasant User navbar experience */}
                 { 
@@ -102,9 +117,9 @@ class Navbar extends Component {
                         <a href='#/store/lights'><li>LAMPS & LIGHTS</li></a>
                         <a href='#/store/industrial'><li>INDUSTRIAL</li></a>
                         <a href='#/store/sold'><li>SOLD</li></a>
-                        <a href='#/store/electronic'><li>ELECTRONIC GOODS</li></a>
+                        <a href='#/store/electronics'><li>ELECTRONIC GOODS</li></a>
                         <a href='#/store/clocks'><li>CLOCKS</li></a>
-                        <a href='#/store/home-deco'><li>HOME DECO</li></a>
+                        <a href='#/store/homedeco'><li>HOME DECO</li></a>
                       </ul>
                     </li>
                     <li className="nav-menu-info"
@@ -159,27 +174,52 @@ class Navbar extends Component {
             {/* This will dynamically render the logo into the nav-bar if the route is anywhere other than the main landing page, 
               which will act as a bread-crumb feature to link users back to the landing page from anywhere in the site */}
 
-            <span> { ( this.props.path !== "/" ) ? <Link to="/"><img className="sticky-logo" src={ this.props.logo } alt="" /></Link> : null }</span>
+            <span>{ ( document.location.hash !== "#/" && this.props.isAdmin === true ) ? <Link to="/"><img className="logo-link" src={logo} alt="" /></Link> : ( document.location.hash === "#/" && this.props.isAdmin === true ) ? <Link to="/dashboard"><img className="logo-link" src={logo} alt="" /></Link> : null }</span>
+
             <div className="right-nav-social"> 
-              <Link to="/cart/:userId">
-              {/* Conditionally render a cart if your cart contains items, and then change the size and placement based on window size */}
-                <div 
-                className={ ( window.innerWidth < 568 ) ? "nav-cart-mob" : window.innerWidth < 768 ? "nav-cart-tab" : "nav-cart"  } >
-                  { ( window.innerWidth < 568 && this.state.cart.length > 0 )  ? `(${this.state.cart.length})` : this.state.cart.length > 0 ? `CART (${this.state.cart.length})` : null }
+
+            {
+              
+              (this.props.isAdmin)
+              
+              ?
+              
+              <span 
+                className='admin-logout'
+                onClick={ () => this.logout() }>
+                Logout
+                </span>
+              
+              :
+              
+              
+              
+              <div>
+                  <Link to="/cart">
+                    {/* Conditionally render a cart if your cart contains items, and then change the size and placement based on window size */}
+                    <div
+                      className={(window.innerWidth < 568) ? "nav-cart-mob" : window.innerWidth < 768 ? "nav-cart-tab" : "nav-cart"} >
+                      {(window.innerWidth < 568 && this.state.cart.length > 0) ? `(${this.state.cart.length})` : this.state.cart.length > 0 ? `CART (${this.state.cart.length})` : null}
+                    </div>
+                  </Link>
+
+
+                  <a href="https://www.pinterest.com/onlyonceshop/">
+                    <img className="social-tag-p" src={pinterest} alt="pinterest logo link" />
+                  </a>
+                  <a href="https://www.facebook.com/onlyoncestore/">
+                    <img className="social-tag-f" src={facebook} alt="facebook logo link" />
+                  </a>
+                  <a href="https://www.instagram.com/onlyonceshop/">
+                    <img className="social-tag-i" src={instagram} alt="instagram logo link" />
+                  </a>
+              
+                
                 </div>
-              </Link>
-              <a href="https://www.pinterest.com/onlyonceshop/">
-                <img className="social-tag-p" src={pinterest} alt="pinterest logo link" />
-              </a>
-              <a href="https://www.facebook.com/onlyoncestore/">
-                <img className="social-tag-f" src={facebook} alt="facebook logo link" />
-              </a>
-              <a href="https://www.instagram.com/onlyonceshop/">
-                <img className="social-tag-i" src={instagram} alt="instagram logo link" />
-              </a>
+            }
             </div>
           </header>
-            )
+        )
     }
 }
 
@@ -189,8 +229,9 @@ const mapStateToProps = (state) => {
   }
   return {
     cart: state.customerReducer.cart,
-    isSticky: state.customerReducer.isSticky
+    isSticky: state.customerReducer.isSticky,
+    isAdmin: state.customerReducer.isAdmin
   }
 }
 
-export default connect(mapStateToProps)(Navbar)
+export default connect(mapStateToProps, { adminMode })(Navbar)

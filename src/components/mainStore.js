@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import ProductList from '../productList'
-import ProductTile from '../productTile'
-import Navbar from '../navbar'
-import Footer from '../footer'
-import logo from '../../assets/images/only_once_logo.svg'
-import { getAll } from '../../ducks/reducer'
-import '../../styles/store.scss'
+import ProductList from './productList'
+import ProductTile from './productTile'
+import Navbar from './navbar'
+import Footer from './footer'
+import logo from '../assets/images/only_once_logo.svg'
+import { getAll } from '../ducks/reducer'
+import '../styles/store.scss'
 
  class Store extends Component {
      constructor(props) {
@@ -28,7 +28,7 @@ componentDidMount() {
                     stick={this.props.isSticky}
                     cart={this.props.cart}
                     width={window.innerWidth}/>
-                <div><span>{ (window.location.hash !== '#/store') ? `${this.props.match.params} View` : 'Whole Selection' }</span></div>
+                <div><span>{ (window.location.hash !== '#/store') ? `${this.props.products[0].item_type} View` : 'Whole Selection' }</span></div>
                 <ProductList 
                  location={this.props.match}
                  className='store-view'/>

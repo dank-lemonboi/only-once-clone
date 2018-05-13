@@ -89,7 +89,7 @@ export function getCountry(country) {
 }
 
 export function getProduct(id) {
-    const product = axios.put('/api/getProduct', { productId: id } ).then( product => {
+    const product = axios.put('/api/getProduct', { id } ).then( product => {
         return product.data
     }).catch()
         return {
@@ -110,7 +110,7 @@ export function getAll() {
 }
 
 export function addToCart(id) {
-    const cartItem = axios.put(`/api/addProduct`, { id } ).then( item => {
+    const cartItem = axios.put(`/api/addProduct`, { productId: id } ).then( item => {
         // console.log(item.data)
         return item.data
     }).catch()

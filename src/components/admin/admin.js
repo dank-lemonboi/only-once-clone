@@ -4,25 +4,25 @@ import {Link} from 'react-router-dom'
 import { getAll } from '../../ducks/reducer'
 import axios from 'axios'
 import Navbar from '../navbar'
-import {getItemNumber}  from '../../ducks/adminReducer'
+import { getItemNumber, clearInput }  from '../../ducks/adminReducer'
 import './admin-style/auth.scss'
 
 class Admin extends Component {
 
     componentDidMount() {
-        axios.get('/api/me').then( res => {
-            if ( res.data === 'stay') {
-                console.log('We made it to an admin position!')
+        axios.get('/api/auth/me').then( res => {
+            console.log(res.data)
+            if(res.data === 'go home') {
+                this.props.history.push('/admin')
             }
-               
-            
-        }).catch( (err) => this.props.history.push('/adminLogin') )
+         
+        }).catch()
     }
 
     handleClick() {
         axios.post(`/api/deleteProduct?itemNumber=${this.props.itemNumber}`).then( res => {
-            console.log(`item ${this.props.itemNumber} was deleted.`)
-        }).catch()
+            alert(`item ${this.props.itemNumber} was deleted.`)
+        }, this.props.clearInput() ).catch()
     }
 
     render() {
@@ -49,4 +49,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getItemNumber })(Admin)
+export default connect(mapStateToProps, { getItemNumber, clearInput })(Admin)
