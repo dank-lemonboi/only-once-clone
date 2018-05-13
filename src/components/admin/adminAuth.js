@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import { getUsername, getPinput } from '../../ducks/adminReducer'
 import { modalEngaged, adminMode } from '../../ducks/reducer'
 import './admin-style/auth.scss'
+import logo from '../../assets/images/only_once_logo.svg'
+import badge from '../../assets/images/only_once_badge.svg'
 
 class AdminAuth extends Component {
     constructor(props) {
@@ -29,24 +31,27 @@ class AdminAuth extends Component {
 
     render() {
         console.log(this.props)
-        return(
-            <div>
-                <div>
-                    <span>Admin Login</span>
-                    <div>
+        return (
+            <div className='auth-parent'>
+                <div className='auth-wrapper'>
+                    <span><img src={logo} alt=""/></span>
+                <div className='input-wrapper'>
+                    <div className='auth-inputs'>
                         <span>Username</span>
                         <input 
                             type='text'
                             onChange={ (e) => this.props.getUsername(e.target.value) }
                         />
                     </div>
-                    <div>
+                    <div className='auth-inputs'>
                         <span>Password</span>
                         <input 
                             type='password'
                             onChange={ (e) => this.props.getPinput(e.target.value) }
                         />
                     </div>
+                </div>
+                <section className='button-wrapper'>
                     <div
                         className='auth-btn'
                         onClick={ () => this.registerAdmin()}
@@ -59,7 +64,9 @@ class AdminAuth extends Component {
                         >
                         Login
                      </div>
+                </section>
                 </div>
+                <img className="badge" src={badge} alt="badge" />
             </div>
 
         )

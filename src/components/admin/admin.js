@@ -8,14 +8,19 @@ import { getItemNumber, clearInput }  from '../../ducks/adminReducer'
 import './admin-style/auth.scss'
 
 class Admin extends Component {
+    constructor() {
+    super()
+    
+    // this.authMe = this.authMe.bind(this)
+}
 
     componentDidMount() {
-        axios.get('/api/auth/me').then( res => {
+        axios.get('/api/auth/me').then(res => {
             console.log(res.data)
-            if(res.data === 'go home') {
+            if (res.data === 'go home') {
                 this.props.history.push('/admin')
             }
-         
+
         }).catch()
     }
 
@@ -26,6 +31,9 @@ class Admin extends Component {
     }
 
     render() {
+
+        () => this.authMe()
+
         return (
             <div className='admin-parent'>
                 <Navbar />

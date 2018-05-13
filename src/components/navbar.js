@@ -80,6 +80,7 @@ class Navbar extends Component {
     }
 
     componentWillUnmount() {
+      this.widthToggle()
       window.removeEventListener( 'resize', this.widthToggle.bind(this) )
     
     }
@@ -87,7 +88,6 @@ class Navbar extends Component {
       
     
     render() { 
-      console.log(document.location)        
         return (
           <header className="nav-parent">
             <nav className={ ( this.props.path !== '/' || this.props.stick || this.props.width < 568 ) ? "scroll-adjust" : "nav-sticky"}>
