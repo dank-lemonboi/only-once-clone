@@ -57,7 +57,7 @@ module.exports = {
     },
     validate: (req, res, next) => {
         const db = req.app.get('db')
-        console.log(req.session.user.username)
+        // console.log(req.session.user.username)
         if(req.session.user.username) {
         db.authorize([req.session.user.user_id]).then( isAdmin => {
             console.log(isAdmin[0].is_admin)

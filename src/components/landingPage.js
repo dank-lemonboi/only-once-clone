@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import Auth from './admin/adminAuth'
-// import Footer from './footer'
+import Footer from './footer'
 
 import { getAll, addToCart, modalEngaged, stickySet } from "../ducks/reducer";
 
@@ -85,8 +85,9 @@ scrollToggle() {
                               src={logo} alt="" />
             </Link>
              <Products />
-            <img className="badge" src={badge} alt="badge" />
-          </div>
+             <img className="badge" src={badge} alt="badge" />
+             </div>
+                <Footer />
         </div>
         )
     }

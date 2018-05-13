@@ -19,6 +19,7 @@ import { modalEngaged } from '../ducks/reducer'
 
 
     handleSubmit = (event) => {
+
         
 
         this.setState({
@@ -47,10 +48,7 @@ import { modalEngaged } from '../ducks/reducer'
             console.log(token)
             axios.post('/api/charge', {amount: +this.props.cartTotal, stripeToken: token.id}).then(
                 axios.post('api/confirmationEmail', {user_email: this.props.billingEmail, message: message } ).then(
-                    axios.post('/api/sendText', { user_phone_number: this.props.billingPhone, message: textmessage }).then(
-
-                        
-
+                    axios.post('/api/sendText', { user_phone_number: this.props.billingPhone, message: textmessage }).then( 
                         console.log('Email Sent, text sent, and order Confirmed.')
                     ).catch()
                 ).catch()

@@ -88,6 +88,7 @@ class Navbar extends Component {
       
     
     render() { 
+      console.log(this.props.isAdmin)
         return (
           <header className="nav-parent">
             <nav className={ ( this.props.path !== '/' || this.props.stick || this.props.width < 568 ) ? "scroll-adjust" : "nav-sticky"}>
@@ -174,7 +175,7 @@ class Navbar extends Component {
             {/* This will dynamically render the logo into the nav-bar if the route is anywhere other than the main landing page, 
               which will act as a bread-crumb feature to link users back to the landing page from anywhere in the site */}
 
-            <span>{ ( document.location.hash !== "#/" && this.props.isAdmin === true ) ? <Link to="/"><img className="logo-link" src={logo} alt="" /></Link> : ( document.location.hash === "#/" && this.props.isAdmin === true ) ? <Link to="/dashboard"><img className="logo-link" src={logo} alt="" /></Link> : null }</span>
+            <span>{ ( (document.location.hash !== "#/" && this.props.isAdmin === true) || document.location.hash !=='#/' ) ? <Link to="/"><img className="logo-link" src={logo} alt="" /></Link> : ( document.location.hash === "#/" && this.props.isAdmin === true ) ? <Link to="/dashboard"><img className="logo-link" src={logo} alt="" /></Link> : null }</span>
 
             <div className="right-nav-social"> 
 

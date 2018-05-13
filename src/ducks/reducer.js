@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const initialState = {
     products: [],
+    detailPhotos: [],
     cart: [],
     product: {},
     isSticky: false,
@@ -47,6 +48,8 @@ const MODAL_ENGAGED = "MODAL_ENGAGED"
 const ADMIN_MODE = "ADMIN_MODE"
 const EMPTY_THE_CART = "EMPTY_THE_CART"
 const SET_STICKY = "SET_STICKY"
+const GET_DETAIL_PHHOTOS = "GET_DETAIL_PHOTOS"
+const CLEAR_DETAIL_PHOTOS = "CLEAR_DETAIL_PHOTOS"
 
 
 const _FULFILLED = "_FULFILLED";
@@ -110,7 +113,7 @@ export function getAll() {
 }
 
 export function addToCart(id) {
-    const cartItem = axios.put(`/api/addProduct`, { productId: id } ).then( item => {
+    const cartItem = axios.put(`/api/cartAdd`, { productId: id } ).then( item => {
         // console.log(item.data)
         return item.data
     }).catch()
@@ -192,6 +195,20 @@ export function stickySet(value) {
     }
 }
 
+export function getDetailPhotos(photos) {
+    return{
+        type:GET_DETAIL_PHHOTOS,
+        payload: photos
+    }
+}
+
+export function clearDetailPhotos() {
+    return {
+        type: CLEAR_DETAIL_PHOTOS,
+        payload: initialState.detailPhotos
+    }
+}
+
 export default function reducer( state = initialState, action ) {
     // console.log(action)
     switch (action.type) {
@@ -261,6 +278,12 @@ export default function reducer( state = initialState, action ) {
 
         case SET_STICKY:
             return Object.assign( {}, state, { isSticky: action.payload })
+
+        case GET_DETAIL_PHHOTOS:
+            return Object.assign( {}, state, {detailPhotos: [...state.detailPhotos, action.payload]})
+
+        case CLEAR_DETAIL_PHOTOS:
+            return Object.assign({}, state, {detailPhotos: [...action.payload]} )
 
       default:
         return state;

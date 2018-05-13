@@ -17,13 +17,18 @@ class AdminAuth extends Component {
 
     registerAdmin() {
         axios.post('/api/auth/register', { username: this.props.username, pinput: this.props.pinput }).then(res => { 
-            
-            
-        }).catch( () => alert("Get your own username! The REAL admin already chose that one. Hacker.") )
+        }).catch( () => alert("Get your own username! The REAL admin already chose that username. Hacker.") )
     }
 
     loginAdmin() {
-        axios.post('/api/auth/login', { username: this.props.username, pinput: this.props.pinput }).then( res => {
+        // attempting to get the form to submit when you press enter
+        // if( key.keyValue === 13 ) {
+    //     axios.post('/api/auth/login', { username: this.props.username, pinput: this.props.pinput }).then( res => {
+    //         window.location = '/#/dashboard'
+    //         this.props.adminMode(true)
+    //     }).catch()
+    //   } 
+      axios.post('/api/auth/login', { username: this.props.username, pinput: this.props.pinput }).then( res => {
             window.location = '/#/dashboard'
             this.props.adminMode(true)
         }).catch()
@@ -54,16 +59,17 @@ class AdminAuth extends Component {
                 <section className='button-wrapper'>
                     <div
                         className='auth-btn'
-                        onClick={ () => this.registerAdmin()}
+                        onClick={ () => this.registerAdmin() }
                         >
                         Register
                      </div>
                     <div
                         className='auth-btn'
                         onClick={ () => this.loginAdmin() }
+                        // onKeyUp={ this.loginAdmin({ keyValue: 13 }) }
                         >
                         Login
-                     </div>
+                     </div> 
                 </section>
                 </div>
                 <img className="badge" src={badge} alt="badge" />

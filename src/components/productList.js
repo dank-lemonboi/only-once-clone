@@ -6,9 +6,7 @@ import euro from "../assets/Euro_symbol_white.svg";
 import Footer from "../components/footer";
 import {getAll} from '../ducks/reducer'
 import ProductTile from './productTile'
-
-
-
+import badge from '../assets/images/only_once_badge.svg'
 import { addToCart } from '../ducks/reducer'
 
 import '../styles/products.scss'
@@ -105,13 +103,18 @@ import '../styles/products.scss'
               ?
 
               <div className= "products" >
-              { productList }
-               <Footer />
+                { productList }
                </div>
                
                :
                
-               <h1>Loading Products!</h1>
+               <div className='loading-container'>
+                <div className='loading-wrapper'>
+                    <img src={badge} alt="badge" />
+                    <strong>Loading...</strong>
+                </div>
+               </div>
+               
                
             }
             </div>

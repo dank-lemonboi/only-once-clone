@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 import home from './components/landingPage'
 import store from './components/mainStore'
 import cart from './components/cart'
-import details from './components/productdetail'
+import details from './components/productDetails'
 import adminAuth from './components/admin/adminAuth'
 import dashboard from './components/admin/admin'
 

@@ -68,6 +68,12 @@ module.exports = {
             res.status(200).send(product[0])
         }).catch(500)
     },
+    productDetailPhotos: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_detail_photos([ +req.body.itemId ]).then( photos => {
+            res.status(200).send( photos )
+        }).catch()
+    },
     // stripe payment object
     payment: (req, res, next) => {
         let token = req.body.stripeToken;
@@ -119,12 +125,20 @@ module.exports = {
         req.session.destroy()
         res.status(200).send('Session destroyed! Bring on the next one.')
     },
-    deleteItem: (req, res, next) => {
+    deletePhotos: (req, res, next) => {
         const db = req.app.get('db')
-
-        db.deleteProduct([+req.query.itemNumber]).then( newList => {
-            console.log(newList)
+        if(req.query.itemNumber) {
+        db.delete_detail_photos([+req.query.itemNumber]).then( newPhotoList => {
             res.status(200).send(res.data)
-        }).catch(500)
+        }).catch()
+      } 
+    },
+    deleteItem: (req, res, next) => {
+    const db = req.app.get('db')
+    if(req.query.itemNumber) {
+        db.deleteProduct([+req.query.itemNumber]).then( newItemList => {
+            res.status(200).send(res.data)
+        }).catch()
     }
+}
 }

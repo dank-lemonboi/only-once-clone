@@ -11,28 +11,35 @@ class Admin extends Component {
     constructor() {
     super()
     
-    // this.authMe = this.authMe.bind(this)
 }
 
     componentDidMount() {
+        if(this.props.isAdmin === false) {
+            this.props.history.push('/admin')
+        } else {
         axios.get('/api/auth/me').then(res => {
+            
             console.log(res.data)
             if (res.data === 'go home') {
                 this.props.history.push('/admin')
             }
 
         }).catch()
+      }
     }
 
     handleClick() {
-        axios.post(`/api/deleteProduct?itemNumber=${this.props.itemNumber}`).then( res => {
-            alert(`item ${this.props.itemNumber} was deleted.`)
-        }, this.props.clearInput() ).catch()
+        axios.post(`/api/deletePhotos?itemNumber=${this.props.itemNumber}`).then( () => {
+            axios.post(`/api/deleteItem?itemNumber=${this.props.itemNumber}`).then( () => {
+                alert(`item's ${this.props.itemNumber} were deleted.`)
+            }).catch()
+            this.props.clearInput()
+        }).catch()
     }
 
     render() {
-
-        () => this.authMe()
+        console.log(this.props.itemNumber)        
+        // () => this.authMe()
 
         return (
             <div className='admin-parent'>
@@ -41,7 +48,8 @@ class Admin extends Component {
                 <div>Yo! This is the admin view! Here we'll add more products, and delete ones we don't want anymore.</div>
                     <span>Delete Items from database</span>
                     <input 
-                        placeholder='Item Number'
+                        value={this.props.itemNumber}
+                        placeholder='Item number to delete'
                         onChange={ (e) => this.props.getItemNumber(e.target.value) }
                     />
                     <div className='auth-btn' onClick={ () => this.handleClick() }>Delete Item Selection</div>
@@ -53,7 +61,8 @@ class Admin extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        itemNumber: state.adminReducer.itemNumber
+        itemNumber: state.adminReducer.itemNumber,
+        isAdmin: state.customerReducer.isAdmin
     }
 }
 

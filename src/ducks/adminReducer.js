@@ -49,6 +49,7 @@ export default function reducer( state = initialState, action ) {
         return Object.assign( {}, state, { pinput: action.payload })
         
     case GET_ITEM_NUMBER:
+    console.log(action.payload)
         return Object.assign( {}, state, { itemNumber: action.payload })
 
     case CLEAR_INPUT:

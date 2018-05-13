@@ -83,10 +83,6 @@
     align-items: center;
 }
 
-.loading{
-    margin: 20% auto;
-}
-
 .product-hover {
     position: absolute;
     height: 300px;
@@ -104,4 +100,32 @@
     display: flex;
     position: absolute;
     transition: all .5s ease-in-out;    
+}
+
+.loading-container {
+    margin-top: 15%;
+    margin-right: 25%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+
+
+    img {
+        height: 300px;
+        width: 300px;
+        margin-bottom: 20px;
+    }
+
+    span {
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+
+}
+
+.loading-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

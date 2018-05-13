@@ -11,4 +11,7 @@ Its been fun to develop, and helped me to learn and grow on my path of becoming 
     - Twilio
 
 
+Admin view is accessible by manually typing /admin into the URL.
+
+
 Thanks for stopping by.

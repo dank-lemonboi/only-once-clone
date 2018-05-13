@@ -7,7 +7,7 @@ const express = require('express'),
       checkForSession = require('./middlewares/checkForSessions'),
       stripe = require('stripe')(process.env.STRIPE_SECRET_KEY),
       ctrl = require('./controllers/controller'),
-      authCtrl = require('./controllers/authController')
+      adminCtrl = require('./controllers/adminController')
 
       const {
           SERVER_PORT,
@@ -42,8 +42,10 @@ app.use(checkForSession)
 // product endpoints
 app.get('/api/products', ctrl.getProducts);
 app.put('/api/getProduct', ctrl.productDetails);
-app.put('/api/addProduct', ctrl.addProduct);
-app.post('/api/deleteProduct', ctrl.deleteItem)
+app.put('/api/cartAdd', ctrl.addProduct);
+app.post('/api/deletePhotos', ctrl.deletePhotos)
+app.post('/api/deleteItem', ctrl.deleteItem)
+app.put('/api/getItemPhotos', ctrl.productDetailPhotos)
 
 // checkout process endpoints
 app.post('/api/charge', ctrl.payment)
@@ -51,10 +53,10 @@ app.post('/api/confirmationEmail', ctrl.sendEmail)
 app.post('/api/sendText', ctrl.sendText)
 app.get('/api/end', ctrl.endSession )
 
-app.post('/api/auth/login', authCtrl.login)
-app.post('/api/auth/register', authCtrl.register)
-app.get('/api/auth/me', authCtrl.validate)
-app.post('/api/auth/logout', authCtrl.logout)
+app.post('/api/auth/login', adminCtrl.login)
+app.get('/api/auth/me', adminCtrl.validate)
+app.post('/api/auth/register', adminCtrl.register)
+app.post('/api/auth/logout', adminCtrl.logout)
 
 
 
