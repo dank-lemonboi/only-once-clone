@@ -64,12 +64,13 @@ class Details extends Component {
                                 <a href='#/store'><span style={{textTransform: 'uppercase'}}>Store</span></a> / <a href={`#/store/${this.props.match.params.type}`}><span style={ {textTransform: 'uppercase'} }>{this.props.match.params.type}</span></a>
                             </div>
                             <span className='product-name'>{product.item_name}</span>
-                            <div className='product-details'>{product.description}</div>
-                            <span style={ { marginBottom: '20px', fontWeight: '700', fontSize: '1.1em', letterSpacing: '' } }>Specifications:</span>
+                            <div className='product-details'>{`${product.description}`}...</div>
+                            <span className='btn-toBottom' onClick={ () => window.scrollTo(0, 4500)}>Read More</span>
+                            <span style={ { marginTop: '20px', fontWeight: '700', fontSize: '1.1em', letterSpacing: '' } }>Specifications:</span>
                             <div className='product-specs'>
                                 <span>Dimensions: <span className='specs'>{`L${ product.length} x W${ product.width} x H${ product.height} cm`}</span> </span>
-                                <span>Weight: {`${product.weight} kg`}</span>
-                                <span>Item No: {`${product.item_number}`}</span>
+                            <span>Weight: <span className='specs weight'>{`${product.weight} kg`}</span></span>
+                            <span>Item No: <span className='specs item'>{`${product.item_number}`}</span></span>
                             </div>
                             <span>Price: {`${product.price} `}<img className='euro' src={euro} alt=""/></span>
                             <div className='question-links'>
@@ -84,9 +85,10 @@ class Details extends Component {
                             </div>
                                 <div className='bottom-section'>
                                     <div>
-                                        <p>{product.description}</p>
+                                        <p className='full-description'>{product.description}</p>
+                                        <div className='top-btn' onClick={ () => window.scrollTo(0,0) }>Back To Top</div>
+                                        <Footer />
                                     </div>
-                                    <Footer />
                                 </div>
                             
                 </div>

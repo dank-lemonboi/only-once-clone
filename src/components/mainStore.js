@@ -32,6 +32,9 @@ componentDidMount() {
                 <ProductList 
                  location={this.props.match}
                  className='store-view'/>
+                 <div>
+                    <Footer />
+                 </div>
             </div>
         )
     }

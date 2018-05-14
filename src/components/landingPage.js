@@ -84,10 +84,12 @@ scrollToggle() {
                               ( this.props.path !== '/' ) ? "sticky-logo" : 'logo-container' } 
                               src={logo} alt="" />
             </Link>
-             <Products />
-             <img className="badge" src={badge} alt="badge" />
-             </div>
-                <Footer />
+            <Products />
+            <img className="badge" src={badge} alt="badge" />
+            </div>
+            <div className='bottom-section'>
+              <Footer />
+            </div>
         </div>
         )
     }

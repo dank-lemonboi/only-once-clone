@@ -310,7 +310,9 @@ class Cart extends Component {
 
         }
             </section>
-            <Footer />
+            <div className='footer-wrapper'>
+              <Footer />
+            </div>
           </div>
         )
     }

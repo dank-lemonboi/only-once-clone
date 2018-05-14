@@ -54,12 +54,16 @@ $font-var: "Montserrat", sans-serif;
     }
 
     .product-details {
+        height: 9%;
         letter-spacing: 1px;
-        margin-bottom: 3em;
         line-height: 1.4em;
+        word-wrap: break-word;
+        overflow: hidden;
+        margin-bottom: 5px;
     }
 
     .product-specs {
+        margin-top: 3em;
         display: flex;
         flex-direction: column;
     }
@@ -68,6 +72,14 @@ $font-var: "Montserrat", sans-serif;
         margin-left: 10%;
         font-weight: 300;
         letter-spacing: 2px;
+    }
+
+    .weight {
+        margin-left: 16.5%;
+    }
+
+    .item {
+        margin-left: 16.5%
     }
 
     .btn-cart {
@@ -100,15 +112,35 @@ $font-var: "Montserrat", sans-serif;
     width: 12px;
 }
 
-.detail-photo-list {
-
+.btn-toBottom {
+    font-weight: 700;
 }
 
+.btn-toBottom:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.top-btn {
+    margin-left: 45%;
+}
+
+.top-btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
 .bottom-section {
-    height: 400px;
+    height: 40vh;
     width: 100%;
     background: #efefefef;
-    // position: fixed;
-    // bottom: 0;
+
 }
+  .full-description {
+       box-sizing: border-box;
+       margin: 0 auto;
+       width: 65%;
+       margin-bottom: 7em;
+       word-wrap: break-word;
+       margin-top: 4%;
+ }
 

@@ -13,20 +13,20 @@ class Admin extends Component {
     
 }
 
-    componentDidMount() {
-        if(this.props.isAdmin === false) {
-            this.props.history.push('/admin')
-        } else {
-        axios.get('/api/auth/me').then(res => {
+    // componentDidMount() {
+    //     if(this.props.isAdmin === false) {
+    //         this.props.history.push('/admin')
+    //     } else {
+    //     axios.get('/api/auth/me').then(res => {
             
-            console.log(res.data)
-            if (res.data === 'go home') {
-                this.props.history.push('/admin')
-            }
+    //         console.log(res.data)
+    //         if (res.data === 'go home') {
+    //             this.props.history.push('/admin')
+    //         }
 
-        }).catch()
-      }
-    }
+    //     }).catch()
+    //   }
+    // }
 
     handleClick() {
         axios.post(`/api/deletePhotos?itemNumber=${this.props.itemNumber}`).then( () => {
@@ -52,7 +52,7 @@ class Admin extends Component {
                         placeholder='Item number to delete'
                         onChange={ (e) => this.props.getItemNumber(e.target.value) }
                     />
-                    <div className='auth-btn' onClick={ () => this.handleClick() }>Delete Item Selection</div>
+                    <div className='auth-btn' onClick={ () => this.handleClick() }>Delete</div>
                 </div>
             </div>
         )

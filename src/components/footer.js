@@ -16,12 +16,14 @@ render() {
   console.log(this.props.modalView)
     return (
     <section className='footer-parent'>
-      <div className="footer-wrapper">
-        <span>Blog</span>
-        <span>Imprint</span>
-        <span>Terms & Conditions</span>
+      <div className='footer-container'>
+          <div className="link-wrapper">
+            <span>Blog</span>
+            <span>Imprint</span>
+            <span>Terms & Conditions</span>
+          </div>
+          <span id='copywrite'>© 2018 Clone / Once Shop</span>
       </div>
-     <span id='copywrite'>© 2018 Clone / Once Shop</span>
     </section>
 
   )

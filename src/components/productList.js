@@ -110,12 +110,10 @@ import '../styles/products.scss'
                
                <div className='loading-container'>
                 <div className='loading-wrapper'>
-                    <img src={badge} alt="badge" />
+                    <img className='loading-badge' src={badge} alt="badge" />
                     <strong>Loading...</strong>
                 </div>
                </div>
-               
-               
             }
             </div>
           </div>

@@ -111,10 +111,13 @@
     justify-content: space-around;
 
 
-    img {
+    .loading-badge {
         height: 300px;
         width: 300px;
         margin-bottom: 20px;
+        animation-name: loader;
+        animation-iteration-count: infinite;
+        animation-duration: 2s;
     }
 
     span {
@@ -128,4 +131,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@keyframes loader {
+    from { 
+        transform: rotateZ(0deg);
+    }
+    to { 
+        transform: rotateZ(360deg);
+    }
 }
