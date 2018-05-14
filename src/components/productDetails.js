@@ -17,8 +17,8 @@ class Details extends Component {
         super(props)
 
         this.handleClick = this.handleClick.bind(this);
-        this.nextClick = this.nextClick.bind(this);
-        this.prevClick = this.prevClick.bind(this);
+        // this.nextClick = this.nextClick.bind(this);
+        // this.prevClick = this.prevClick.bind(this);
 
         this.state = {
             navArr: [],
@@ -59,12 +59,7 @@ class Details extends Component {
           this.props.getDetailPhotos(res.data)
         }).catch()
 
-    this.setState({
-        navArr: this.props.itemNumbers,
-        nextItem: this.props.itemNumbers.shift(),
-        prevItem: this.props.itemNumbers.pop()
-    })
-
+    
 
     }
 
@@ -78,13 +73,14 @@ class Details extends Component {
         this.props.clearDetailPhotos()
     }
 
-    nextClick(navArr) {
-        
-    }
+    // nextClick(navArr) {
+    //     let navArr = this.props.itemNumbers
+    //     for (let i = 0; i <)
+    // }
 
-    prevClick(navArr) {
-
-    }
+    // prevClick(navArr) {
+    //     let navArr = this.props.itemNumbers
+    // }
 
     render() {
         console.log(document.documentElement.clientHeight)

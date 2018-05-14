@@ -17,8 +17,8 @@ import { Link } from 'react-router-dom'
 
 
 class Cart extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
           checkout: false,
@@ -143,6 +143,8 @@ class Cart extends Component {
 
     render() {
 
+      // console.log(this.props.cart[0].item_number)
+
        // map through cart items and return just the prices for all the items
       let unitPrice = this.props.cart.map(unit => {
         return unit.price
@@ -158,7 +160,7 @@ class Cart extends Component {
 
       let total = ( (+price) + (+tax) + this.calculateShipping()).toFixed(2) 
 
-       console.log(this.props)
+      //  console.log(this.props)
 
         return (
             <div className="cart-parent">
@@ -261,6 +263,7 @@ class Cart extends Component {
               
                <Elements>
                 <CardSection
+                  itemNumber={this.props.cart.item_number}
                   amount={total}/>
                </Elements>
             

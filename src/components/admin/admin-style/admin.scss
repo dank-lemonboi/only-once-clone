@@ -1,11 +1,31 @@
 .admin-parent {
     height: 100%;
-    
+    position: relative;
 }
+
+.sidebar-break {
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    width: 600px;
+    position: absolute;
+    left: -12%;
+    top: 380px;
+    transform: rotateZ(90deg);
+    transition: left .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);    
+}
+
+
+.add-item {
+    position: absolute;
+    top: 15%;
+    left: 3%;
+    transition: left .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);    
+}
+
 
 .input-container {
     margin-top: 5em;
-
+    
 }
 
 .admin-input-wrapper {
@@ -30,6 +50,12 @@
         padding-bottom: 0px
     
     }
+}
+
+
+.add-item:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .databse-table {
@@ -99,3 +125,12 @@
 }
 
 
+
+.invisible-div {
+    transform: rotateZ(90deg);
+    width: 20px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    color: black;
+}

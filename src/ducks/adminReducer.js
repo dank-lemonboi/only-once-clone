@@ -1,13 +1,18 @@
 const initialState = {
     username: '',
     pinput: '',
-    itemNumber: ''
+    itemNumber: '',
+    itemName: '',
+    itemDescription: '',
+
 }
 
 const GET_USERNAME = "GET_USERNAME"
 const GET_PASSWORD = "GET_PASSWORD"
 const GET_ITEM_NUMBER = "GET_ITEM_NUMBER"
 const CLEAR_INPUT = "CLEAR_INPUT"
+const GET_ITEM_NAME = "GET_ITEM_NAME"
+const GET_ITEM_DESCRIPTION = "GET_ITEM_DESCRIPTION"
 
 export function clearInput() {
     return {
@@ -37,6 +42,20 @@ export function getItemNumber(number) {
     }
 }
 
+export function getItemName(name) {
+    return{
+        type: GET_ITEM_NAME,
+        payload: name
+    }
+}
+
+export function getItemDescription(desc) {
+    return {
+        type: GET_ITEM_DESCRIPTION,
+        payload: desc
+    }
+}
+
 export default function reducer( state = initialState, action ) {
     switch (action.type) {
 
@@ -52,6 +71,12 @@ export default function reducer( state = initialState, action ) {
 
     case CLEAR_INPUT:
         return Object.assign( {}, state, { itemNumber: action.payload })
+
+    case GET_ITEM_NAME:
+        return Object.assign( {}, state, { itemName: action.payload })
+
+    case GET_ITEM_DESCRIPTION:
+        return Object.assign( {}, state, { itemDescription: action.payload })
         
         default:
             return state

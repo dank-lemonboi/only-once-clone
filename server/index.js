@@ -47,6 +47,7 @@ app.put('/api/cartAdd', ctrl.addProduct);
 app.post('/api/deletePhotos', ctrl.deletePhotos)
 app.post('/api/deleteItem', ctrl.deleteItem)
 app.put('/api/getItemPhotos', ctrl.productDetailPhotos)
+app.post('/api/sold', ctrl.sold)
 
 // checkout process endpoints
 app.post('/api/charge', ctrl.payment)
@@ -59,7 +60,7 @@ app.post('/api/auth/login', adminCtrl.login)
 app.get('/api/auth/me', adminCtrl.validate)
 app.post('/api/auth/register', adminCtrl.register)
 app.post('/api/auth/logout', adminCtrl.logout)
-app.post('/api/sold', adminCtrl.sold)
+app.post('/api/adminSold', adminCtrl.adminSold)
 
 
 

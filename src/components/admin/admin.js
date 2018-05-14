@@ -11,6 +11,10 @@ import ProductTag from './adminProductList'
 class Admin extends Component {
     constructor() {
     super()
+
+    this.state = {
+        isHovering: false
+    }
     
 }
 
@@ -68,6 +72,12 @@ class Admin extends Component {
                     <ProductTag />
                     <div className='db-bottom'></div>
                 </div>
+                
+                <Link to='/addinfo'><span className= 'add-item' >Add Item</span></Link>
+                <span className='sidebar-break'></span> 
+            <div 
+
+            className='invisible div'></div>    
             </div>
         )
     }

@@ -18,9 +18,11 @@ import { modalEngaged } from '../ducks/reducer'
      }
 
 
-    handleSubmit = (event) => {
+    handleSubmit = ( event, id ) => {
 
-        
+        // axios.post('/api/sold', { id: +id, value: true }).then( () => {
+        //     console.log('Sold Value Changed!')
+        // }).catch()
 
         this.setState({
             value: !this.state.value
@@ -45,7 +47,7 @@ import { modalEngaged } from '../ducks/reducer'
         event.preventDefault();
 
         this.props.stripe.createToken( {name: `${this.props.billingFirstName} ${this.props.billingLastName}` } ).then(({token}) => {
-            console.log(token)
+            // console.log(token)
             axios.post('/api/charge', {amount: +this.props.cartTotal, stripeToken: token.id}).then(
                 axios.post('api/confirmationEmail', {user_email: this.props.billingEmail, message: message } ).then(
                     axios.post('/api/sendText', { user_phone_number: this.props.billingPhone, message: textmessage }).then( 
@@ -61,14 +63,14 @@ import { modalEngaged } from '../ducks/reducer'
 
     render() {
 
-        // console.log(this.props)
+        console.log(this.props)
 
         return(
             <div className='stripe'>
                 <div>Please enter your payment details below.</div>
                 <CardElement
                     className='StripeElement'/>
-                <div className='stripe-submit' onClick={(event) => this.handleSubmit(event)}>Submit Payment</div>
+                <div className='stripe-submit' onClick={(event) => this.handleSubmit( event, +this.props.cart.item_number )}>Submit Payment</div>
             </div>
         )
     }
@@ -90,6 +92,7 @@ const mapStateToProps = (state) => {
         billingAddress: state.customerReducer.billingAddress,
         billingPostalCode: state.customerReducer.billingPostalCode,
         billingCity: state.customerReducer.billingCity
+        
     }
 }
 

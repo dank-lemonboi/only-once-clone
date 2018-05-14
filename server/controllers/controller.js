@@ -146,5 +146,11 @@ module.exports = {
         db.nav_numbers([+req.body.item_number]).then( navList => {
             res.status(200).send(navList)
         }).catch()
+    },
+    sold: (req, res, next) => {
+        const db = req.app.get('db')
+        db.sold([+req.body.id, req.body.value]).then( list => {
+            res.status(200).send()
+        }).catch()
     }
 }
