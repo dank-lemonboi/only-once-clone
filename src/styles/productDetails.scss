@@ -75,14 +75,31 @@ $font-var: "Montserrat", sans-serif;
     }
 
     .weight {
-        margin-left: 16.5%;
+        margin-left: 17.5%;
     }
 
     .item {
-        margin-left: 16.5%
+        margin-left: 15.5%
+    }
+
+    .price {
+        margin-left: 20%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .question-links {
+        margin-top: 2em;
+
+        span:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
     }
 
     .btn-cart {
+        margin-top: 3em;
         box-sizing: border-box;
         font: 100% $font-var;
         width: 131px;
@@ -130,7 +147,7 @@ $font-var: "Montserrat", sans-serif;
     text-decoration: underline;
 }
 .bottom-section {
-    height: 40vh;
+    height: 50vh;
     width: 100%;
     background: #efefefef;
 
@@ -138,9 +155,37 @@ $font-var: "Montserrat", sans-serif;
   .full-description {
        box-sizing: border-box;
        margin: 0 auto;
-       width: 65%;
-       margin-bottom: 7em;
+       width: 60%;
+       margin-bottom: 8em;
        word-wrap: break-word;
-       margin-top: 4%;
+       margin-top: 5%;
+       display: flex;
+       letter-spacing: 1.5px;
+       
  }
+ .prev-nav {
+     display: flex;
+     transform: rotateZ(-90deg);
+     position: fixed;
+     z-index: 6;
+     left: -15px;
+     top: 50%;
+ }
+
+ .next-nav {
+     display: flex;
+     transform: rotateZ(90deg);
+     position: fixed;
+     z-index: 6;
+     right: -15px;
+     top: 50%;
+ }
+
+ .prev-nav:hover{
+     cursor: pointer;
+ }
+
+  .next-nav {
+      cursor: pointer;
+  }
 

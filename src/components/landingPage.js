@@ -87,7 +87,7 @@ scrollToggle() {
             <Products />
             <img className="badge" src={badge} alt="badge" />
             </div>
-            <div className='bottom-section'>
+            <div className='footer-wrapper'>
               <Footer />
             </div>
         </div>

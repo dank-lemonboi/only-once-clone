@@ -74,5 +74,11 @@ module.exports = {
         req.session.destroy()
         res.status(200).send()
         // console.log(req.session)
+    },
+    sold: (req, res, next) => {
+        const db = req.app.get('db')
+        db.sold([ +req.body.id, req.body.value ]).then( list => {
+            res.status(200).send(list.data)
+        }).catch()
     }
 }

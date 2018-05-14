@@ -41,6 +41,7 @@ app.use(checkForSession)
 
 // product endpoints
 app.get('/api/products', ctrl.getProducts);
+app.put('/api/navNumbers', ctrl.navNumbers)
 app.put('/api/getProduct', ctrl.productDetails);
 app.put('/api/cartAdd', ctrl.addProduct);
 app.post('/api/deletePhotos', ctrl.deletePhotos)
@@ -53,10 +54,12 @@ app.post('/api/confirmationEmail', ctrl.sendEmail)
 app.post('/api/sendText', ctrl.sendText)
 app.get('/api/end', ctrl.endSession )
 
+// admin endpoints
 app.post('/api/auth/login', adminCtrl.login)
 app.get('/api/auth/me', adminCtrl.validate)
 app.post('/api/auth/register', adminCtrl.register)
 app.post('/api/auth/logout', adminCtrl.logout)
+app.post('/api/sold', adminCtrl.sold)
 
 
 

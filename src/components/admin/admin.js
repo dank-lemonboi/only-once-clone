@@ -5,7 +5,8 @@ import { getAll } from '../../ducks/reducer'
 import axios from 'axios'
 import Navbar from '../navbar'
 import { getItemNumber, clearInput }  from '../../ducks/adminReducer'
-import './admin-style/auth.scss'
+import './admin-style/admin.scss'
+import ProductTag from './adminProductList'
 
 class Admin extends Component {
     constructor() {
@@ -44,15 +45,28 @@ class Admin extends Component {
         return (
             <div className='admin-parent'>
                 <Navbar />
-                <div className='admin-wrapper'>
-                <div>Yo! This is the admin view! Here we'll add more products, and delete ones we don't want anymore.</div>
-                    <span>Delete Items from database</span>
+                <div className='input-container'> 
+                <div className='admin-input-wrapper'>
                     <input 
                         value={this.props.itemNumber}
                         placeholder='Item number to delete'
-                        onChange={ (e) => this.props.getItemNumber(e.target.value) }
-                    />
-                    <div className='auth-btn' onClick={ () => this.handleClick() }>Delete</div>
+                        onChange={ (e) => this.props.getItemNumber(e.target.value) }/>
+                    <div className='admin-btn' onClick={ () => this.handleClick() }>Delete</div>
+                </div>
+                </div>
+
+                <div className='database-table'>
+                    <div className='db-table-header'>
+                        <ul className='table-header-wrapper'>
+                            <li className='card-name'>Item name</li>
+                            <li className='card-info'>Item Type</li>
+                            <li className='card-info'>Item Number</li>
+                            <li className='card-info'>Retail Value</li>
+                            <li className='card-info'>Sold?</li>
+                        </ul>
+                    </div>
+                    <ProductTag />
+                    <div className='db-bottom'></div>
                 </div>
             </div>
         )
@@ -62,7 +76,8 @@ class Admin extends Component {
 const mapStateToProps = (state) => {
     return {
         itemNumber: state.adminReducer.itemNumber,
-        isAdmin: state.customerReducer.isAdmin
+        isAdmin: state.customerReducer.isAdmin,
+        products: state.customerReducer.products
     }
 }
 

@@ -5,6 +5,9 @@ import { HashRouter}  from 'react-router-dom'
 import Auth from './components/admin/adminAuth'
 import {connect} from 'react-redux'
 import { modalEngaged } from './ducks/reducer'
+import badge from './assets/images/only_once_badge.svg'
+
+
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +26,7 @@ class App extends Component {
     <HashRouter>
       <div className="app">
         { routes }
-          
+        <img className="badge" src={badge} alt="badge" />
       </div>
     </HashRouter>
     )
@@ -32,7 +35,8 @@ class App extends Component {
 
 let mapStateToProps = (state) => {
   return {
-    modalEngaged: state.customerReducer.modalEngaged
+    modalEngaged: state.customerReducer.modalEngaged,
+    itemNumbers: state.customerReducer.itemNumbers
   }
 }
 

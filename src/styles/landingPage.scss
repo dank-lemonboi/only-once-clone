@@ -32,8 +32,21 @@
     z-index: 4;
 }
 
-.bottom-section {
-    
+.footer-wrapper {
+    // height: 300px;
+    width: 100%;
+    z-index: 6;
+    // position: absolute;
+    // bottom: 0;
+    background: transparent;
+}
+
+.red-dot {
+    width: 6px;
+    height: 6px;
+    background: red;
+    border-radius: 50%;
+    margin-right: 4px;
 }
 
 
