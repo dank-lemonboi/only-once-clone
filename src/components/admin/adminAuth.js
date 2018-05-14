@@ -11,6 +11,10 @@ class AdminAuth extends Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            errMsg: ''
+        }
+
         this.registerAdmin = this.registerAdmin.bind(this)
         this.loginAdmin = this.loginAdmin.bind(this)
     }
@@ -31,7 +35,24 @@ class AdminAuth extends Component {
       axios.post('/api/auth/login', { username: this.props.username, pinput: this.props.pinput }).then( res => {
             window.location = '/#/dashboard'
             this.props.adminMode(true)
-        }).catch()
+        }).catch( ( res, err ) => {
+            console.log(res)
+            if(res.status === 401 ) {
+                this.setState({
+                    errMsg: 'Wrong Password. Please Try again.'
+                })
+            } else if ( res.status === 404 ) {
+                this.setState({
+                    errMsg: 'You must not be an Admin... Nice Try sucka.'
+                })
+            } else if (res.status === 500 ) {
+                this.setState({
+                    errMsg: 'You must create credentials and receive permissions from a current admin to login.'
+                })
+            }
+
+        }
+        )
     }
 
     render() {
@@ -40,6 +61,7 @@ class AdminAuth extends Component {
             <div className='auth-parent'>
                 <div className='auth-wrapper'>
                     <span><img src={logo} alt=""/></span>
+                    <span className='err-msg'>{this.state.errMsg}</span>
                 <div className='input-wrapper'>
                     <div className='auth-inputs'>
                         <span>Username</span>

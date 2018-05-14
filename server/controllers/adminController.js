@@ -46,14 +46,14 @@ module.exports = {
                     res.status(200).send()
                     // console.log(req.session)
                 } else {
-                    console.log('wrong password')
+                    res.status(401).send('Wrong Password')
                     // res.status(500).send('Invalid Password')
                 }
             } else {
-                console.log('you must not be an admin... sneaky sneaky.')
+                res.status(404).send('you must not be an admin... sneaky sneaky.')
                 
             }
-        }).catch(500)
+        }).catch( err => res.status(500).send('You must create credentials, and have a current Admin give you permissions.'))
     },
     validate: (req, res, next) => {
         const db = req.app.get('db')
