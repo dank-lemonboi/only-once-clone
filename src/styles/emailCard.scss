@@ -1,0 +1,97 @@
+.email-parent {
+    width: 72%;
+    height: 180px;
+    background: white;
+    margin: 0 auto;
+    display: flex;
+    box-sizing: border-box;
+    align-content: center;
+    position: relative;
+}
+
+.email-left-wrapper {
+    width: 40%;
+    
+    p {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        padding: 20px 20px;
+        letter-spacing: 2px;
+        font-size: 19px;
+        font-weight: 300;
+        margin-left: 10px;
+    }
+}
+
+.email-dot {
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 26%;
+    left: 10px;
+    box-sizing: border-box;
+}
+
+.email-right-wrapper {
+    box-sizing: border-box;
+    width: 60%;
+    padding: 50px 0;
+    padding-left: 80px;
+}
+.email-input-wrapper {
+    display: flex;
+}
+
+.email-input {
+    // margin-right: 15px;
+        border-radius: .2em;
+        width: 300px;
+        height: 3em;
+        background: #f1f1f1;
+        border-style: none;
+        box-sizing: border-box;
+        padding-left: 8px;
+        font-size: 14px;
+        // line-height: 1em;
+        padding-top: 0px;
+        padding-bottom: 0px
+    
+}
+
+.little-disclaimer {
+    margin-top: 4px;    
+    font-size: 10px;
+}
+
+.input-sub-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.send-btn {
+    margin-left: 20px;
+    box-sizing: border-box;
+    font: "Montserrat", sans-serif;
+    width: 81px;
+    height: 41px;
+    background: transparent;
+    color: black;
+    display: flex;
+    border: 2px solid rgb(0, 0, 0);
+    justify-content: space-around;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.send-btn:hover {
+    cursor: pointer;
+    background: black;
+    border: 2px solid transparent;
+    color: white;
+    transition: all .2s ease-in-out;
+}

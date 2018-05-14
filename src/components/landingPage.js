@@ -11,6 +11,7 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import Auth from './admin/adminAuth'
 import Footer from './footer'
+import EmailCard from './emailCard'
 
 import { getAll, addToCart, modalEngaged, stickySet } from "../ducks/reducer";
 
@@ -85,6 +86,7 @@ scrollToggle() {
                               src={logo} alt="" />
             </Link>
             <Products />
+            <EmailCard />
             <img className="badge" src={badge} alt="badge" />
             </div>
             <div className='footer-wrapper'>

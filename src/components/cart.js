@@ -13,6 +13,7 @@ import CardSection from '../components/injectedCheckout'
 import {Elements} from 'react-stripe-elements'
 import { removeFromCart, getTotal, modalEngaged, emptyCart } from "../ducks/reducer";
 import Input from './input'
+import { Link } from 'react-router-dom'
 
 
 class Cart extends Component {
@@ -148,8 +149,8 @@ class Cart extends Component {
       })
       // add item prices together
       let price = unitPrice.reduce( ( a, b ) => {
-        return ( (a + b) ).toFixed(2)
-      }, 0)
+        return ((a + b))
+      }, 0).toFixed(2)
       
       let tax = ( (+price) * 0.07).toFixed(2)
 
@@ -164,6 +165,8 @@ class Cart extends Component {
             <Navbar 
               logo={logo} 
               path={this.props.location.pathname} />
+
+              <Link to='/store'><span className='bck-button'>Continue Shopping</span></Link>
 
                 <div>
                  <div className={ (!this.props.modalView) ? 'modal-container' : 'modal-container reveal'}>
@@ -197,7 +200,7 @@ class Cart extends Component {
 
               <div className="cart-grid-header">
                 <span>Product</span>
-                <span>Item No</span>
+                <span>Item No.</span>
                 <span>Qty.</span>
                 <span>Price</span>
               </div>

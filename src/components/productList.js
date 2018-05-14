@@ -8,7 +8,6 @@ import {getAll} from '../ducks/reducer'
 import ProductTile from './productTile'
 import badge from '../assets/images/only_once_badge.svg'
 import { addToCart } from '../ducks/reducer'
-
 import '../styles/products.scss'
 
  class Products extends Component { 
@@ -93,8 +92,8 @@ import '../styles/products.scss'
 
 
         return (
-            <div className={ (this.props.className) ? this.props.className : "product-parent" }>
-          <div className={ 'product-wrapper' }>
+            <div className= "product-parent" >
+          <div className= 'product-wrapper' >
 
           {
               

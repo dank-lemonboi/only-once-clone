@@ -20,20 +20,52 @@ class Details extends Component {
         this.nextClick = this.nextClick.bind(this);
         this.prevClick = this.prevClick.bind(this);
 
-        let navArr = [];
+        this.state = {
+            navArr: [],
+            prevItem: {},
+            nextItem: {},
+            height:0
+        }
+
+        this.scrollUp = this.scrollUp.bind(this)
+        this.scrollBottom = this.scrollBottom.bind(this)
     
     }
 
-  
+    
+
+
+    scrollUp() {
+        var doc = document.documentElement;
+        var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+
+        if (top > 0) {
+            window.scrollTo(0, top - 15)
+            setTimeout(this.scrollUp, .05)
+        }
+    }
+
+    scrollBottom() {
+        window.scrollTo(0, 6000)
+        
+    }
 
     componentDidMount() {    
       this.props.getNavNumbers(+this.props.product.item_number)
-        // let { productId } = this.props.match.params
-        this.props.getProduct(this.props.match.params.productId)
-        const getPhotos = axios.put('api/getItemPhotos', { itemId: this.props.match.params.productId }).then( res => {
-
-            this.props.getDetailPhotos(res.data)
+      // let { productId } = this.props.match.params
+      this.props.getProduct(this.props.match.params.productId)
+      const getPhotos = axios.put('api/getItemPhotos', { itemId: this.props.match.params.productId }).then( res => {
+          
+          this.props.getDetailPhotos(res.data)
         }).catch()
+
+    this.setState({
+        navArr: this.props.itemNumbers,
+        nextItem: this.props.itemNumbers.shift(),
+        prevItem: this.props.itemNumbers.pop()
+    })
+
+
     }
 
      handleClick(productId) { 
@@ -46,15 +78,16 @@ class Details extends Component {
         this.props.clearDetailPhotos()
     }
 
-    nextClick() {
+    nextClick(navArr) {
         
     }
 
-    prevClick() {
+    prevClick(navArr) {
 
     }
 
     render() {
+        console.log(document.documentElement.clientHeight)
         console.log(this.props.itemNumbers)
         let { productId } = this.props.match.params
         let { product } = this.props
@@ -68,8 +101,8 @@ class Details extends Component {
                     logo={logo}
                     />
                     <div className='product-container-parent'>
-                        {/*<Link to={`/store/${this.props.prevItem.item_type}/${this.props.prevItem.item_number}`}>*/}<span className='prev-nav'>Previous Product</span>{/*</Link>*/}
-                    {/*<Link to={`/store/${this.props.nextItem.item_type}/${this.props.nextItem.item_number}`}>*/}<span className='next-nav'>Next Product</span>{/*</Link>*/}
+                        {/*<Link to={`/store/${this.state.prevItem.item_type}/${this.state.prevItem.item_number}`}>*/}<span className='prev-nav'>Previous Product</span>{/*</Link>*/}
+                    {/*<Link to={`/store/${this..nextItem.item_type}/${this.state.nextItem.item_number}`}>*/}<span className='next-nav'>Next Product</span>{/*</Link>*/}
                             <div className='product-image-wrapper'>
                                 <img className='prod-image' src={this.props.product.product_detail_display} alt=""/>
                             </div>
@@ -80,7 +113,7 @@ class Details extends Component {
                             </div>
                             <span className='product-name'>{product.item_name}</span>
                             <div className='product-details'>{`${product.description}`}...</div>
-                            <span className='btn-toBottom' onClick={ () => window.scrollTo(0, 4500)}>Read More</span>
+                            <span className='btn-toBottom' onClick={ () => this.scrollBottom() }>Read More</span>
                             <span style={ { marginTop: '20px', fontWeight: '700', fontSize: '1.1em', letterSpacing: '' } }>Specifications:</span>
                             <div className='product-specs'>
                             <span style={ { marginBottom: '.8em', letterSpacing: '1px' } }>Dimensions: <span className='specs'>{`L${ product.length} x W${ product.width} x H${ product.height} cm`}</span> </span>
@@ -122,9 +155,9 @@ class Details extends Component {
                             <div className='detail-photo-list'>
                                 {detailPhoto}
                             </div>
-                                <div className='bottom-section'>
+                                <div id='bottom' className='bottom-section'>
                                         <p className='full-description'>{product.description}</p>
-                                        <div className='top-btn' onClick={ () => window.scrollTo(0,0) }>Back To Top</div>
+                                        <div className='top-btn' onClick={ () => this.scrollUp() }>Back To Top</div>
                                         <Footer />
                                 </div>
                             
@@ -140,8 +173,8 @@ let mapStateToProps = (state) => {
         cart: state.customerReducer.cart,
         detailPhotos: state.customerReducer.detailPhotos,
         itemNumbers: state.customerReducer.itemNumbers,
-        prevItem: state.customerReducer.prevItem,
-        nextItem: state.customerReducer.nextItem
+        // prevItem: state.customerReducer.prevItem,
+        // nextItem: state.customerReducer.nextItem
     }
 }
 

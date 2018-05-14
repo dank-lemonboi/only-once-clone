@@ -40,7 +40,7 @@ import { getProduct } from '../ducks/reducer'
               <Link to={`/store/${product.item_type}/${product.item_number}`}>
                 <div className="product-card" key={product.item_number}>
                     <div className='product-hover'>
-                        <span>{product.item_name}</span>
+                        <span id='name'>{product.item_name}</span>
                         <span className='price-line'><div className='red-dot'></div>{`${product.price}`}<img className='euro' src={euro} alt="" /></span>
                     </div>
                     <div className="image-parent">

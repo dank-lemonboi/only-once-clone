@@ -263,6 +263,13 @@ $font-var: "Montserrat", sans-serif;
     transition: all .2s ease-in-out;
 }
 
+.bck-button {
+    position: absolute;
+    z-index: 6;
+    transform: rotateZ(-90deg);
+    top: 35%;
+    left: -15px;
+}
 
 .input-parent {
     width: 60%;
