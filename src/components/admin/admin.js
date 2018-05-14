@@ -14,20 +14,20 @@ class Admin extends Component {
     
 }
 
-    // componentDidMount() {
-    //     if(this.props.isAdmin === false) {
-    //         this.props.history.push('/admin')
-    //     } else {
-    //     axios.get('/api/auth/me').then(res => {
+    componentDidMount() {
+        if(this.props.isAdmin === false) {
+            this.props.history.push('/admin')
+        } else {
+        axios.get('/api/auth/me').then(res => {
             
-    //         console.log(res.data)
-    //         if (res.data === 'go home') {
-    //             this.props.history.push('/admin')
-    //         }
+            console.log(res.data)
+            if (res.data === 'go home') {
+                this.props.history.push('/admin')
+            }
 
-    //     }).catch()
-    //   }
-    // }
+        }).catch()
+      }
+    }
 
     handleClick() {
         axios.post(`/api/deletePhotos?itemNumber=${this.props.itemNumber}`).then( () => {
