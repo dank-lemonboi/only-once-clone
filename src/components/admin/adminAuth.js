@@ -56,7 +56,6 @@ class AdminAuth extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className='auth-parent'>
                 <div className='auth-wrapper'>
@@ -88,7 +87,6 @@ class AdminAuth extends Component {
                     <div
                         className='auth-btn'
                         onClick={ () => this.loginAdmin() }
-                        // onKeyUp={ this.loginAdmin({ keyValue: 13 }) }
                         >
                         Login
                      </div> 
@@ -102,7 +100,6 @@ class AdminAuth extends Component {
 }
 
 let mapStateToProps = (state) => {
-    // const { username, password } = state.adminReducer
 
     return {
         username: state.adminReducer.username,

@@ -60,10 +60,10 @@ export default function reducer( state = initialState, action ) {
     switch (action.type) {
 
     case GET_PASSWORD:
-        return Object.assign( {}, state, { username: action.payload } )
+        return Object.assign( {}, state, { pinput: action.payload } )
         
     case GET_USERNAME:
-        return Object.assign( {}, state, { pinput: action.payload })
+        return Object.assign( {}, state, { username: action.payload })
         
     case GET_ITEM_NUMBER:
     console.log(action.payload)
