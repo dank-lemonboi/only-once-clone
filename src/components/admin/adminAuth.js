@@ -36,7 +36,7 @@ class AdminAuth extends Component {
             window.location = '/#/dashboard'
             this.props.adminMode(true)
         }).catch( ( res, err ) => {
-            console.log(res)
+            // console.log(res)
             if(res.status === 401 ) {
                 this.setState({
                     errMsg: 'Wrong Password. Please Try again.'

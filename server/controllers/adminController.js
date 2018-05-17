@@ -8,7 +8,7 @@ module.exports = {
         db.check_username([username]).then(user => {
 
             if (user.length !== 0) {
-                console.log('Please choose a different username.')
+                // console.log('Please choose a different username.')
                 res.status(200).send('Username taken. Please try another.')
 
 
@@ -42,7 +42,7 @@ module.exports = {
                     // }
                     req.session.user.user_id = user[0].user_id
                     req.session.user.username = user[0].user_name  
-                    console.log(req.session.user)
+                    // console.log(req.session.user)
                     res.status(200).send()
                     // console.log(req.session)
                 } else {
@@ -60,7 +60,7 @@ module.exports = {
         // console.log(req.session.user.username)
         if(req.session.user.username) {
         db.authorize([req.session.user.user_id]).then( isAdmin => {
-            console.log(isAdmin[0].is_admin)
+            // console.log(isAdmin[0].is_admin)
             if(isAdmin[0].is_admin === true) {
                 res.status(200).send('stay')
             }
