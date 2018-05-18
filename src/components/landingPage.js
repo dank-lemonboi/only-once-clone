@@ -85,6 +85,7 @@ scrollToggle() {
                               ( this.props.path !== '/' ) ? "sticky-logo" : 'logo-container' } 
                               src={logo} alt="" />
             </Link>
+            <span className='landing-banner'>Whole Selection</span>
             <Products />
             <EmailCard />
             <img className="badge" src={badge} alt="badge" />

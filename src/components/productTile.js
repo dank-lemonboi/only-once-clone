@@ -43,11 +43,11 @@ import { getProduct } from '../ducks/reducer'
                         <span id='name'>{product.item_name}</span>
                         <span className='price-line'><div className='red-dot'></div>{`${product.price}`}<img className='euro' src={euro} alt="" /></span>
                     </div>
-                    <div className="image-parent">
+                    
                         <div className="image-container">
 
                             <img src={product.display_photo} alt="" />
-                        </div>
+                        
                     </div>
                 </div>
             </Link>

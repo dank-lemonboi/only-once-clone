@@ -93,7 +93,6 @@ import '../styles/products.scss'
 
         return (
             <div className= "product-parent" >
-          <div className= 'product-wrapper' >
 
           {
               
@@ -115,7 +114,6 @@ import '../styles/products.scss'
                </div>
             }
             </div>
-          </div>
         )
     }
  }
