@@ -73,16 +73,16 @@ INSERT INTO products (
 --     false
 -- )
 
-VALUES (
-    'Industrial wall lamp',
-    'lights',
-	'http://onlyonceshop.com/thumbs/store/industrial-wall-lamp/vintage-industrial-metal-aluminium-working-lamp-original-elektrosvit-czechoslovakia-design-designer-grey-light-lamp-licht-lampe-industrie-tischlampe-clamp-klemm-only-once-shop-6-600x600-q100.jpg',
-    'Original industrial adjustable lamp used in factories and workshops. Designed and made in former Czechoslovakia. The light can be used as table lamp attached to the workbench. Materials: Metal, bakelite , new textile cable &amp; German plug (220V). To be used with E27 light bulbs (not included). Beautiful patina corresponding to its age and use. Partially renovated. Mounted to the table by 4 screws (can also be used as wall lamp).',
-    55,
-    13,
-    45,
-    1.6,
-    10013,
-    270,
-    false
-)
+-- VALUES (
+--     'Industrial wall lamp',
+--     'lights',
+-- 	'http://onlyonceshop.com/thumbs/store/industrial-wall-lamp/vintage-industrial-metal-aluminium-working-lamp-original-elektrosvit-czechoslovakia-design-designer-grey-light-lamp-licht-lampe-industrie-tischlampe-clamp-klemm-only-once-shop-6-600x600-q100.jpg',
+--     'Original industrial adjustable lamp used in factories and workshops. Designed and made in former Czechoslovakia. The light can be used as table lamp attached to the workbench. Materials: Metal, bakelite , new textile cable &amp; German plug (220V). To be used with E27 light bulbs (not included). Beautiful patina corresponding to its age and use. Partially renovated. Mounted to the table by 4 screws (can also be used as wall lamp).',
+--     55,
+--     13,
+--     45,
+--     1.6,
+--     10013,
+--     270,
+--     false
+-- )

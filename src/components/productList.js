@@ -63,6 +63,7 @@ import '../styles/products.scss'
     // }
 
     render() {
+        console.log(React.ReactDOM)
         // console.log(document.location)
         // console.log(document.location)
 

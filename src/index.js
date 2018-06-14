@@ -7,6 +7,7 @@ import { StripeProvider } from "react-stripe-elements";
 
 import store from './store'
 
+
 ReactDOM.render(
   <Provider store={store}>
     <StripeProvider apiKey="pk_test_aipeQRMaw8hUU34obnsOWFlD">
