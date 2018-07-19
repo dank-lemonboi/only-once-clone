@@ -1,5 +1,5 @@
 .product-parent {
-    margin: 20px auto ;
+    margin: 0px auto ;
     width: 100%;
     height: auto;
     background: #efefef;
@@ -27,25 +27,28 @@
 .products {
     box-sizing: border-box;
     margin-top: 20%;
+    margin-left: -50%;
+    margin-right: -60%;
     width: 80%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    grid-auto-rows: auto;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-    // display: flex;
-    // flex-wrap: wrap;
-    // align-items: center;
-    // justify-content: space-around;
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr); 
+    // grid-auto-rows: auto;
+    // grid-column-gap: .01em;
+    // grid-row-gap: .01em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    // justify-content: space-between;
 }
 
 .product-card {
-    height: auto;
-    width: 100%;
-    margin-bottom: 20px;
+    height: 18em;
+    width: 18em;
+    margin-bottom: 1em;
+    margin-right: 1em;
     justify-content: space-around;
     transition: all .5s ease-in-out; 
-    box-shadow: 0px, 0px, 20px rgba(0, 0, 0, 1);      
+    box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
     position: relative;
 }
 

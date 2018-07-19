@@ -72,6 +72,7 @@ a {
     }
 .store-wrapper:hover {
     cursor: pointer;
+    color: red;
     .rotate {
         transform: rotate(-180);        
         transition: all .25s 0s;

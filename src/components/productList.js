@@ -10,6 +10,7 @@ import badge from '../assets/images/only_once_badge.svg'
 import { addToCart } from '../ducks/reducer'
 import '../styles/products.scss'
 
+
  class Products extends Component { 
     constructor(props) {
         super(props)
@@ -89,7 +90,7 @@ import '../styles/products.scss'
             return true 
         })
         
-        let productList = filterList.map( (product, i) => <ProductTile key={product.item_id} product={product} /> )
+        let productList = filterList.map( (product, i) => (product.item_id === null) ? null : <ProductTile key={product.item_id} product={product} /> )
 
 
         return (
