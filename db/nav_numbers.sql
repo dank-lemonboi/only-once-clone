@@ -1,3 +1,2 @@
-SELECT item_number, item_type
+SELECT item_number, item_type, item_name
 FROM products
-WHERE item_number != $1

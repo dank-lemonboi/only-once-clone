@@ -41,7 +41,7 @@ app.use(checkForSession)
 
 // product endpoints
 app.get('/api/products', ctrl.getProducts);
-app.put('/api/navNumbers', ctrl.navNumbers)
+app.get('/api/navNumbers', ctrl.navNumbers)
 app.put('/api/getProduct', ctrl.productDetails);
 app.put('/api/cartAdd', ctrl.addProduct);
 app.post('/api/deletePhotos', ctrl.deletePhotos)

@@ -143,7 +143,7 @@ module.exports = {
 },
     navNumbers: (req, res, next) => {
         const db = req.app.get('db')
-        db.nav_numbers([+req.body.item_number]).then( navList => {
+        db.nav_numbers().then( navList => {
             res.status(200).send(navList)
         }).catch()
     },

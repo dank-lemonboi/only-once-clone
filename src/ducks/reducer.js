@@ -216,10 +216,8 @@ export function clearDetailPhotos() {
 }
 
 export function getNavNumbers(currentItem) {
-    let navArr = axios.put('/api/navNumbers', { item_number: currentItem } ).then( res => {
-        // let prevItem = navArr.pop()
-        // let nextItem = navArr.shift()
-        return navArr
+    let navArr = axios.put('/api/navNumbers', { item_number: currentItem } ).then( data => {
+        return data
     }).catch()
     return {
         type: GET_ITEM_NUMBERS_NAV,

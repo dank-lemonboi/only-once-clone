@@ -1,182 +1,556 @@
-.product-parent {
-    margin: 0px auto ;
-    width: 100%;
-    height: auto;
-    background: #efefef;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    // display: grid;
-}
-
-.store-view {
-    height: 200%;
-    width: 100%;
-    margin-bottom: 20%;
-    position: relative;
-}
-
-.product-wrapper {
-    margin-left: 14.5%;
-    width: 100%;
-    box-sizing: border-box;
+@media only screen and (max-width: 2400px) {
+    .product-parent {
+        margin: 0px auto ;
+        width: 100%;
+        height: auto;
+        background: #efefef;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        // display: grid;
+    }
     
-}
-
-.products {
-    box-sizing: border-box;
-    margin-top: 20%;
-    margin-left: -50%;
-    margin-right: -58.5%;
-    width: 1025px;
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    // align-items: center;
-}
-
-
-.first-product {
-    height: 37em;
-    width: 37em;
-    margin-bottom: 1em;
-    margin-right: 1em;
-    justify-content: space-around;
-    transition: all .5s ease-in-out; 
-    box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
-    position: relative;
-}
-
-.third-product {
-    position: absolute;
-    right: 12.5%;
-    top: 19em;
-    height: 18em;
-    width: 18em;
-    transition: all .5s ease-in-out; 
-    box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
-}
-
-.product-card {
-    height: 18em;
-    width: 18em;
-    margin-bottom: 1em;
-    margin-right: 1em;
-    justify-content: space-around;
-    transition: all .5s ease-in-out; 
-    box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
-    position: relative;
-}
-
-.image-container {
-    height: 100%;
-    width: auto;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);    
+    .store-view {
+        height: 200%;
+        width: 100%;
+        margin-bottom: 20%;
+        position: relative;
+    }
     
-    img {
-      height: 100%;
-      width: 100%;
+    .product-wrapper {
+        margin-left: 14.5%;
+        width: 100%;
+        box-sizing: border-box;
+        
     }
-}
-
-.euro {
-    height: 12px;
-    width: 12px;
-    fill: rgb(255, 255, 255);
-    outline: white;
     
-}
-
-// red dot found onHover on the product cards
-.red-dot {
-    width: 6px;
-    height: 6px;
-    background: red;
-    border-radius: 50%;
-    margin-right: 4px;
-}
-
-.price-line {
-    display: flex;
-    align-items: center;
-}
-
-.product-hover {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-
-    span #name {
-        margin-top: 20px;
+    .products {
+        box-sizing: border-box;
+        margin-top: 20%;
+        margin-left: -50%;
+        margin-right: -58.5%;
+        width: 1025px;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        // align-items: center;
+    }
+    
+    
+    .first-product {
+        height: 37em;
+        width: 37em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        justify-content: space-around;
+        transition: all .5s ease-in-out; 
+        box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
+        position: relative;
+    }
+    
+    .third-product {
+        position: absolute;
+        right: 12.5%;
+        top: 19em;
+        height: 18em;
+        width: 18em;
+        transition: all .5s ease-in-out; 
+        box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
+    }
+    
+    .product-card {
+        height: 18em;
+        width: 18em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        justify-content: space-around;
+        transition: all .5s ease-in-out; 
+        box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
+        position: relative;
+    }
+    
+    .image-container {
+        height: 100%;
+        width: auto;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);    
+        
+        img {
+          height: 100%;
+          width: 100%;
+        }
+    }
+    
+    .euro {
+        height: 12px;
+        width: 12px;
+        fill: rgb(255, 255, 255);
+        outline: white;
+        
+    }
+    
+    // red dot found onHover on the product cards
+    .red-dot {
+        width: 6px;
+        height: 6px;
+        background: red;
+        border-radius: 50%;
+        margin-right: 4px;
+    }
+    
+    .price-line {
+        display: flex;
+        align-items: center;
+    }
+    
+    .product-hover {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+    
+        span #name {
+            margin-top: 20px;
+        }
+    }
+    
+    .first-product:hover .product-hover:hover {
+        opacity: 1;
+        display: flex;
+        position: absolute;
+        transition: opacity .4s ease-in-out;    
+    }
+    
+    .third-product:hover .product-hover:hover {
+        opacity: 1;
+        display: flex;
+        position: absolute;
+        transition: opacity .4s ease-in-out;    
+    }
+    
+    
+    .product-card:hover .product-hover:hover {
+        opacity: 1;
+        display: flex;
+        position: absolute;
+        transition: opacity .4s ease-in-out;    
+    }
+    
+    .loading-container {
+        margin-top: 15%;
+        margin-right: 25%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-around;
+    
+    
+        .loading-badge {
+            height: 300px;
+            width: 300px;
+            margin-bottom: 20px;
+            animation-name: loader;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+        }
+    
+        span {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+    
+    }
+    
+    .loading-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    @keyframes loader {
+        from { 
+            transform: rotateZ(0deg);
+        }
+        to { 
+            transform: rotateZ(360deg);
+        }
     }
 }
 
-.first-product:hover .product-hover:hover {
-    opacity: 1;
-    display: flex;
-    position: absolute;
-    transition: opacity .4s ease-in-out;    
-}
-
-.third-product:hover .product-hover:hover {
-    opacity: 1;
-    display: flex;
-    position: absolute;
-    transition: opacity .4s ease-in-out;    
-}
-
-
-.product-card:hover .product-hover:hover {
-    opacity: 1;
-    display: flex;
-    position: absolute;
-    transition: opacity .4s ease-in-out;    
-}
-
-.loading-container {
-    margin-top: 15%;
-    margin-right: 25%;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: space-around;
-
-
-    .loading-badge {
-        height: 300px;
-        width: 300px;
-        margin-bottom: 20px;
-        animation-name: loader;
-        animation-iteration-count: infinite;
-        animation-duration: 2s;
+@media only screen and (max-width: 900px) {
+    .product-parent {
+        margin: 0px auto ;
+        width: 100%;
+        height: auto;
+        background: #efefef;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        // display: grid;
     }
-
-    span {
-        font-size: 30px;
-        letter-spacing: 2px;
+    
+    .store-view {
+        height: 200%;
+        width: 100%;
+        margin-bottom: 20%;
+        position: relative;
     }
-
+    
+    .product-wrapper {
+        margin-left: 14.5%;
+        width: 100%;
+        box-sizing: border-box;
+        
+    }
+    
+    .products {
+        box-sizing: border-box;
+        margin-top: 20%;
+        margin-left: -50%;
+        margin-right: -58.5%;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        // align-items: center;
+    }
+    
+    
+    .first-product {
+        height: 37em;
+        width: 37em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        justify-content: space-around;
+        transition: all .5s ease-in-out; 
+        box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
+        position: relative;
+    }
+    
+    .third-product {
+        position: static;
+        height: 18em;
+        width: 18em;
+        // justify-content: space-around;
+        transition: all .5s ease-in-out; 
+        box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);     
+    }
+    
+    .product-card {
+        height: 18em;
+        width: 18em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        justify-content: space-around;
+        transition: all .5s ease-in-out; 
+        box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
+        position: relative;
+    }
+    
+    .image-container {
+        height: 100%;
+        width: auto;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);    
+        
+        img {
+          height: 100%;
+          width: 100%;
+        }
+    }
+    
+    .euro {
+        height: 12px;
+        width: 12px;
+        fill: rgb(255, 255, 255);
+        outline: white;
+        
+    }
+    
+    // red dot found onHover on the product cards
+    .red-dot {
+        width: 6px;
+        height: 6px;
+        background: red;
+        border-radius: 50%;
+        margin-right: 4px;
+    }
+    
+    .price-line {
+        display: flex;
+        align-items: center;
+    }
+    
+    .product-hover {
+        position: absolute;
+        height: 18em;
+        width: 18em;
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+    
+        span #name {
+            margin-top: 20px;
+        }
+    }
+    
+    .first-product:hover .product-hover:hover {
+        opacity: 1;
+        display: flex;
+        position: absolute;
+        transition: opacity .4s ease-in-out;    
+    }
+    
+    .third-product:hover .product-hover:hover {
+        opacity: 1;
+        display: flex;
+        position: absolute;
+        transition: opacity .4s ease-in-out;    
+    }
+    
+    
+    .product-card:hover .product-hover:hover {
+        opacity: 1;
+        display: flex;
+        position: absolute;
+        transition: opacity .4s ease-in-out;    
+    }
+    
+    .loading-container {
+        margin-top: 15%;
+        margin-right: 25%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-around;
+    
+    
+        .loading-badge {
+            height: 300px;
+            width: 300px;
+            margin-bottom: 20px;
+            animation-name: loader;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+        }
+    
+        span {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+    
+    }
+    
+    .loading-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    @keyframes loader {
+        from { 
+            transform: rotateZ(0deg);
+        }
+        to { 
+            transform: rotateZ(360deg);
+        }
+    }
 }
 
-.loading-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media only screen and (max-width: 760) {
+    .product-parent {
+        margin: 0px auto ;
+        width: 100%;
+        height: auto;
+        background: #efefef;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        // display: grid;
+    }
+    
+    .store-view {
+        height: 200%;
+        width: 100%;
+        margin-bottom: 20%;
+        position: relative;
+    }
+    
+    .product-wrapper {
+        margin-left: 14.5%;
+        width: 100%;
+        box-sizing: border-box;
+        
+    }
+    
+    .products {
+        box-sizing: border-box;
+        margin-top: 20%;
+        margin-left: -50%;
+        margin-right: -58.5%;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        // align-items: center;
+    }
+    
+    
+    .first-product {
+        height: 18em;
+        width: 18em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        justify-content: space-around;
+        transition: all .5s ease-in-out; 
+        box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
+    }
+    
+    .third-product {
+        position: static;
+        height: 18em;
+        width: 18em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        // justify-content: space-around;
+        transition: all .5s ease-in-out; 
+        box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);     
+    }
+    
+    .product-card {
+        height: 18em;
+        width: 18em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        justify-content: space-around;
+        transition: all .5s ease-in-out; 
+        box-shadow: 0px, 0px, 2px rgba(0, 0, 0, .4);      
+    }
+    
+    .image-container {
+        height: 100%;
+        width: auto;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);    
+        
+        img {
+          height: 100%;
+          width: 100%;
+        }
+    }
+    
+    .euro {
+        height: 12px;
+        width: 12px;
+        fill: rgb(255, 255, 255);
+        outline: white;
+        
+    }
+    
+    // red dot found onHover on the product cards
+    .red-dot {
+        width: 6px;
+        height: 6px;
+        background: red;
+        border-radius: 50%;
+        margin-right: 4px;
+    }
+    
+    .price-line {
+        display: flex;
+        align-items: center;
+    }
+    
+    .product-hover {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+    
+        span #name {
+            margin-top: 20px;
+        }
+    }
+    
+    .first-product:hover .product-hover:hover {
+        opacity: 1;
+        display: flex;
+        position: absolute;
+        transition: opacity .4s ease-in-out;    
+    }
+    
+    .third-product:hover .product-hover:hover {
+        opacity: 1;
+        display: flex;
+        position: absolute;
+        transition: opacity .4s ease-in-out;    
+    }
+    
+    
+    .product-card:hover .product-hover:hover {
+        opacity: 1;
+        display: flex;
+        position: absolute;
+        transition: opacity .4s ease-in-out;    
+    }
+    
+    .loading-container {
+        margin-top: 15%;
+        margin-right: 25%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-around;
+    
+    
+        .loading-badge {
+            height: 300px;
+            width: 300px;
+            margin-bottom: 20px;
+            animation-name: loader;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+        }
+    
+        span {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+    
+    }
+    
+    .loading-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    @keyframes loader {
+        from { 
+            transform: rotateZ(0deg);
+        }
+        to { 
+            transform: rotateZ(360deg);
+        }
+    }
 }
 
-@keyframes loader {
-    from { 
-        transform: rotateZ(0deg);
-    }
-    to { 
-        transform: rotateZ(360deg);
-    }
-}
+
+
+
