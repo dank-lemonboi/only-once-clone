@@ -7,6 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     // display: grid;
 }
 
@@ -29,12 +30,13 @@
     margin-top: 20%;
     margin-left: -50%;
     margin-right: -58.5%;
-    width: 80%;
+    width: 1025px;
     display: flex;
     flex-wrap: wrap;
     position: relative;
     // align-items: center;
 }
+
 
 .first-product {
     height: 37em;
@@ -49,7 +51,7 @@
 
 .third-product {
     position: absolute;
-    right:8em;
+    right: 12.5%;
     top: 19em;
     height: 18em;
     width: 18em;
