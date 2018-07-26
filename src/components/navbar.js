@@ -88,7 +88,7 @@ class Navbar extends Component {
       
     
     render() { 
-      console.log(this.props.isAdmin)
+      console.log(this.state.dropMenu)
         return (
           <header className="nav-parent">
             <nav className={ ( this.props.path !== '/' || this.props.stick || this.props.width < 568 ) ? "scroll-adjust" : "nav-sticky"}>
@@ -103,14 +103,14 @@ class Navbar extends Component {
                   
                   <ul className="nav-menu">
                     <li className="nav-menu-store">
-                      <span 
+                    <a href='#/store'><span 
                       // How do I get the nav to conditionally drop on hover, allow me to navigate the 
                       // drop menu and have it disapear when i'm no-longer hovering?
                         onMouseOver={ () => this.setState( { dropMenu: true } )}
                         onMouseOut={ () => this.setState({ dropMenu: false } )}
-                        className={ ( this.state.dropMenu ) ? 'store-wrapper red' : 'store-wrapper' }>
-                        <a href='#/store'>STORE</a> { ( !this.state.dropMenu ) ? <div className='drop-arrow'><img src={down} alt=""/></div> : <div className='drop-arrow rotate'><img src={up} alt=""/></div> }
-                      </span>
+                        className={ ( this.state.dropMenu ) ? "store-wrapper red" : 'store-wrapper' }>
+                        STORE { ( !this.state.dropMenu ) ? <div className='drop-arrow'><img src={down} alt=""/></div> : <div className='drop-arrow rotate'><img src={up} alt=""/></div> }
+                      </span></a>
                       <ul 
                         onMouseOver={ () => this.setState( { dropMenu: true } )} 
                         onMouseOut= {() => this.setState({ dropMenu: false } )}

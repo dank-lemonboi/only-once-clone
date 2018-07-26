@@ -66,7 +66,7 @@ class Details extends Component {
             this.props.clearDetailPhotos()
             this.props.getProduct(this.props.match.params.productId)
 
-        const getPhotos = axios.put('api/getItemPhotos', { itemId: this.props.match.params.productId }).then(res => {
+        axios.put('api/getItemPhotos', { itemId: this.props.match.params.productId }).then(res => {
             this.props.getDetailPhotos(res.data)
         }).catch()
         }
