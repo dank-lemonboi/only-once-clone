@@ -84,7 +84,7 @@ import '../styles/products.scss'
             } else if (document.location.hash === '#/store/clocks') {
                 return product.item_type === 'clocks'
             } else if (document.location.hash === '#/store/homedeco') {
-                return product.item_type === 'homedeco'
+                return product.item_type === 'home-deco'
             }
             
             return true 
