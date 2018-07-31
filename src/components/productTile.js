@@ -18,6 +18,8 @@ import { getProduct } from '../ducks/reducer'
 
     }
 
+    
+
     edit() {
 
     }
@@ -27,7 +29,7 @@ import { getProduct } from '../ducks/reducer'
     }
 
     render() {
-
+        let width = window.innerWidth;
         const { product } = this.props
 
         
@@ -39,7 +41,7 @@ import { getProduct } from '../ducks/reducer'
         //     ?
               <Link to={`/store/${product.item_type}/${product.item_number}`}>
                 <div className={(product.item_number === 30011) ? 'third-product' : (product.item_number !== 30075) ? "product-card"  : "first-product"} key={product.item_number}>
-                    <div className={(product.item_number === 30011) ? 'third-hover' : 'product-hover'}>
+                    <div className={(product.item_number !== 30011 && width >= 900) ? 'product-hover' : 'third-hover'}>
                         <span id='name'>{product.item_name}</span>
                         <span className='price-line'><div className='red-dot'></div>{`${product.price}`}<img className='euro' src={euro} alt="" /></span>
                     </div>
