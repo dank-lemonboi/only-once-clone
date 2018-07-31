@@ -87,7 +87,9 @@ scrollToggle() {
             </Link>
             <span className='landing-banner'></span>
             <div className='product-email-wrapper'>
-              <Products />
+              <Products 
+                key={this.props.key}
+              />
               <EmailCard />
             </div>
             <img className="badge" src={badge} alt="badge" />

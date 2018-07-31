@@ -1,1 +1,2 @@
 SELECT * FROM products
+LIMIT 12;
