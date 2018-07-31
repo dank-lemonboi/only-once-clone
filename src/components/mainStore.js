@@ -29,9 +29,11 @@ componentDidMount() {
                     cart={this.props.cart}
                     width={window.innerWidth}/>
                 <div><span>{ (window.location.hash !== '#/store') ? `${this.props.products[0].item_type} View` : 'Whole Selection' }</span></div>
+                <div className='product-store-wrapper'>
                 <ProductList 
                  location={this.props.match}
                  className='store-view'/>
+                </div>
                  <div>
                     <Footer />
                  </div>

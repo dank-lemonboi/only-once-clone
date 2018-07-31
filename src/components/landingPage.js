@@ -86,8 +86,10 @@ scrollToggle() {
                               src={logo} alt="" />
             </Link>
             <span className='landing-banner'></span>
-            <Products />
-            <EmailCard />
+            <div className='product-email-wrapper'>
+              <Products />
+              <EmailCard />
+            </div>
             <img className="badge" src={badge} alt="badge" />
             </div>
             <div className='footer-wrapper'>
