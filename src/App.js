@@ -6,6 +6,7 @@ import Auth from './components/admin/adminAuth'
 import {connect} from 'react-redux'
 import { modalEngaged } from './ducks/reducer'
 import badge from './assets/images/only_once_badge.svg'
+// import '../src/styles/reset.scss'
 
 
 
