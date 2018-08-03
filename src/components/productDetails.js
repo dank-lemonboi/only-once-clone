@@ -134,7 +134,6 @@ class Details extends Component {
     }
 
     render() {
-        let { productId } = this.props.match.params
         let { product } = this.props
 
         let detailPhoto = this.props.detailPhotos.map((picture, i) => <PhotoTile key={picture.photo_id} picture={picture} />)

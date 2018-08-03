@@ -41,6 +41,7 @@ app.use(checkForSession)
 
 // product endpoints
 app.get('/api/products', ctrl.getProducts);
+app.post('/api/infiniteLoad', ctrl.infiniteProducts);
 app.get('/api/navNumbers', ctrl.navNumbers)
 app.put('/api/getProduct', ctrl.productDetails);
 app.put('/api/cartAdd', ctrl.addProduct);

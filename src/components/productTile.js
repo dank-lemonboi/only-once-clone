@@ -10,35 +10,13 @@ import { getProduct } from '../ducks/reducer'
  class ProductTile extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {}
-
-        this.edit = this.edit.bind(this)
-        this.delete = this.delete.bind(this)
-
     }
-
     
-
-    edit() {
-
-    }
-
-    delete() {
-
-    }
-
     render() {
         let width = window.innerWidth;
         const { product } = this.props
-
-        
         return(
-        //     <div>
-        // {
-        //     (!this.props.isAdmin)
-
-        //     ?
+       
               <Link to={`/store/${product.item_type}/${product.item_number}`}>
                 <div className={(product.item_number === 30011) ? 'third-product' : (product.item_number !== 30075) ? "product-card"  : "first-product"} key={product.item_number}>
                     <div className={(product.item_number !== 30011) ? 'product-hover' : 'third-hover'}>

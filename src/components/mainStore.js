@@ -7,12 +7,16 @@ import Footer from './footer'
 import logo from '../assets/images/only_once_logo.svg'
 import { getAll } from '../ducks/reducer'
 import '../styles/store.scss'
+import EmailCard from './emailCard'
+import InfiniteScroll from './infinite-scroll/scroller'
 
  class Store extends Component {
      constructor(props) {
          super(props)
 
-         this.state = {}
+         this.state = {
+             totalOffset: window.innerHeight,
+         }
      }
 
 componentDidMount() {
@@ -33,6 +37,12 @@ componentDidMount() {
                 <ProductList 
                  location={this.props.match}
                  className='store-view'/>
+                 <EmailCard />
+                </div>
+                <div className='infinite-wrapper'>
+                    <InfiniteScroll 
+                        totalOffset={this.state.totalOffset * 3.3}
+                    />
                 </div>
                  <div>
                     <Footer />

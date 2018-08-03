@@ -12,19 +12,22 @@ import {connect} from 'react-redux'
 import Auth from './admin/adminAuth'
 import Footer from './footer'
 import EmailCard from './emailCard'
+import Infinite from './infinite-scroll/scroller'
 
 import { getAll, addToCart, modalEngaged, stickySet } from "../ducks/reducer";
-
 
 class Home extends Component {
      constructor(props) {
         super(props)
 
         this.state = {
-            isSticky: false
+            isSticky: false,
+            totalOffset: window.innerHeight
         }
 
         this.scrollToggle = this.scrollToggle.bind(this)
+        
+
     }
 
 
@@ -91,6 +94,11 @@ scrollToggle() {
                 key={this.props.key}
               />
               <EmailCard />
+            </div>
+            <div className='infinite-wrapper'>
+              <Infinite 
+                totalOffset={this.state.totalOffset * 4.2}
+              />
             </div>
             <img className="badge" src={badge} alt="badge" />
             </div>

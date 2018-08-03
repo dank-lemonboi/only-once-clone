@@ -43,6 +43,13 @@ module.exports = {
 
     //   }
     // },
+    infiniteProducts: (req, res, next) => {
+        const db = req.app.get('db')
+        
+        db.getProductsInfinite([+req.body.page, +req.body.per]).then( products => {
+            res.status(200).send(products)
+        }).catch(err => err, 500)
+    },
     getProducts: (req, res, next) => {
         // console.log('gp', req.session.user )
         const db = req.app.get('db')
