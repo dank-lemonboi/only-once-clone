@@ -161,8 +161,8 @@ class Details extends Component {
                         <span style={{ marginTop: '20px', fontWeight: '700', fontSize: '1.1em', letterSpacing: '' }}>Specifications:</span>
                         <div className='product-specs'>
                             <span style={{ marginBottom: '.8em', letterSpacing: '1px' }}>Dimensions: <span className='specs'>{`L${product.length} x W${product.width} x H${product.height} cm`}</span> </span>
-                            <span style={{ marginBottom: '.8em', letterSpacing: '1px' }}>Weight: <span className='specs weight'>{`${product.weight} kg`}</span></span>
-                            <span style={{ marginBottom: '.8em', letterSpacing: '1px' }}>Item No: <span className='specs item'>{`${product.item_number}`}</span></span>
+                            <span style={{ marginBottom: '.8em', letterSpacing: '1px' }}>Weight: <span className='specs-weight'>{`${product.weight} kg`}</span></span>
+                            <span style={{ marginBottom: '.8em', letterSpacing: '1px' }}>Item No: <span className='specs-item'>{`${product.item_number}`}</span></span>
                         </div>
 
                         {
