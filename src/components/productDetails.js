@@ -175,7 +175,7 @@ class Details extends Component {
                                 :
 
 
-                                <span style={{ display: 'flex' }}>Price: <span className='specs price'><div className='red-dot'></div>{`  ${product.price} `}<img className='euro' src={euro} alt="" /></span></span>
+                                <span style={{ display: 'flex', marginTop: '.8em' }}>Price: <span className='specs price'><div className='red-dot'></div>{`  ${product.price} `}<img className='euro' src={euro} alt="" /></span></span>
                         }
 
                         <div className='question-links'>
